@@ -1,0 +1,2386 @@
+{
+ "packet": "docs/campaign-certification/S27/preparation/a1-claude-scope-20261004",
+ "task": "CODEX-S27-A1-01",
+ "task_owner": "Codex",
+ "prepared_by": "Claude, automated agent - not human or Codex review",
+ "prepared_on": "2026-10-04",
+ "source_commit": "39369f0ee6451466d03778d0273a7f72aafcf8c0",
+ "integration_branch": "codex/campaign-certification",
+ "local_branch": "claude/nifty-bohr-0j27qi",
+ "kind": "scoping and read-only diagnosis",
+ "outcome": "A1 reproduced exactly and still fails; nothing implemented",
+ "implemented": false,
+ "source_changed": false,
+ "thresholds_or_cohorts_changed": false,
+ "committed_or_pushed": false,
+ "does_not_establish": [
+  "qualification of any gate or campaign",
+  "closure of CODEX-S27-A1-01",
+  "acceptance by Codex, root or a human",
+  "that any candidate direction would pass A1",
+  "independent-sample evidence (only the gate's own seeds 0-11 were simulated)",
+  "quiet-machine timing (the S25 Linux diagnostic was running concurrently)"
+ ],
+ "still_open": [
+  "A1",
+  "CODEX-S27-A1-01",
+  "S25",
+  "S27",
+  "G5",
+  "CP1"
+ ],
+ "reproduction": {
+  "command": "cargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census",
+  "local": {
+   "os": "Linux x86_64",
+   "cpus": 4,
+   "rustc": "1.97.0 (2d8144b78 2026-07-07)",
+   "cargo": "1.97.0 (c980f4866 2026-06-30)",
+   "result": "10 passed, 1 failed (A1), 1 filtered",
+   "exit_code": 101,
+   "test_seconds": 104.73,
+   "nocapture_rerun_test_seconds": 100.71,
+   "test_binary": "target/release/deps/bloc_census-fcc63ad60c814b19",
+   "test_binary_bytes": 25676104,
+   "test_binary_sha256": "81f13be52cbd2a429314a9072f60685ffe2014c605d17b3e49012473056aac31",
+   "logs": [
+    "reproduction/a1-repro.log",
+    "reproduction/a1-repro-nocapture.log"
+   ]
+  },
+  "ci": [
+   {
+    "run": 37056033496,
+    "job": 111000855599,
+    "os": "ubuntu-latest",
+    "rustc": "1.99.0 (b940084d7 2026-09-28)",
+    "build": "1m 30s",
+    "test_seconds": 97.47,
+    "exit_code": 101,
+    "log_tail": "reproduction/ci-ubuntu-111000855599-tail400.log"
+   },
+   {
+    "run": 37056033496,
+    "job": 111000855667,
+    "os": "windows-latest",
+    "rustc": "1.99.0 (b940084d7 2026-09-28), x86_64-pc-windows-msvc",
+    "build": "2m 31s",
+    "test_seconds": 92.75,
+    "exit_code": 1,
+    "log_tail": "reproduction/ci-windows-111000855667-tail60.log",
+    "toolchain_excerpt": "reproduction/ci-windows-111000855667-toolchain-excerpt.txt"
+   }
+  ],
+  "seed_table_sha256": "87b3ea9ba1cd5bfd9a978edb34d1c7e6a54553e1afc42afede07e015cda73deb",
+  "seed_tables_identical": [
+   "reproduction/a1-local-table.txt",
+   "reproduction/a1-ci-ubuntu-table.txt",
+   "reproduction/a1-ci-windows-table.txt"
+  ]
+ },
+ "gate_definition": {
+  "test": "a1_coups_against_elected_governments_are_spread_not_three_micro_polities",
+  "file": "spheres-sim/tests/bloc_census.rs",
+  "lines": "983-993",
+  "assertions": {
+   "count_band": "(4.0..=14.0).contains(median(coup_el)) at line 991",
+   "concentration": "median(top3_share) < 0.5 strictly at line 992"
+  },
+  "cohort": "seeds 0..=11, 252 monthly ticks from January 1990, ideology_blocs and ideology_takeover on, no player, no commands",
+  "ci": ".github/workflows/verify.yml:216-231 (political-calibration, ubuntu-latest and windows-latest)"
+ },
+ "gates": [
+  {
+   "gate": "A1 elected-government coups: count band and concentration",
+   "value": "median coups 7.5 (in band); median per-seed top-3 share 4/7 = 0.571429; 1/12 seeds strictly below 0.5, 3/12 exactly 0.5",
+   "bar": "median coups 4..=14 AND median top-3 share strictly < 0.50 (seeds 0-11, 252 months)",
+   "pass": false
+  },
+  {
+   "gate": "A2 Islamist takeover without a ballot by 2000",
+   "value": "8/12 seeds; Algeria Islamist 0/12; Algeria annulled 12/12",
+   "bar": "seeds > 6 and <= 10; Algeria Islamist < 6; Algeria annulled >= 2",
+   "pass": true
+  },
+  {
+   "gate": "A3 Communist takeover without a ballot is rare",
+   "value": "0/20 seeds",
+   "bar": "<= 2 of 20 seeds",
+   "pass": true
+  },
+  {
+   "gate": "A4 democratisation wave by end-1996",
+   "value": "median 16 of the 1990 regimes electoral (per seed 16,17,18,16,18,14,15,17,16,15,18,13)",
+   "bar": "median in 15..=40",
+   "pass": true
+  },
+  {
+   "gate": "A5 ex-communist successor returns by ballot",
+   "value": "12/12 seeds with >= 3 states by 1996",
+   "bar": "> 6 of 12 seeds",
+   "pass": true
+  },
+  {
+   "gate": "A6 no route event in a 1990 democracy (authoritarianism <= 0.20) over 420 months",
+   "value": "0 route events in 12/12 seeds; pre-existing collapses beside [1 x12]",
+   "bar": "0 route events in every seed",
+   "pass": true
+  },
+  {
+   "gate": "A7 ballot bloc flips vs non-ballot takeovers",
+   "value": "median ratio 8.462",
+   "bar": "median >= 3.0",
+   "pass": true
+  },
+  {
+   "gate": "A8 six of the big eight keep their bloc",
+   "value": "40/40 seeds keep >= 6 (one seed keeps 7, the rest 8)",
+   "bar": ">= 24 of 40 seeds",
+   "pass": true
+  },
+  {
+   "gate": "A9 coups strike nations under $8,000 a head",
+   "value": "168/168 = 1.000 pooled",
+   "bar": "pooled share >= 0.80 and at least one coup",
+   "pass": true
+  },
+  {
+   "gate": "A10 discontent leads before a takeover",
+   "value": "median of per-seed medians 0.335 (per seed 0.320-0.358)",
+   "bar": "median >= 0.25, every seed has a takeover",
+   "pass": true
+  }
+ ],
+ "attribution_control_passed": true,
+ "a1_summary": {
+  "median_elected_coups": 7.5,
+  "median_top3_share_exact": "4/7",
+  "median_top3_share": 0.571429,
+  "seeds_below_half": 1,
+  "seeds_exactly_half": 3
+ },
+ "a1_per_seed": [
+  {
+   "seed": 0,
+   "elected_coups": 7,
+   "distinct_countries": 7,
+   "top3_share_exact": "3/7",
+   "top3_share": 0.428571,
+   "per_country": {
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guatemala": 1,
+    "Guyana": 1,
+    "Mozambique": 1,
+    "Myanmar": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.266,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.106,
+     "pre_pressure": 0.895,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.453,
+     "pre_effective_army_loyalty": 0.268,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.236,
+     "pre_pressure": 0.93,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.267,
+     "pre_effective_army_loyalty": 0.259,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.049,
+     "pre_pressure": 1.268,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.284,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.259,
+     "pre_pressure": 0.966,
+     "settled_months": 39
+    },
+    {
+     "country": "Comoros",
+     "month": "1995-10",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.358,
+     "pre_effective_army_loyalty": 0.328,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.068,
+     "pre_pressure": 0.968,
+     "settled_months": 54
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-07",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.355,
+     "pre_effective_army_loyalty": 0.293,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.945,
+     "settled_months": 25
+    },
+    {
+     "country": "Mozambique",
+     "month": "1999-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.403,
+     "pre_effective_army_loyalty": 0.33,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.028,
+     "pre_pressure": 1.269,
+     "settled_months": 11
+    }
+   ],
+   "gate_row": "s0 coupEl 7 annul 2 regCoup 6 take [0, 0, 8, 1, 1] upr [1, 0, 1, 1, 1, 7] open96 16 a6 0/1 big8 8 poor 15/15 a10 +0.333 top3 0.43",
+   "a10_seed_median": 0.333,
+   "open96": 16
+  },
+  {
+   "seed": 1,
+   "elected_coups": 6,
+   "distinct_countries": 5,
+   "top3_share_exact": "4/6",
+   "top3_share": 0.666667,
+   "per_country": {
+    "Guatemala": 2,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Myanmar": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.453,
+     "pre_effective_army_loyalty": 0.268,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.236,
+     "pre_pressure": 0.93,
+     "settled_months": 20
+    },
+    {
+     "country": "Guyana",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.452,
+     "pre_effective_army_loyalty": 0.263,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.109,
+     "pre_pressure": 0.99,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.257,
+     "pre_effective_army_loyalty": 0.262,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.046,
+     "pre_pressure": 1.223,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-05",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.262,
+     "pre_effective_army_loyalty": 0.284,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.258,
+     "pre_pressure": 0.999,
+     "settled_months": 40
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.353,
+     "pre_effective_army_loyalty": 0.291,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.965,
+     "settled_months": 26
+    },
+    {
+     "country": "Guatemala",
+     "month": "1998-12",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.412,
+     "pre_effective_army_loyalty": 0.311,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.133,
+     "pre_pressure": 0.961,
+     "settled_months": 36
+    }
+   ],
+   "gate_row": "s1 coupEl 6 annul 2 regCoup 3 take [0, 0, 8, 1, 1] upr [1, 0, 1, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 11/11 a10 +0.335 top3 0.67",
+   "a10_seed_median": 0.335,
+   "open96": 17
+  },
+  {
+   "seed": 2,
+   "elected_coups": 5,
+   "distinct_countries": 5,
+   "top3_share_exact": "3/5",
+   "top3_share": 0.6,
+   "per_country": {
+    "Ecuador": 1,
+    "Guatemala": 1,
+    "Guyana": 1,
+    "Myanmar": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.468,
+     "pre_effective_army_loyalty": 0.265,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.107,
+     "pre_pressure": 0.9,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.445,
+     "pre_effective_army_loyalty": 0.269,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.235,
+     "pre_pressure": 0.921,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.256,
+     "pre_effective_army_loyalty": 0.261,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.046,
+     "pre_pressure": 1.228,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.283,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.26,
+     "pre_pressure": 0.966,
+     "settled_months": 39
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.356,
+     "pre_effective_army_loyalty": 0.298,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.079,
+     "pre_pressure": 0.992,
+     "settled_months": 27
+    }
+   ],
+   "gate_row": "s2 coupEl 5 annul 3 regCoup 5 take [0, 0, 9, 1, 0] upr [0, 0, 2, 1, 0, 3] open96 18 a6 0/1 big8 8 poor 13/13 a10 +0.320 top3 0.60",
+   "a10_seed_median": 0.32,
+   "open96": 18
+  },
+  {
+   "seed": 3,
+   "elected_coups": 8,
+   "distinct_countries": 6,
+   "top3_share_exact": "5/8",
+   "top3_share": 0.625,
+   "per_country": {
+    "Guatemala": 2,
+    "Myanmar": 2,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.266,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.106,
+     "pre_pressure": 0.892,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.448,
+     "pre_effective_army_loyalty": 0.269,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.235,
+     "pre_pressure": 0.926,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.257,
+     "pre_effective_army_loyalty": 0.26,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.047,
+     "pre_pressure": 1.249,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.284,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.259,
+     "pre_pressure": 0.961,
+     "settled_months": 39
+    },
+    {
+     "country": "Comoros",
+     "month": "1995-10",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.358,
+     "pre_effective_army_loyalty": 0.328,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.068,
+     "pre_pressure": 0.965,
+     "settled_months": 54
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-07",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.353,
+     "pre_effective_army_loyalty": 0.292,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.934,
+     "settled_months": 25
+    },
+    {
+     "country": "Guatemala",
+     "month": "1998-04",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.408,
+     "pre_effective_army_loyalty": 0.311,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.134,
+     "pre_pressure": 0.981,
+     "settled_months": 38
+    },
+    {
+     "country": "Myanmar",
+     "month": "2002-03",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.314,
+     "pre_effective_army_loyalty": 0.309,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.107,
+     "pre_pressure": 0.978,
+     "settled_months": 27
+    }
+   ],
+   "gate_row": "s3 coupEl 8 annul 2 regCoup 4 take [0, 0, 11, 0, 1] upr [1, 0, 2, 0, 1, 3] open96 16 a6 0/1 big8 8 poor 14/14 a10 +0.336 top3 0.62",
+   "a10_seed_median": 0.336,
+   "open96": 16
+  },
+  {
+   "seed": 4,
+   "elected_coups": 8,
+   "distinct_countries": 7,
+   "top3_share_exact": "4/8",
+   "top3_share": 0.5,
+   "per_country": {
+    "Guatemala": 2,
+    "Chad": 1,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Myanmar": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.448,
+     "pre_effective_army_loyalty": 0.269,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.235,
+     "pre_pressure": 0.924,
+     "settled_months": 20
+    },
+    {
+     "country": "Guyana",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.452,
+     "pre_effective_army_loyalty": 0.261,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.109,
+     "pre_pressure": 0.998,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.258,
+     "pre_effective_army_loyalty": 0.261,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.046,
+     "pre_pressure": 1.232,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-05",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.262,
+     "pre_effective_army_loyalty": 0.285,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.257,
+     "pre_pressure": 0.99,
+     "settled_months": 40
+    },
+    {
+     "country": "Chad",
+     "month": "1993-10",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.341,
+     "pre_effective_army_loyalty": 0.186,
+     "live_leverage": 0.4,
+     "confidence_penalty": 0.066,
+     "pre_pressure": 0.931,
+     "settled_months": 45
+    },
+    {
+     "country": "Comoros",
+     "month": "1995-10",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.358,
+     "pre_effective_army_loyalty": 0.328,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.068,
+     "pre_pressure": 0.963,
+     "settled_months": 54
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-07",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.354,
+     "pre_effective_army_loyalty": 0.292,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.944,
+     "settled_months": 25
+    },
+    {
+     "country": "Guatemala",
+     "month": "1998-02",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.405,
+     "pre_effective_army_loyalty": 0.31,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.133,
+     "pre_pressure": 0.933,
+     "settled_months": 37
+    }
+   ],
+   "gate_row": "s4 coupEl 8 annul 2 regCoup 3 take [0, 0, 10, 1, 2] upr [1, 0, 1, 1, 2, 3] open96 18 a6 0/1 big8 8 poor 13/13 a10 +0.324 top3 0.50",
+   "a10_seed_median": 0.324,
+   "open96": 18
+  },
+  {
+   "seed": 5,
+   "elected_coups": 8,
+   "distinct_countries": 7,
+   "top3_share_exact": "4/8",
+   "top3_share": 0.5,
+   "per_country": {
+    "Guatemala": 2,
+    "Chad": 1,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Myanmar": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.266,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.106,
+     "pre_pressure": 0.894,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.449,
+     "pre_effective_army_loyalty": 0.269,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.235,
+     "pre_pressure": 0.925,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.264,
+     "pre_effective_army_loyalty": 0.26,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.048,
+     "pre_pressure": 1.253,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.284,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.26,
+     "pre_pressure": 0.965,
+     "settled_months": 39
+    },
+    {
+     "country": "Comoros",
+     "month": "1995-10",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.358,
+     "pre_effective_army_loyalty": 0.328,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.068,
+     "pre_pressure": 0.975,
+     "settled_months": 54
+    },
+    {
+     "country": "Chad",
+     "month": "1996-01",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.371,
+     "pre_effective_army_loyalty": 0.161,
+     "live_leverage": 0.4,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.996,
+     "settled_months": 72
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-07",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.354,
+     "pre_effective_army_loyalty": 0.292,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.943,
+     "settled_months": 25
+    },
+    {
+     "country": "Guatemala",
+     "month": "1998-04",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.408,
+     "pre_effective_army_loyalty": 0.339,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.111,
+     "pre_pressure": 0.968,
+     "settled_months": 48
+    }
+   ],
+   "gate_row": "s5 coupEl 8 annul 2 regCoup 4 take [0, 0, 10, 1, 1] upr [2, 0, 1, 1, 1, 8] open96 14 a6 0/1 big8 8 poor 14/14 a10 +0.343 top3 0.50",
+   "a10_seed_median": 0.343,
+   "open96": 14
+  },
+  {
+   "seed": 6,
+   "elected_coups": 7,
+   "distinct_countries": 6,
+   "top3_share_exact": "4/7",
+   "top3_share": 0.571429,
+   "per_country": {
+    "Myanmar": 2,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guatemala": 1,
+    "Guyana": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.266,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.106,
+     "pre_pressure": 0.887,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.447,
+     "pre_effective_army_loyalty": 0.269,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.235,
+     "pre_pressure": 0.921,
+     "settled_months": 20
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-05",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.262,
+     "pre_effective_army_loyalty": 0.285,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.257,
+     "pre_pressure": 0.978,
+     "settled_months": 40
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1995-07",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.259,
+     "pre_effective_army_loyalty": 0.256,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.037,
+     "pre_pressure": 0.971,
+     "settled_months": 39
+    },
+    {
+     "country": "Comoros",
+     "month": "1996-02",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.36,
+     "pre_effective_army_loyalty": 0.336,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.069,
+     "pre_pressure": 0.986,
+     "settled_months": 58
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.353,
+     "pre_effective_army_loyalty": 0.291,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.997,
+     "settled_months": 26
+    },
+    {
+     "country": "Myanmar",
+     "month": "2002-02",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.315,
+     "pre_effective_army_loyalty": 0.303,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.109,
+     "pre_pressure": 0.958,
+     "settled_months": 26
+    }
+   ],
+   "gate_row": "s6 coupEl 7 annul 2 regCoup 7 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 6] open96 15 a6 0/1 big8 8 poor 16/16 a10 +0.329 top3 0.57",
+   "a10_seed_median": 0.329,
+   "open96": 15
+  },
+  {
+   "seed": 7,
+   "elected_coups": 8,
+   "distinct_countries": 6,
+   "top3_share_exact": "5/8",
+   "top3_share": 0.625,
+   "per_country": {
+    "Guatemala": 2,
+    "Sao Tome and Principe": 2,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Myanmar": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.266,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.106,
+     "pre_pressure": 0.891,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.449,
+     "pre_effective_army_loyalty": 0.269,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.235,
+     "pre_pressure": 0.925,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.257,
+     "pre_effective_army_loyalty": 0.261,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.046,
+     "pre_pressure": 1.221,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.284,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.26,
+     "pre_pressure": 0.965,
+     "settled_months": 39
+    },
+    {
+     "country": "Comoros",
+     "month": "1995-10",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.357,
+     "pre_effective_army_loyalty": 0.328,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.068,
+     "pre_pressure": 0.958,
+     "settled_months": 54
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1996-05",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.355,
+     "pre_effective_army_loyalty": 0.221,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.148,
+     "pre_pressure": 1.047,
+     "settled_months": 11
+    },
+    {
+     "country": "Myanmar",
+     "month": "1997-05",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.305,
+     "pre_effective_army_loyalty": 0.296,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.06,
+     "pre_pressure": 0.97,
+     "settled_months": 35
+    },
+    {
+     "country": "Guatemala",
+     "month": "2000-02",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.366,
+     "pre_effective_army_loyalty": 0.324,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.114,
+     "pre_pressure": 0.975,
+     "settled_months": 59
+    }
+   ],
+   "gate_row": "s7 coupEl 8 annul 2 regCoup 5 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 9] open96 17 a6 0/1 big8 8 poor 15/15 a10 +0.323 top3 0.62",
+   "a10_seed_median": 0.323,
+   "open96": 17
+  },
+  {
+   "seed": 8,
+   "elected_coups": 8,
+   "distinct_countries": 7,
+   "top3_share_exact": "4/8",
+   "top3_share": 0.5,
+   "per_country": {
+    "Guatemala": 2,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Mozambique": 1,
+    "Myanmar": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.266,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.106,
+     "pre_pressure": 0.888,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.451,
+     "pre_effective_army_loyalty": 0.268,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.236,
+     "pre_pressure": 0.931,
+     "settled_months": 20
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.284,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.26,
+     "pre_pressure": 0.957,
+     "settled_months": 39
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1995-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.262,
+     "pre_effective_army_loyalty": 0.256,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.036,
+     "pre_pressure": 0.982,
+     "settled_months": 41
+    },
+    {
+     "country": "Comoros",
+     "month": "1995-10",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.358,
+     "pre_effective_army_loyalty": 0.328,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.068,
+     "pre_pressure": 0.963,
+     "settled_months": 54
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.353,
+     "pre_effective_army_loyalty": 0.291,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.966,
+     "settled_months": 26
+    },
+    {
+     "country": "Mozambique",
+     "month": "1999-05",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.4,
+     "pre_effective_army_loyalty": 0.303,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.028,
+     "pre_pressure": 1.5,
+     "settled_months": 11
+    },
+    {
+     "country": "Guatemala",
+     "month": "2000-03",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.364,
+     "pre_effective_army_loyalty": 0.317,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.108,
+     "pre_pressure": 0.993,
+     "settled_months": 48
+    }
+   ],
+   "gate_row": "s8 coupEl 8 annul 2 regCoup 4 take [0, 0, 9, 1, 1] upr [0, 0, 1, 1, 1, 3] open96 16 a6 0/1 big8 8 poor 14/14 a10 +0.346 top3 0.50",
+   "a10_seed_median": 0.346,
+   "open96": 16
+  },
+  {
+   "seed": 9,
+   "elected_coups": 7,
+   "distinct_countries": 6,
+   "top3_share_exact": "4/7",
+   "top3_share": 0.571429,
+   "per_country": {
+    "Guatemala": 2,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Myanmar": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.266,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.106,
+     "pre_pressure": 0.893,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.269,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.236,
+     "pre_pressure": 0.928,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.257,
+     "pre_effective_army_loyalty": 0.261,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.046,
+     "pre_pressure": 1.239,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.283,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.26,
+     "pre_pressure": 0.985,
+     "settled_months": 39
+    },
+    {
+     "country": "Comoros",
+     "month": "1995-11",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.357,
+     "pre_effective_army_loyalty": 0.328,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.068,
+     "pre_pressure": 0.993,
+     "settled_months": 55
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.354,
+     "pre_effective_army_loyalty": 0.294,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.078,
+     "pre_pressure": 0.987,
+     "settled_months": 26
+    },
+    {
+     "country": "Guatemala",
+     "month": "1998-08",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.378,
+     "pre_effective_army_loyalty": 0.318,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.121,
+     "pre_pressure": 0.962,
+     "settled_months": 53
+    }
+   ],
+   "gate_row": "s9 coupEl 7 annul 2 regCoup 3 take [0, 0, 11, 0, 1] upr [1, 0, 3, 0, 1, 3] open96 15 a6 0/1 big8 8 poor 12/12 a10 +0.350 top3 0.57",
+   "a10_seed_median": 0.35,
+   "open96": 15
+  },
+  {
+   "seed": 10,
+   "elected_coups": 8,
+   "distinct_countries": 6,
+   "top3_share_exact": "5/8",
+   "top3_share": 0.625,
+   "per_country": {
+    "Guatemala": 2,
+    "Sao Tome and Principe": 2,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Myanmar": 1
+   },
+   "events": [
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.451,
+     "pre_effective_army_loyalty": 0.268,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.236,
+     "pre_pressure": 0.929,
+     "settled_months": 20
+    },
+    {
+     "country": "Guyana",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.412,
+     "pre_effective_army_loyalty": 0.262,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.105,
+     "pre_pressure": 0.974,
+     "settled_months": 20
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1993-03",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.26,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.048,
+     "pre_pressure": 1.263,
+     "settled_months": 11
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.282,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.261,
+     "pre_pressure": 0.982,
+     "settled_months": 39
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-07",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.354,
+     "pre_effective_army_loyalty": 0.292,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.941,
+     "settled_months": 25
+    },
+    {
+     "country": "Comoros",
+     "month": "1996-11",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.369,
+     "pre_effective_army_loyalty": 0.34,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.073,
+     "pre_pressure": 0.972,
+     "settled_months": 67
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1997-07",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.363,
+     "pre_effective_army_loyalty": 0.314,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.161,
+     "pre_pressure": 1.18,
+     "settled_months": 11
+    },
+    {
+     "country": "Guatemala",
+     "month": "2000-01",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.411,
+     "pre_effective_army_loyalty": 0.301,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.128,
+     "pre_pressure": 0.998,
+     "settled_months": 30
+    }
+   ],
+   "gate_row": "s10 coupEl 8 annul 2 regCoup 5 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 18 a6 0/1 big8 8 poor 15/15 a10 +0.346 top3 0.62",
+   "a10_seed_median": 0.346,
+   "open96": 18
+  },
+  {
+   "seed": 11,
+   "elected_coups": 7,
+   "distinct_countries": 6,
+   "top3_share_exact": "4/7",
+   "top3_share": 0.571429,
+   "per_country": {
+    "Guatemala": 2,
+    "Comoros": 1,
+    "Ecuador": 1,
+    "Guyana": 1,
+    "Myanmar": 1,
+    "Sao Tome and Principe": 1
+   },
+   "events": [
+    {
+     "country": "Guyana",
+     "month": "1991-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.45,
+     "pre_effective_army_loyalty": 0.266,
+     "live_leverage": 0.5,
+     "confidence_penalty": 0.106,
+     "pre_pressure": 0.894,
+     "settled_months": 19
+    },
+    {
+     "country": "Guatemala",
+     "month": "1991-09",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.452,
+     "pre_effective_army_loyalty": 0.268,
+     "live_leverage": 0.8,
+     "confidence_penalty": 0.236,
+     "pre_pressure": 0.931,
+     "settled_months": 20
+    },
+    {
+     "country": "Ecuador",
+     "month": "1993-04",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.261,
+     "pre_effective_army_loyalty": 0.282,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.261,
+     "pre_pressure": 0.996,
+     "settled_months": 39
+    },
+    {
+     "country": "Sao Tome and Principe",
+     "month": "1995-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.258,
+     "pre_effective_army_loyalty": 0.256,
+     "live_leverage": 0.25,
+     "confidence_penalty": 0.037,
+     "pre_pressure": 0.957,
+     "settled_months": 40
+    },
+    {
+     "country": "Comoros",
+     "month": "1995-10",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.357,
+     "pre_effective_army_loyalty": 0.328,
+     "live_leverage": 0.571,
+     "confidence_penalty": 0.068,
+     "pre_pressure": 0.959,
+     "settled_months": 54
+    },
+    {
+     "country": "Myanmar",
+     "month": "1996-08",
+     "nth_in_seed": 1,
+     "pre_discontent": 0.353,
+     "pre_effective_army_loyalty": 0.291,
+     "live_leverage": 0.667,
+     "confidence_penalty": 0.077,
+     "pre_pressure": 0.995,
+     "settled_months": 26
+    },
+    {
+     "country": "Guatemala",
+     "month": "1999-03",
+     "nth_in_seed": 2,
+     "pre_discontent": 0.416,
+     "pre_effective_army_loyalty": 0.31,
+     "live_leverage": 1.0,
+     "confidence_penalty": 0.134,
+     "pre_pressure": 0.979,
+     "settled_months": 36
+    }
+   ],
+   "gate_row": "s11 coupEl 7 annul 2 regCoup 7 take [0, 0, 11, 1, 0] upr [0, 0, 3, 1, 0, 8] open96 13 a6 0/1 big8 8 poor 16/16 a10 +0.358 top3 0.57",
+   "a10_seed_median": 0.358,
+   "open96": 13
+  }
+ ],
+ "countries": {
+  "elected_coup_countries": [
+   {
+    "country": "Guatemala",
+    "elected_coups": 21,
+    "seeds_with_coup": 12,
+    "repeats": 9,
+    "first_coup_months": [
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09",
+     "1991-09"
+    ],
+    "repeat_months": [
+     "1998-02",
+     "1998-04",
+     "1998-04",
+     "1998-08",
+     "1998-12",
+     "1999-03",
+     "2000-01",
+     "2000-02",
+     "2000-03"
+    ],
+    "leverage_at_first_coup": [
+     0.8
+    ]
+   },
+   {
+    "country": "Sao Tome and Principe",
+    "elected_coups": 14,
+    "seeds_with_coup": 12,
+    "repeats": 2,
+    "first_coup_months": [
+     "1993-03",
+     "1993-03",
+     "1993-03",
+     "1993-03",
+     "1993-03",
+     "1993-03",
+     "1993-03",
+     "1993-03",
+     "1993-03",
+     "1995-07",
+     "1995-08",
+     "1995-09"
+    ],
+    "repeat_months": [
+     "1996-05",
+     "1997-07"
+    ],
+    "leverage_at_first_coup": [
+     0.25
+    ]
+   },
+   {
+    "country": "Myanmar",
+    "elected_coups": 14,
+    "seeds_with_coup": 12,
+    "repeats": 2,
+    "first_coup_months": [
+     "1996-07",
+     "1996-07",
+     "1996-07",
+     "1996-07",
+     "1996-07",
+     "1996-08",
+     "1996-08",
+     "1996-08",
+     "1996-08",
+     "1996-08",
+     "1996-09",
+     "1997-05"
+    ],
+    "repeat_months": [
+     "2002-02",
+     "2002-03"
+    ],
+    "leverage_at_first_coup": [
+     0.667
+    ]
+   },
+   {
+    "country": "Guyana",
+    "elected_coups": 12,
+    "seeds_with_coup": 12,
+    "repeats": 0,
+    "first_coup_months": [
+     "1991-08",
+     "1991-08",
+     "1991-08",
+     "1991-08",
+     "1991-08",
+     "1991-08",
+     "1991-08",
+     "1991-08",
+     "1991-08",
+     "1991-09",
+     "1991-09",
+     "1991-09"
+    ],
+    "repeat_months": [],
+    "leverage_at_first_coup": [
+     0.5
+    ]
+   },
+   {
+    "country": "Ecuador",
+    "elected_coups": 12,
+    "seeds_with_coup": 12,
+    "repeats": 0,
+    "first_coup_months": [
+     "1993-04",
+     "1993-04",
+     "1993-04",
+     "1993-04",
+     "1993-04",
+     "1993-04",
+     "1993-04",
+     "1993-04",
+     "1993-04",
+     "1993-05",
+     "1993-05",
+     "1993-05"
+    ],
+    "repeat_months": [],
+    "leverage_at_first_coup": [
+     1.0
+    ]
+   },
+   {
+    "country": "Comoros",
+    "elected_coups": 10,
+    "seeds_with_coup": 10,
+    "repeats": 0,
+    "first_coup_months": [
+     "1995-10",
+     "1995-10",
+     "1995-10",
+     "1995-10",
+     "1995-10",
+     "1995-10",
+     "1995-10",
+     "1995-11",
+     "1996-02",
+     "1996-11"
+    ],
+    "repeat_months": [],
+    "leverage_at_first_coup": [
+     0.571
+    ]
+   },
+   {
+    "country": "Chad",
+    "elected_coups": 2,
+    "seeds_with_coup": 2,
+    "repeats": 0,
+    "first_coup_months": [
+     "1993-10",
+     "1996-01"
+    ],
+    "repeat_months": [],
+    "leverage_at_first_coup": [
+     0.4
+    ]
+   },
+   {
+    "country": "Mozambique",
+    "elected_coups": 2,
+    "seeds_with_coup": 2,
+    "repeats": 0,
+    "first_coup_months": [
+     "1999-05",
+     "1999-08"
+    ],
+    "repeat_months": [],
+    "leverage_at_first_coup": [
+     0.25
+    ]
+   }
+  ],
+  "totals": {
+   "elected_coups": 87,
+   "first_events": 74,
+   "repeats": 13,
+   "note": "Every repeat reads live leverage 1.0, the value a first seizure sets (army_authority::army_seizure, army_authority.rs:115), after a reopening."
+  },
+  "expected_but_absent": {
+   "Pakistan": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 3024,
+    "max_discontent": 0.211,
+    "min_effective_army_loyalty": 0.647,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.8,
+    "elected_coups": 0,
+    "regime_months": 0
+   },
+   "Thailand": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 3024,
+    "max_discontent": 0.182,
+    "min_effective_army_loyalty": 0.65,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.833,
+    "elected_coups": 0,
+    "regime_months": 0
+   },
+   "Haiti": {
+    "electoral_army_months": 0,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 0,
+    "max_discontent": 0.0,
+    "min_effective_army_loyalty": 1.0,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": null,
+    "elected_coups": 0,
+    "regime_months": 3024
+   },
+   "Nigeria": {
+    "electoral_army_months": 0,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 0,
+    "max_discontent": 0.0,
+    "min_effective_army_loyalty": 1.0,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": null,
+    "elected_coups": 0,
+    "regime_months": 3024
+   },
+   "Peru": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 2996,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 28,
+    "max_discontent": 0.7,
+    "min_effective_army_loyalty": 0.38,
+    "max_confidence_penalty": 0.18,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.5,
+    "elected_coups": 0,
+    "regime_months": 0
+   }
+  },
+  "quiet_funded_high_leverage_population": {
+   "Ghana": {
+    "electoral_army_months": 2575,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2575,
+    "max_discontent": 0.141,
+    "min_effective_army_loyalty": 0.415,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 1.0,
+    "elected_coups": 0,
+    "regime_months": 449
+   },
+   "Gabon": {
+    "electoral_army_months": 2296,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2296,
+    "max_discontent": 0.18,
+    "min_effective_army_loyalty": 0.65,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.833,
+    "elected_coups": 0,
+    "regime_months": 728
+   },
+   "Thailand": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 3024,
+    "max_discontent": 0.182,
+    "min_effective_army_loyalty": 0.65,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.833,
+    "elected_coups": 0,
+    "regime_months": 0
+   },
+   "Pakistan": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 3024,
+    "max_discontent": 0.211,
+    "min_effective_army_loyalty": 0.647,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.8,
+    "elected_coups": 0,
+    "regime_months": 0
+   },
+   "Paraguay": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 96,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2928,
+    "max_discontent": 0.307,
+    "min_effective_army_loyalty": 0.616,
+    "max_confidence_penalty": 0.256,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.8,
+    "elected_coups": 0,
+    "regime_months": 0
+   },
+   "Lesotho": {
+    "electoral_army_months": 2670,
+    "crisis_months_D_ge_0_25": 422,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2248,
+    "max_discontent": 0.337,
+    "min_effective_army_loyalty": 0.78,
+    "max_confidence_penalty": 0.07,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.75,
+    "elected_coups": 0,
+    "regime_months": 354
+   },
+   "Cameroon": {
+    "electoral_army_months": 2515,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2515,
+    "max_discontent": 0.076,
+    "min_effective_army_loyalty": 0.666,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.714,
+    "elected_coups": 0,
+    "regime_months": 509
+   },
+   "Central African Republic": {
+    "electoral_army_months": 2779,
+    "crisis_months_D_ge_0_25": 585,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2194,
+    "max_discontent": 0.323,
+    "min_effective_army_loyalty": 0.579,
+    "max_confidence_penalty": 0.054,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.6,
+    "elected_coups": 0,
+    "regime_months": 245
+   },
+   "El Salvador": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 1027,
+    "hostile_months_eff_lt_0_35": 60,
+    "both_months": 60,
+    "quiet_funded_months": 1997,
+    "max_discontent": 0.548,
+    "min_effective_army_loyalty": 0.338,
+    "max_confidence_penalty": 0.296,
+    "max_pressure": 0.253,
+    "first_observed_leverage": 0.6,
+    "elected_coups": 0,
+    "regime_months": 0
+   },
+   "Honduras": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 48,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2976,
+    "max_discontent": 0.311,
+    "min_effective_army_loyalty": 0.65,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.6,
+    "elected_coups": 0,
+    "regime_months": 0
+   },
+   "Fiji": {
+    "electoral_army_months": 2525,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2525,
+    "max_discontent": 0.152,
+    "min_effective_army_loyalty": 0.565,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.5,
+    "elected_coups": 0,
+    "regime_months": 499
+   },
+   "South Korea": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 0,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 3024,
+    "max_discontent": 0.115,
+    "min_effective_army_loyalty": 0.611,
+    "max_confidence_penalty": 0.0,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.5,
+    "elected_coups": 0,
+    "regime_months": 0
+   },
+   "Turkey": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 156,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2868,
+    "max_discontent": 0.342,
+    "min_effective_army_loyalty": 0.489,
+    "max_confidence_penalty": 0.173,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.5,
+    "elected_coups": 0,
+    "regime_months": 0
+   }
+  },
+  "a6_democracies_with_nonzero_penalty": {
+   "Uruguay": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 120,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 2904,
+    "max_discontent": 0.413,
+    "min_effective_army_loyalty": 0.47,
+    "max_confidence_penalty": 0.222,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.6,
+    "elected_coups": 0,
+    "regime_months": 0,
+    "authoritarianism_1990": 0.12
+   },
+   "Brazil": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 3024,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 0,
+    "max_discontent": 0.693,
+    "min_effective_army_loyalty": 0.65,
+    "max_confidence_penalty": 0.185,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.375,
+    "elected_coups": 0,
+    "regime_months": 0,
+    "authoritarianism_1990": 0.2
+   },
+   "Venezuela": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 1342,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 1682,
+    "max_discontent": 0.521,
+    "min_effective_army_loyalty": 0.65,
+    "max_confidence_penalty": 0.131,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.286,
+    "elected_coups": 0,
+    "regime_months": 0,
+    "authoritarianism_1990": 0.18
+   },
+   "Argentina": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 2369,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 655,
+    "max_discontent": 0.826,
+    "min_effective_army_loyalty": 0.65,
+    "max_confidence_penalty": 0.102,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.2,
+    "elected_coups": 0,
+    "regime_months": 0,
+    "authoritarianism_1990": 0.15
+   },
+   "Papua New Guinea": {
+    "electoral_army_months": 3024,
+    "crisis_months_D_ge_0_25": 1955,
+    "hostile_months_eff_lt_0_35": 0,
+    "both_months": 0,
+    "quiet_funded_months": 1069,
+    "max_discontent": 0.35,
+    "min_effective_army_loyalty": 0.65,
+    "max_confidence_penalty": 0.088,
+    "max_pressure": 0.0,
+    "first_observed_leverage": 0.5,
+    "elected_coups": 0,
+    "regime_months": 0,
+    "authoritarianism_1990": 0.15
+   }
+  },
+  "pooled_source": "diagnostics/a1-diag-seeds0-11.log (12 seeds x 252 months; months are country-months)"
+ },
+ "breadth_arithmetic": {
+  "status": "explanation only - not a tuning target, not a prediction, not an alternative criterion",
+  "rows": [
+   {
+    "hypothetical": "current (diagnostic counts, seeds 0-11)",
+    "median_coups": 7.5,
+    "median_top3": "4/7",
+    "seeds_below_half": 1,
+    "a1": "FAIL"
+   },
+   {
+    "hypothetical": "repeats removed (each country at most 1/seed)",
+    "median_coups": 6.0,
+    "median_top3": "1/2",
+    "seeds_below_half": 4,
+    "a1": "FAIL"
+   },
+   {
+    "hypothetical": "+1 new distinct single-coup countries per seed",
+    "median_coups": 8.5,
+    "median_top3": "1/2",
+    "seeds_below_half": 4,
+    "a1": "FAIL"
+   },
+   {
+    "hypothetical": "+2 new distinct single-coup countries per seed",
+    "median_coups": 9.5,
+    "median_top3": "4/9",
+    "seeds_below_half": 8,
+    "a1": "PASS"
+   },
+   {
+    "hypothetical": "+3 new distinct single-coup countries per seed",
+    "median_coups": 10.5,
+    "median_top3": "2/5",
+    "seeds_below_half": 12,
+    "a1": "PASS"
+   },
+   {
+    "hypothetical": "+4 new distinct single-coup countries per seed",
+    "median_coups": 11.5,
+    "median_top3": "4/11",
+    "seeds_below_half": 12,
+    "a1": "PASS"
+   },
+   {
+    "hypothetical": "+5 new distinct single-coup countries per seed",
+    "median_coups": 12.5,
+    "median_top3": "1/3",
+    "seeds_below_half": 12,
+    "a1": "PASS"
+   },
+   {
+    "hypothetical": "+2 new distinct countries AND +1 repeat in top country",
+    "median_coups": 10.5,
+    "median_top3": "1/2",
+    "seeds_below_half": 4,
+    "a1": "FAIL"
+   },
+   {
+    "hypothetical": "+1 new country with 2 coups per seed",
+    "median_coups": 9.5,
+    "median_top3": "5/9",
+    "seeds_below_half": 1,
+    "a1": "FAIL"
+   },
+   {
+    "hypothetical": "+2 new countries with 2 coups each per seed",
+    "median_coups": 11.5,
+    "median_top3": "1/2",
+    "seeds_below_half": 1,
+    "a1": "FAIL"
+   }
+  ],
+  "script": "harness/breadth_arithmetic.py",
+  "output": "diagnostics/a1-breadth-arithmetic.txt"
+ },
+ "route2_conditions": [
+  {
+   "what": "pressure accrues only while effective Army loyalty < 0.35 and discontent >= 0.25, rate 0.30*(2*(0.35-eff)+(D-0.25)) per month, cap 1.5, else cools 0.03/month",
+   "where": "spheres-sim/src/government.rs:8881 electoral_army_tick; constants 8843-8844"
+  },
+  {
+   "what": "fires only with an Army, >= 12 settled months under the same party, no pending first election, both live conditions, pressure >= 1/crisis_intensity (1.0 by default)",
+   "where": "spheres-sim/src/government.rs:8951 maybe_electoral_coup; ELECTORAL_COUP_SETTLED 8848"
+  },
+  {
+   "what": "Army target = 0.20 + 0.65*funded - 0.45*exhaustion minus the civilian-confidence penalty",
+   "where": "spheres-sim/src/government.rs:8690 pillar_targets; 8495; 8672"
+  },
+  {
+   "what": "confidence penalty is 0 below discontent 0.25, without a civilian record of >= 6 months, or with zero leverage",
+   "where": "spheres-sim/src/government.rs:8573; 8516; 8508"
+  }
+ ],
+ "a10_margin": {
+  "rows": [
+   {
+    "added_zero_lead_takeovers_per_seed": 0,
+    "median_of_seed_medians": 0.335,
+    "weakest_seed": 0.32
+   },
+   {
+    "added_zero_lead_takeovers_per_seed": 1,
+    "median_of_seed_medians": 0.319,
+    "weakest_seed": 0.302
+   },
+   {
+    "added_zero_lead_takeovers_per_seed": 2,
+    "median_of_seed_medians": 0.313,
+    "weakest_seed": 0.285
+   },
+   {
+    "added_zero_lead_takeovers_per_seed": 3,
+    "median_of_seed_medians": 0.303,
+    "weakest_seed": 0.257
+   },
+   {
+    "added_zero_lead_takeovers_per_seed": 4,
+    "median_of_seed_medians": 0.295,
+    "weakest_seed": 0.246
+   }
+  ],
+  "note": "Same result for any added lead below 0.187, the smallest current lead in any seed.",
+  "quiet_country_leads": {
+   "Cameroon": {
+    "electoral_months": 2512,
+    "min": -0.1,
+    "median": -0.024,
+    "max": 0.015
+   },
+   "Central African Republic": {
+    "electoral_months": 2775,
+    "min": -0.008,
+    "median": 0.109,
+    "max": 0.302
+   },
+   "El Salvador": {
+    "electoral_months": 2964,
+    "min": 0.111,
+    "median": 0.191,
+    "max": 0.394
+   },
+   "Fiji": {
+    "electoral_months": 2525,
+    "min": -0.043,
+    "median": 0.002,
+    "max": 0.142
+   },
+   "Gabon": {
+    "electoral_months": 2292,
+    "min": -0.034,
+    "median": 0.025,
+    "max": 0.223
+   },
+   "Ghana": {
+    "electoral_months": 2575,
+    "min": -0.028,
+    "median": 0.018,
+    "max": 0.107
+   },
+   "Honduras": {
+    "electoral_months": 2964,
+    "min": -0.042,
+    "median": -0.004,
+    "max": 0.07
+   },
+   "Lesotho": {
+    "electoral_months": 2670,
+    "min": 0.025,
+    "median": 0.141,
+    "max": 0.3
+   },
+   "Pakistan": {
+    "electoral_months": 2964,
+    "min": -0.054,
+    "median": -0.014,
+    "max": 0.023
+   },
+   "Paraguay": {
+    "electoral_months": 2964,
+    "min": -0.034,
+    "median": 0.003,
+    "max": 0.111
+   },
+   "Peru": {
+    "electoral_months": 2964,
+    "min": 0.206,
+    "median": 0.325,
+    "max": 0.612
+   },
+   "Philippines": {
+    "electoral_months": 2964,
+    "min": 0.134,
+    "median": 0.24,
+    "max": 0.335
+   },
+   "South Korea": {
+    "electoral_months": 2964,
+    "min": -0.134,
+    "median": -0.034,
+    "max": 0.0
+   },
+   "Thailand": {
+    "electoral_months": 2964,
+    "min": -0.071,
+    "median": -0.023,
+    "max": 0.006
+   },
+   "Turkey": {
+    "electoral_months": 2964,
+    "min": -0.049,
+    "median": -0.008,
+    "max": 0.175
+   }
+  },
+  "logs": [
+   "diagnostics/a1-diag-a10-margin.log",
+   "diagnostics/a1-diag-a10lead.log"
+  ]
+ },
+ "docs_vs_code_discrepancy": {
+  "docs": [
+   "docs/political-arm/2026-09-22-calibration-repairs.md:87 'Civilian control at authoritarianism `.20` or below blocks it.'",
+   "docs/political-arm/2026-09-22-calibration-repairs.md:306 'That boundary suppresses the civilian-confidence penalty'"
+  ],
+  "code": "spheres-sim/src/government.rs:8508-8514 civilian_army_executive_leverage uses sourced current_leverage when known; the (authoritarianism-0.20)/0.40 proxy applies only to unknown assessments; comment at 8503-8504 records the iteration-20 choice",
+  "observed_max_penalties": {
+   "Uruguay": {
+    "authoritarianism_1990": 0.12,
+    "max_penalty": 0.222,
+    "min_effective_army_loyalty": 0.47
+   },
+   "Brazil": {
+    "authoritarianism_1990": 0.2,
+    "max_penalty": 0.185,
+    "min_effective_army_loyalty": 0.65
+   },
+   "Venezuela": {
+    "authoritarianism_1990": 0.18,
+    "max_penalty": 0.131,
+    "min_effective_army_loyalty": 0.65
+   },
+   "Argentina": {
+    "authoritarianism_1990": 0.15,
+    "max_penalty": 0.102,
+    "min_effective_army_loyalty": 0.65
+   },
+   "Papua New Guinea": {
+    "authoritarianism_1990": 0.15,
+    "max_penalty": 0.088,
+    "min_effective_army_loyalty": 0.65
+   }
+  },
+  "options": {
+   "a": "documented rule stands: return 0 at authoritarianism <= 0.20; D1 reuses it; removes these penalties, perturbs funding/fiscal paths (A2 risk), partly reverses iteration 20",
+   "b": "code stands: a new record corrects the two doc statements; D1 gets its own explicit A6 guard"
+  },
+  "decision_needed_from": "design authority (the user)"
+ },
+ "directions": [
+  {
+   "id": "D1",
+   "name": "Complete the civilian-authority dispute contract (order -> compliance -> recorded dispute -> resolution -> distinct escalation)",
+   "mechanism": "Add a REFUSABLE government command for both player and AI, for example AssertCivilianAuthority { nation, institution, scope }. It names a concrete authority change, such as bringing senior Army appointments under the civilian ministry.\n\nLegality:\n- an electoral state with a completed, unrestricted ballot (elected && unrestricted_mandate && !awaiting_first_election);\n- an established civilian record (existing `established_civilian_record`, at least 6 months under the same party);\n- a specific Army institution with known live leverage above 0;\n- current authoritarianism above 0.20 (the civilian-control guard, see D2);\n- no unresolved dispute already open;\n- a political-capital price.\n\nCompliance, owned by the server plan: prospective acceptance = effective loyalty − W·leverage·scope. This has the same structure as the existing `army_programme_veto_loyalty` (W .45 there). The institution refuses below the existing 0.35 line.\n- If it complies, live leverage falls through an army_authority update like `consolidate_transfer`. That reduction is the AI's positive objective, because it shrinks future confidence-penalty and programme-veto exposure.\n- If it refuses, store a DisputeRecord in GovState: institution identity, order receipt, issuing party, scope, refusal date and status. It is serde-default empty, so an old save has no dispute.\n\nResolutions, quoted from the same plan:\n- negotiate a narrower scope, which is re-tested;\n- withdraw, which clears the dispute at a cost;\n- enforce, which keeps it open.\n\nOnly an unresolved, enforced dispute accrues a separate authority pressure. It has no D >= .25 requirement and stops the moment the dispute resolves. When it fires, it reuses `break_electoral` with the existing 'removes the elected government' headline, because the event is a military removal of an elected government. It never double-charges an annulment or programme veto.\n\nThe AI decides at the existing 0.02 draw site in `stratagems::ai_stratagems` and never manufactures disputes. The government module draws no RNG.",
+   "design_basis": "- docs/campaign-certification/S27/preparation/a1-followup-20261001/mechanism-proposal.md, steps 1-5: observable refused order, receipt-backed record, three resolutions, red-regression plan.\n- a1-geography-20260928/model-review/README.md: 'a separately observable conflict over civilian executive authority ... a player would need to see and influence that conflict'.\n- Archived BUGS S4-1 'what would calibrate it': Pakistan Oct 1999 paid army, Thailand Feb 1991, Haiti Sep 1991.\n- The existing programme-veto path (government.rs:8591, ARMY_PROGRAMME_VETO_WEIGHT .45).\n- 2026-09-22 doc: 'A financial appropriation is not an automatic cure for political opposition to civilian authority'.\n- SPEC political-arm lever convention (iron rule 8, no RNG in government) and the army_authority live-leverage contract.\n\nOther candidate historical anchors (Honduras 2009, Fiji 2006, Paraguay 1996 refusal without a coup) are general knowledge from Claude. They are not sourced in the repo and would need a research packet before they could inform any coefficient.",
+   "files_if_approved": [
+    "spheres-sim/src/government.rs (GovState dispute field, legality/plan/effects, electoral tick hook, break_electoral reuse)",
+    "spheres-sim/src/civilian_authority.rs (new module, keeps government.rs from growing)",
+    "spheres-sim/src/civilian_authority_tests.rs (new focused red/green regressions and controls)",
+    "spheres-sim/src/army_authority.rs (compliance-driven live leverage update)",
+    "spheres-sim/src/lib.rs (Command variant, command_price, refusal_of, apply_command, affordable)",
+    "spheres-sim/src/stratagems.rs (AI decision at the existing 0.02 draw)",
+    "spheres-sim/src/government_a1_observer.rs (test-only stages)",
+    "spheres-web/src/main.rs and the government screen (alert naming order, institution and issue; three quoted actions from the same server plan)",
+    "docs/political-arm/ (new contract record) and a new docs/campaign-certification/S27/preparation/<new packet>/",
+    "spheres-sim/tests/bloc_census.rs is NOT changed"
+   ],
+   "expected_effect_on_a1": "This is the only identified direction that creates a new eligible population. That population is the quiet, funded, high-leverage electoral armies with zero coups today: Ghana, Gabon, Thailand, Pakistan, Paraguay, Lesotho, Cameroon, CAR, El Salvador, Honduras, Fiji, South Korea and Turkey.\n\nThe breadth-arithmetic rows are uniform illustrations, not necessary conditions. On its own merits the measured outcome would have to:\n- broaden each seed's field by roughly two or more new distinct countries in most seeds;\n- offset any added repeats (in the Guatemala/Myanmar/Sao Tome core or in new countries) with further breadth;\n- stay within about 6 additions per seed, to remain inside the 14-coup band.\n\nTrajectories are nearly seed-invariant, so each country will tend to fire in almost every seed or in none. Neither the sign nor the size can be predicted before measurement, and the outcome must not be tuned into that window, because selecting coefficients on these 12 seeds is forbidden.\n\nCompliance in core countries (Guatemala .8 to 1.0, Ecuador 1.0) could lower their leverage. That would reduce core coups: the count would fall, while the share might stay the same or get worse. A useful mechanic can still fail A1, and that failure must be reported.",
+   "regression_risks": "- A2 (8/12 against a bar of more than 6; fragile). A new AI lever adds a 0.02 draw in months that previously had none, which shifts the single WorldState RNG stream for every later random event. Three earlier rejected candidates (iteration 22, reassessment 27, urgent response 75af467f) had A2 at 6/12. Algeria's chronology tests must also pass (`a_paid_army_seats_the_islamists_and_a_hostile_one_annuls_the_algerian_way`, `the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court`).\n- A4 (median 16 against a floor of 15, margin 1). A dispute coup before end-1996 in an opened 1990 regime (Ghana, Gabon, Cameroon, CAR, Lesotho) costs about 1 in every seed. Two such countries would fail A4.\n- A6. Uruguay (lev .6) and PNG (.5) are 1990 democracies at authoritarianism .20 or below; the guard from D2 is required.\n- A10. Quantified as safe for up to about +4 zero-lead takeovers per seed (.295).\n- A7 (8.46) and A9 (168/168): low risk; the income per head of any richer state that newly fires (e.g. South Korea) was not checked in this packet. A3: low, since the break seats the Nationalist colour. A5 and A8: negligible.\n- Engineering: save format and old-save loading, daily==monthly, save/load/replay, lens-off and takeover-off byte-identity, the UI/server single-plan parity, and the whole-workspace suite.",
+   "needs_design_decision": true
+  },
+  {
+   "id": "D2",
+   "name": "Civilian-control guard for sourced leverage (reconcile docs with code) - prerequisite safety decision",
+   "mechanism": "Decide whether the documented rule 'Civilian control at authoritarianism .20 or below blocks it' should still apply once sourced V-Dem leverage is known.\n- If yes: `civilian_army_executive_leverage` (government.rs:8508) returns 0 at current authoritarianism of .20 or below, and D1 reuses the same guard.\n- If no: correct the two doc statements and give D1 an explicit guard of its own, so it can never act in an A6 nation.",
+   "design_basis": "docs/political-arm/2026-09-22-calibration-repairs.md line 87 ('Civilian control at authoritarianism .20 or below blocks it') and line ~306 ('That boundary suppresses the civilian-confidence penalty'), against the iteration-20 text ('Known historical leverage replaces the old authoritarianism proxy only in this political channel') and the code at government.rs:8508-8513. The A6 invariant definition in bloc_census.rs. Penalties observed today: Uruguay .222, Brazil .185, Venezuela .131, Argentina .102, PNG .088.",
+   "files_if_approved": [
+    "spheres-sim/src/government.rs (civilian_army_executive_leverage) plus a focused test",
+    "or, for the doc-only option, docs/political-arm/2026-09-22-calibration-repairs.md and a new record (existing evidence is not edited)"
+   ],
+   "expected_effect_on_a1": "No direct effect is expected, since none of the affected nations has an elected coup today. It protects A6 for D1 or any later authority route.",
+   "regression_risks": "Removing the penalty at authoritarianism <= .20 changes the Army targets of the nations with a non-zero observed penalty (Uruguay, Brazil, Venezuela, Argentina, PNG) and of any other such nation with known leverage that later reaches discontent .25. That changes AI military funding and fiscal paths, which can perturb random outcomes elsewhere, A2 in particular. Focused tests that assume a non-zero penalty in those nations need checking. It confirms or partly reverses an iteration-20 decision.",
+   "needs_design_decision": true
+  },
+  {
+   "id": "D3",
+   "name": "Military-regime transition coverage (Haiti, Nigeria): opening-route review before any policy change",
+   "mechanism": "Haiti and Nigeria are never electoral in 12/12 seeds. Trace their actual opening decisions on seed 0, using the existing observer stages, and settle two questions:\n- whether a sourced transition commitment that existed on 1 January 1990 justifies a scheduled first-election record like `opening_mandates`. Nigeria's leader row already notes the decreed SDP/NRC two-party programme as 'not yet elected'. Haiti's provisional election schedule post-dates Avril.\n- whether the iteration-23 rule that the executive must have a party in the promised ballot blocks military executives contrary to design.\n\nNo dated coup is forced. Any route-2 coup after an opening would still need its live conditions.",
+   "design_basis": "CODEX-NEXT-ENGINEERING.md route-exposure paragraph ('Next trace actual regime-opening decisions'); the 30 Sep opening witness for Haiti (1 Jan 1990: round_table_affordable false, party_can_contest false; 1 Jan 1991: round_table_affordable true, party_can_contest false); SPEC D4 (Haiti December 1990 table wired under the lens); leaders_1990.json Nigeria note; the iteration-23 franchise rule in the 2026-09-22 doc.",
+   "files_if_approved": [
+    "spheres-sim/data/opening_mandates_1990.json or spheres-sim/data/leaders_1990.json (only after a reviewed research packet)",
+    "spheres-sim/src/opening_mandates.rs",
+    "spheres-sim/src/government.rs (opening and franchise routes)",
+    "focused tests, plus a research packet per the C01 workflow"
+   ],
+   "expected_effect_on_a1": "Indirect and uncertain. An opened Haiti (1990 D about .50, resources about $4,296 per member, lev .5) could add one crisis-driven route-2 country; Nigeria's post-opening discontent is unknown. At most +1 or +2 countries, possibly with repeats. Per the arithmetic, this cannot pass A1 alone unless both countries become single-event coup countries in most seeds.",
+   "regression_risks": "A4 rises (16 now, which is the safe direction), but A7, A10 and A2 shift through global trajectory changes. The research-data installation must be reviewed first. There is a risk of drifting into 'forcing events in historical countries', which is forbidden.",
+   "needs_design_decision": true,
+   "needs_research_packet": true
+  },
+  {
+   "id": "D4",
+   "name": "Split-executive dismissals - design question only, not an A1 repair",
+   "mechanism": "A president with a constitutional dismissal power removes an elected government with the Army's acquiescence. Pakistan's leader row 'also' records Ghulam Ishaq Khan as 'the president who dismissed her on 6 Aug 1990'.",
+   "design_basis": "The A1 docstring (bloc_census.rs:962-969) lists 'Pakistan's dismissals' in A1's history; leaders_1990.json Pakistan row.",
+   "files_if_approved": [
+    "spheres-sim/src/government.rs",
+    "spheres-sim/data/leaders_1990.json (sourced powers, after research review)"
+   ],
+   "expected_effect_on_a1": "None under the unchanged census. A1 counts only 'removes the elected government' headlines. Counting a dismissal would mean either changing the census definition, which is forbidden, or giving a constitutional dismissal a military-coup headline, which is misattribution. It is recorded only so nobody pursues it as an A1 repair; it belongs with Ridge as a design question.",
+   "regression_risks": "If implemented anyway, it would cause government churn in Pakistan and other split-executive states and affect A7 (ballot and takeover attribution) and the AI's political-capital use. It does not help A1.",
+   "needs_design_decision": true,
+   "decision_requested_now": false
+  }
+ ],
+ "regression_watch": {
+  "A2": "8/12 against > 6 (and <= 10); earlier rejected policies dropped it to 6/12",
+  "A4": "median 16 against floor 15 (margin 1); per seed 16,17,18,16,18,14,15,17,16,15,18,13",
+  "A6": "tripwires Uruguay (lev .6, auth .12) and PNG (lev .5, auth .15)",
+  "A10": "safe to about +4 zero-lead takeovers per seed (0.295, weakest seed 0.246)",
+  "algeria_chronology_tests": [
+   "a_paid_army_seats_the_islamists_and_a_hostile_one_annuls_the_algerian_way (spheres-sim/src/government.rs:14716)",
+   "the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court (spheres-sim/src/government.rs:12813)"
+  ],
+  "inertness_tests": [
+   "the_bloc_layer_is_inert_at_1990 (spheres-sim/src/blocs.rs:1173)",
+   "every_road_reads_closed_while_takeover_is_off (spheres-sim/src/blocs.rs:1716)"
+  ]
+ },
+ "red_first_controls": [
+  "no order -> no dispute",
+  "refused order -> dispute recorded",
+  "accepted, withdrawn or resolved -> cleared",
+  "missing Army",
+  "missing civilian authority",
+  "authoritarianism <= 0.20",
+  "routine succession",
+  "distinct same-type institutions (e.g. Sudan's two Army entries)",
+  "daily vs monthly",
+  "save/load, including old saves with no dispute",
+  "replay",
+  "no extra RNG draw on the inactive path",
+  "lens-off and takeover-off byte identity",
+  "existing government, stratagem and Algeria chronology tests"
+ ],
+ "measurement_protocol": "Pin the evidence first: base commit (currently 39369f0), candidate commit, a source diff, and rustc/cargo versions. Use a private CARGO_TARGET_DIR (CONTRIBUTING line 39). In this container, do not create worktrees: patch the main checkout or use a scratch path-dependency crate.\n\n1) Predeclare a plan before building. Follow political-repairs-20260930/urgent-plan.json: hypothesis, change, counterexamples, validation and stop rule. The stop rule is to reject on any original-gate regression, with no compensating gate, country, coefficient or cohort change.\n\n2) Red first. A focused regression on the unmodified runtime must fail and show that a lawfully issued, refused order is not represented. Then the controls:\n- no order → no dispute; a refused order → a dispute; accepted, withdrawn or resolved → cleared;\n- missing Army, missing civilian authority, authoritarianism at or below .20, routine succession;\n- distinct same-type institutions; daily vs monthly; save/load; replay;\n- no extra RNG draw on the inactive path; lens-off and takeover-off byte-identity.\n\nRun them with `cargo test --locked --release -p spheres-sim --lib <module>`, together with the existing government, stratagem and Algeria chronology tests.\n\n3) Build. A fresh spheres-sim release build took about 2.5 min here with -j3 and 1m30s on the CI Linux runner. `cargo test --locked --release -p spheres-sim --test bloc_census --no-run` builds the gate alone.\n\n4) The unchanged gate:\n\n    cargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census --nocapture\n\nIt took 100-105 s on 4 local CPUs, and 97 s (Linux) and 93 s (Windows) in CI. Pass means exit 0 with 11/11 passing on both ubuntu-latest and windows-latest; the tables were byte-identical across platforms at 39369f0. From the --nocapture output, record:\n- A1 median count and the exact top-3 fraction per seed;\n- A2 seeds and Algeria counts;\n- A3, A4, A5, A6, A7, A8, A9, A10;\n- a diff of every gate against the baseline values listed here.\n\n5) Same-cohort diagnostics (measurement only):\n\n    SPHERES_CENSUS_SEEDS=12 SPHERES_CENSUS_MONTHS=252 SPHERES_CENSUS_SEED_START=0 cargo test --locked --release -p spheres-sim --test bloc_census -- --ignored --exact bloc_census --nocapture\n\nThis gives the pooled per-nation tables and runs in about 15-20 s. The scratch harness scratchpad/a1-diag (main.rs, census_copy.rs; build 156 s, run 12 s) gives per-seed country counts, pre-coup readings and the A10 margins. Report which countries newly fire, whether they repeat, and first-event dates. The breadth arithmetic is only an explanatory check, not a tuning target.\n\n6) Engineering verification (CONTRIBUTING lines 43-44):\n\n    cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget\n\nThat takes about 20 min on CI Linux and 25 min on Windows, including the build. Then run the isolated resource-timing test, about 10 s:\n\n    cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1\n\n7) Only if every original gate passes, optionally run the fixed 0-199 development cohort once. It takes about 200 s at roughly 1 s per seed:\n\n    SPHERES_CENSUS_SEEDS=200 cargo test --locked --release -p spheres-sim --test bloc_census -- --ignored --exact bloc_census --nocapture\n\nNever touch the 1000-series, and never append seeds.\n\n8) Retain every result. Keep logs, binary hashes and failures in a new S27 preparation packet, label the reviewers honestly, and keep the A1 task blocked until a human-reviewed contract and the retained passing evidence both exist.",
+ "decisions_requested": [
+  {
+   "id": "D1",
+   "question": "Approve or reject completing the civilian-authority-dispute contract; if approved, decide its compliance and escalation rule (who may issue, acceptance form and refusal line, costs, the three resolutions, what escalates and when, AI objective).",
+   "from": "user (design authority)"
+  },
+  {
+   "id": "D2",
+   "question": "Is the documented .20 civilian-control guard or the current code authoritative? In either case confirm a hard guard so no new authority route can act in an A6 nation.",
+   "from": "user (design authority)"
+  },
+  {
+   "id": "D3",
+   "question": "Should the Haiti/Nigeria opening-route review proceed via a research packet before any data or policy change?",
+   "from": "user (design authority)"
+  }
+ ],
+ "not_requested": [
+  "any change to the A1 criterion, band, seeds or horizon",
+  "substitute statistics (pooled share, inverse-HHI, effective-country counts)",
+  "D4 as an A1 repair"
+ ],
+ "unsourced_historical_anchors": [
+  {
+   "anchor": "Honduras 2009",
+   "status": "general knowledge from Claude; not sourced in the repository; needs a research packet"
+  },
+  {
+   "anchor": "Fiji 2006",
+   "status": "general knowledge from Claude; not sourced in the repository; needs a research packet"
+  },
+  {
+   "anchor": "Paraguay 1996 (refusal without a coup)",
+   "status": "general knowledge from Claude; not sourced in the repository; needs a research packet"
+  }
+ ],
+ "sourced_in_repo_anchors": [
+  "docs/archive/2026-09-30/BUGS.md S4-1 (line 3091): Pakistan October 1999, Thailand February 1991, Haiti September 1991, Turkey 1980",
+  "spheres-sim/data/leaders_1990.json: Pakistan row (Ghulam Ishaq Khan dismissed the PM on 6 Aug 1990); Nigeria row (SDP/NRC table not yet elected)"
+ ],
+ "hard_constraints": [
+  "Keep spheres-sim/tests/bloc_census.rs byte-identical. That covers A1's band 4..=14 (inclusive), the strict median top-3 share < 0.50, seeds 0..=11, the 252-month monthly horizon, both switches on, no player, the headline-based event definitions, and every A2-A10 and attribution assertion. A6 keeps its 420-month horizon.",
+  "No seed substitution or selection, and no appending seeds until green. Do not touch the reserved 1000-series independent cohort. Do not use a wider scan to pick a model. If the fixed 0-199 development cohort is used at all, it comes after the original gates pass, is predeclared, and runs once.",
+  "Do not replace A1 with pooled share, inverse-HHI, effective-country counts or any other criterion. Do not call passing packaging or ordinary CI a political aggregate pass.",
+  "These rejected policies stay rejected: urgent-response (75af467f), confidence weights .90 and 1.20 (iterations 15/16 and reassessment 27), the iteration-22 response candidate, and trial 01's material-only funding inverse. Do not rescue them with country exceptions, coefficient or timing tweaks.",
+  "No coefficient search or fitting to the 12 observed seeds, no manufactured event quota, no background country/date lottery, no forced dated historical coups, and no country-specific exceptions.",
+  "Do not invent the missing cause. Using high V-Dem leverage alone, poverty, a party change, unpopularity or a historical coup date as a trigger is out, and so are lowering a loyalty ceiling and deleting the live D >= .25 / eff < .35 guards of route 2. A refusal must come from an actual, lawful, recorded civilian order (mechanism proposal).",
+  "Design authority is BIBLE, SPEC and the approved Political Arm rev 2. Every new coefficient is labelled as an invented design assumption with its basis. Levers follow refusal -> plan -> arm -> effects off one plan (iron rule 8). The government module draws no RNG. Lens-off and takeover-off worlds stay byte-identical (`the_bloc_layer_is_inert_at_1990`, `every_road_reads_closed_while_takeover_is_off`). Daily equals monthly (A12). Old saves load with no dispute and no inferred hostility. Same-type institutions (Sudan's two Army entries) are never collapsed. Election annulment and the programme veto must not double-charge one refusal.",
+  "Process: predeclared plan; an actual failing regression on the unmodified runtime before the change, plus passing controls; the unchanged A1-A10 and attribution on both ubuntu and windows; the full workspace suite plus the isolated resource timing test (CONTRIBUTING lines 43-44).",
+  "Record every failure. Existing evidence files stay unchanged; only new packets are added. A1 success cannot close S27, G5 or CP1. Reviewers must be labelled honestly: Claude is an automated agent and nothing here is human or Codex approval.",
+  "No unreviewed historical identities or data may be installed. A sourced transition or authority record needs a research packet and review first.",
+  "Container limits: no git worktrees or full clones (docs/ is 11 GB), no commits or pushes, and leave the running S25 Linux Japan/seed-7 diagnostic and its wt-68ba / target-68ba directories alone."
+ ],
+ "prior_trials": [
+  {
+   "name": "Iterations 4-13 correctness repairs and the accountability-response comparison (.018/.024/.030), 22 Sep",
+   "status": "Repairs accepted; .024 selected; .030 kept only as a measured comparison",
+   "why": "A1 failed in every build, for example iteration 12/13 at 7 coups and .57. .030 worsened development A2/A3 without a meaningful A5 gain."
+  },
+  {
+   "name": "Confidence-weight grid .65 / .90 / 1.20 (iterations 14-16)",
+   "status": ".65 retained; .90 and 1.20 rejected",
+   "why": ".90 failed A1 and A5. 1.20 failed A1, A3 and A5; its development concentration was exactly .50, which does not satisfy the strict <.50."
+  },
+  {
+   "name": "Iteration 22 prospective single confidence/response candidate",
+   "status": "Rejected; iteration-21 source restored",
+   "why": "A1 12.5 coups / .52 and A2 fell to 6/12. The Algeria chronology test failed because an elected-army coup came before the staged annulment."
+  },
+  {
+   "name": "Reassessment 27: confidence .65 to 1.20 on the corrected base",
+   "status": "Rejected; .65 restored",
+   "why": "Algeria chronology test failed, A1 12 / .50, A2 6/12."
+  },
+  {
+   "name": "Trial 01 (28 Sep): material-only Army funding inverse (confidence penalty removed from AI funding)",
+   "status": "Rejected; source restored",
+   "why": "Concentration worsened from .59 to .67 at 12 coups. A1 still failed and no causal gain was shown."
+  },
+  {
+   "name": "Exact firing observer, geography/contract review, route-exposure follow-up (28-30 Sep)",
+   "status": "Completed investigations; no repair",
+   "why": "All 151 funding commands were correct. 3,550 of 3,552 crisis checks in non-firing countries already had targets at or above .35. Haiti never reaches the route; Pakistan and Thailand have no eligible crisis; Peru's army stays non-hostile. No functional defect was found."
+  },
+  {
+   "name": "Opening-preference (hidden hostile institution) and per-institution loyalty-walk corrections, 7c6f112c (30 Sep)",
+   "status": "Accepted correctness repairs (integrated)",
+   "why": "Demonstrated defects, each with a red regression. A1 moved only from 7 / .585714 to 7.5 / .571429 and still fails; the same values persist at 39369f0."
+  },
+  {
+   "name": "Urgent-response policy, 75af467f (30 Sep)",
+   "status": "Rejected and must stay rejected; exact patch preserved",
+   "why": "A1 failed at 12 coups / .54 displayed and A2 regressed to 6/12. No rescue by country exceptions or altered limits."
+  },
+  {
+   "name": "Inverse-HHI / effective-country / pooled-share alternative criteria",
+   "status": "Unapproved; not a substitute",
+   "why": "These are different statistics from the strict median per-seed top-three rule. Substituting one would change the acceptance test."
+  },
+  {
+   "name": "Civilian-authority dispute mechanism proposal (1 Oct, a1-followup-20261001/mechanism-proposal.md)",
+   "status": "Design proposal only; not implemented",
+   "why": "The compliance/escalation design, AI objective, costs and refusal rule are explicitly missing. It makes no claim that A1 would pass."
+  },
+  {
+   "name": "This scout (Claude, automated, 4 Oct)",
+   "status": "Reproduction and read-only diagnosis only; no fix",
+   "why": "No source, coefficient, cohort or threshold changed. Only the already-used seeds 0-11 were simulated; there was no development or reserved cohort and no commit. No human or Codex review is implied."
+  }
+ ],
+ "scratch_harness": {
+  "crate": "harness/a1-diag",
+  "note": "Read-only; path dependency on /home/user/Spheres/spheres-sim; private target dir; build 156 s, run 12 s; issues no command and draws no RNG itself.",
+  "binaries_not_copied": "see files.json scratch_only_not_copied"
+ },
+ "measurement_protocol_note": "Verbatim from the scout's structured result. Its time estimates for the census scan, the workspace suite, the resource-timing test and the 0-199 cohort were not re-measured for this packet. The scratchpad/a1-diag harness it names is copied into this packet as harness/a1-diag.",
+ "fact_check": {
+  "by": "Claude, automated agent - a second automated pass; not human or Codex review",
+  "on": "2026-10-04",
+  "checked": [
+   "every gate value, per-seed row, timing and exit code against reproduction/ logs and the CI job logs (job metadata and the full 530-line Windows log re-fetched from GitHub)",
+   "seed-table SHA-256 for local, ubuntu and windows tables, re-extracted independently from the CI logs",
+   "a1_per_seed, countries and a6 penalty tables against diagnostics/a1-diag-seeds0-11.log (all values match)",
+   "breadth arithmetic re-run (byte-identical output) and A10 margin logs",
+   "path:line citations at 39369f0 (bloc_census.rs, government.rs, army_authority.rs, stratagems.rs, blocs.rs, verify.yml, CONTRIBUTING.md, calibration-repairs.md, BUGS.md, leaders_1990.json, army_authority_1989.json, nation data)",
+   "prior-trial figures against the 22 Sep calibration record and the 28-30 Sep packets",
+   "files.json bytes and SHA-256, including the four scratch-only binaries"
+  ],
+  "corrected": [
+   "Haiti witness: round table unaffordable only on 1 Jan 1990 (affordable by 1 Jan 1991); the executive's party cannot contest on both dates",
+   "D1 expected effect: the breadth-arithmetic rows are uniform illustrations, not necessary conditions (the earlier 'only if' list was too strong)",
+   "D1 A2 risk: three earlier rejected candidates, not two, had A2 at 6/12",
+   "D1 basis: programme veto described as existing, not 'approved' (no approval record was traced)",
+   "README wording: seed-invariance, the 'missing cause' framing, BUGS S4-1 attribution, firing-country leverage/penalty description, D3 pass condition, 'deterministic' and 'safe' qualifiers"
+  ]
+ }
+}

@@ -1,0 +1,10 @@
+[package]
+name = "a1-diag"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+spheres-sim = { path = "/home/user/Spheres/spheres-sim" }
+
+[workspace]

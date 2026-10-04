@@ -1,0 +1,2087 @@
+{
+  "actions": [
+    {
+      "date": "1990-01-01",
+      "kind": "competition_adoption",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "command": {
+          "kind": "enable_economic_competition"
+        },
+        "pc_after": 65.4496,
+        "pc_before": 65.4496,
+        "price_pc": 0.0
+      }
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.027500000000000004,
+              0.015,
+              0.0075,
+              0.01,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1990,
+            "nation": "Japan"
+          }
+        }
+      ],
+      "date": "1990-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1990-01-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Afghanistan exposes Saudi Arabia backing the Islamist movement in Afghanistan — the scandal rallies the country behind its government."
+    },
+    {
+      "date": "1990-02-01",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan votes: Liberal Democratic Party takes office with 74% of the seats and no partners."
+    },
+    {
+      "date": "1990-03-28",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Soviet Union escalates to rung 2 — sanctions."
+    },
+    {
+      "date": "1990-04-23",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: Japan receives a trade treaty from Bhutan. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1990-05-23",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan's unanswered a trade treaty from Bhutan expires and is declined."
+    },
+    {
+      "date": "1990-06-26",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Fiji convenes a round table; first free elections in six months."
+    },
+    {
+      "date": "1990-07-14",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Revolution in Peru — the old regime falls."
+    },
+    {
+      "date": "1990-09-05",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Western movement in Uganda passes a third of the country."
+    },
+    {
+      "date": "1990-11-05",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Cambodia passes a third of the country."
+    },
+    {
+      "date": "1990-11-19",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Israel escalates to rung 2 — sanctions."
+    },
+    {
+      "date": "1990-12-19",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Iraq escalates to rung 2 — sanctions."
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.027500000000000004,
+              0.015,
+              0.0075,
+              0.01,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1991,
+            "nation": "Japan"
+          }
+        }
+      ],
+      "date": "1991-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1991-01-24",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Angola passes a third of the country."
+    },
+    {
+      "date": "1991-01-28",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Zaire passes a third of the country."
+    },
+    {
+      "date": "1991-01-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: Japan receives a trade treaty from Bhutan. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1991-02-20",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Western movement in Mongolia passes a third of the country."
+    },
+    {
+      "date": "1991-03-02",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan's unanswered a trade treaty from Bhutan expires and is declined."
+    },
+    {
+      "date": "1991-04-19",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Ethiopia passes a third of the country."
+    },
+    {
+      "date": "1991-04-22",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Western movement in Zaire passes a third of the country."
+    },
+    {
+      "date": "1991-08-20",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Egypt escalates to rung 2 — sanctions."
+    },
+    {
+      "date": "1991-08-28",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: Japan receives a trade treaty from Indonesia. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1991-09-04",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Cape Verde convenes a round table; first free elections in six months, though the Nationalist movement, 21% of the country, has no party to carry it and the Non-Aligned movement, 22% of the country, has no party to carry it."
+    },
+    {
+      "date": "1991-09-05",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Non-Aligned movement in Vietnam passes a third of the country."
+    },
+    {
+      "date": "1991-09-07",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: Japan receives a trade treaty from Bhutan. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1991-09-27",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan's unanswered a trade treaty from Indonesia expires and is declined."
+    },
+    {
+      "date": "1991-10-05",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Non-Aligned movement in Laos passes a third of the country."
+    },
+    {
+      "date": "1991-10-07",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan's unanswered a trade treaty from Bhutan expires and is declined."
+    },
+    {
+      "date": "1991-11-15",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "YUGOSLAVIA HAS DISSOLVED. Slovenia, Croatia, Bosnia, Macedonia, Montenegro and Serbia stand alone."
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.027500000000000004,
+              0.015,
+              0.0075,
+              0.01,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1992,
+            "nation": "Japan"
+          }
+        }
+      ],
+      "date": "1992-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1992-01-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Yitzhak Shamir dies in office."
+    },
+    {
+      "date": "1992-02-29",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Western movement in Sudan passes a third of the country."
+    },
+    {
+      "date": "1992-03-11",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Revolution in Argentina — the old regime falls."
+    },
+    {
+      "date": "1992-03-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Afghanistan exposes Pakistan backing the Islamist movement in Afghanistan — the scandal rallies the country behind its government."
+    },
+    {
+      "date": "1992-04-06",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Vietnam passes a third of the country."
+    },
+    {
+      "date": "1992-08-12",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Non-Aligned movement in Cambodia passes a third of the country."
+    },
+    {
+      "date": "1992-11-05",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Uganda passes a third of the country."
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.027500000000000004,
+              0.015,
+              0.0075,
+              0.01,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1993,
+            "nation": "Japan"
+          }
+        }
+      ],
+      "date": "1993-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1993-01-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Mahathir Mohamad dies in office."
+    },
+    {
+      "date": "1993-02-16",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: Japan receives a trade treaty from Solomon Islands. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1993-03-18",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan's unanswered a trade treaty from Solomon Islands expires and is declined."
+    },
+    {
+      "date": "1993-03-30",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Lebanon passes a third of the country."
+    },
+    {
+      "date": "1993-06-22",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: Japan receives a trade treaty from Sri Lanka. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1993-06-26",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan is first to field Synchronous DRAM."
+    },
+    {
+      "date": "1993-07-04",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "ACTION REQUIRED: Japan receives a trade treaty from Indonesia. Reply within 30 days in Decisions; an unanswered request is declined."
+    },
+    {
+      "date": "1993-07-09",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Gabon convenes a round table; first free elections in six months."
+    },
+    {
+      "date": "1993-07-22",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan's unanswered a trade treaty from Sri Lanka expires and is declined."
+    },
+    {
+      "date": "1993-08-03",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan's unanswered a trade treaty from Indonesia expires and is declined."
+    },
+    {
+      "date": "1993-08-24",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "THE SOVIET UNION HAS DISSOLVED. Fifteen republics take up their own seats."
+    },
+    {
+      "date": "1993-08-25",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Serbia escalates to rung 2 — sanctions."
+    },
+    {
+      "date": "1993-11-25",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Montenegro passes a third of the country."
+    },
+    {
+      "date": "1993-12-05",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Revolution in Nicaragua — the old regime falls."
+    },
+    {
+      "date": "1993-12-11",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Tanzania escalates to rung 2 — sanctions."
+    },
+    {
+      "date": "1993-12-15",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Myanmar exposes United States backing the Western movement in Myanmar — the scandal rallies the country behind its government."
+    },
+    {
+      "date": "1993-12-21",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Non-Aligned movement in Serbia passes a third of the country."
+    },
+    {
+      "date": "1993-12-26",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "China escalates to rung 2 — sanctions."
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.027500000000000004,
+              0.015,
+              0.0075,
+              0.01,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1994,
+            "nation": "Japan"
+          }
+        }
+      ],
+      "date": "1994-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1994-01-25",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Non-Aligned movement in Myanmar passes a third of the country."
+    },
+    {
+      "date": "1994-01-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Kim Il-sung dies in office."
+    },
+    {
+      "date": "1994-02-01",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan votes: Liberal Democratic Party takes office with 75% of the seats and no partners."
+    },
+    {
+      "date": "1994-05-29",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Albania convenes a round table; first free elections in six months, though the Nationalist movement, 7% of the country, has no party to carry it."
+    },
+    {
+      "date": "1994-07-24",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Western movement in Turkmenistan passes a third of the country."
+    },
+    {
+      "date": "1994-09-13",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Western movement in Kazakhstan passes a third of the country."
+    },
+    {
+      "date": "1994-11-03",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Japan is first to field Minimally Invasive Surgery."
+    },
+    {
+      "date": "1994-11-27",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Nationalist movement in Kazakhstan passes a third of the country."
+    },
+    {
+      "date": "1994-12-01",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "The Western movement in Serbia passes a third of the country."
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.027500000000000004,
+              0.015,
+              0.0075,
+              0.01,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1995,
+            "nation": "Japan"
+          }
+        }
+      ],
+      "date": "1995-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1995-01-01",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Revolution in Azerbaijan — the old regime falls."
+    },
+    {
+      "date": "1995-01-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "George H. W. Bush dies in office."
+    }
+  ],
+  "artifact_errors": [],
+  "artifacts": [],
+  "checks": {
+    "competition_adoptions": 2,
+    "daily_invariant_checks": 3714,
+    "full_horizon_pause": null,
+    "monthly_reloads": 61,
+    "native_validation_checks": 254,
+    "sandbox_continued": false,
+    "sandbox_daily_invariant_checks": 0,
+    "terminal_reloads": 0
+  },
+  "comparisons": [
+    {
+      "absolute_day": 0,
+      "canonical_bytes": 13182157,
+      "canonical_fnv64": "112f3c9b300c96d0",
+      "date": "1990-01-01",
+      "history_rows": 1,
+      "kind": "opening",
+      "log_rows": 1,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 31,
+      "canonical_bytes": 25786407,
+      "canonical_fnv64": "2a6e1dafa34e5a82",
+      "date": "1990-02-01",
+      "history_rows": 32,
+      "kind": "monthly_after_reload",
+      "log_rows": 146,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 32,
+      "canonical_bytes": 26967898,
+      "canonical_fnv64": "89174f39b7132a81",
+      "date": "1990-02-02",
+      "history_rows": 33,
+      "kind": "day_after_reload",
+      "log_rows": 149,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 59,
+      "canonical_bytes": 31159921,
+      "canonical_fnv64": "56dd68a4a1120f31",
+      "date": "1990-03-01",
+      "history_rows": 60,
+      "kind": "monthly_after_reload",
+      "log_rows": 151,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 60,
+      "canonical_bytes": 31822719,
+      "canonical_fnv64": "dea47cde02eebfb1",
+      "date": "1990-03-02",
+      "history_rows": 61,
+      "kind": "day_after_reload",
+      "log_rows": 158,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 90,
+      "canonical_bytes": 33047768,
+      "canonical_fnv64": "4946fd0fdd8e0952",
+      "date": "1990-04-01",
+      "history_rows": 91,
+      "kind": "monthly_after_reload",
+      "log_rows": 165,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 91,
+      "canonical_bytes": 33679038,
+      "canonical_fnv64": "7014b73a2c2e5f1c",
+      "date": "1990-04-02",
+      "history_rows": 92,
+      "kind": "day_after_reload",
+      "log_rows": 167,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 120,
+      "canonical_bytes": 34492053,
+      "canonical_fnv64": "61b93c0104390ada",
+      "date": "1990-05-01",
+      "history_rows": 121,
+      "kind": "monthly_after_reload",
+      "log_rows": 175,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 121,
+      "canonical_bytes": 35122344,
+      "canonical_fnv64": "08a3a49bc2c59100",
+      "date": "1990-05-02",
+      "history_rows": 122,
+      "kind": "day_after_reload",
+      "log_rows": 178,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 151,
+      "canonical_bytes": 36070001,
+      "canonical_fnv64": "960e1fe6188e4126",
+      "date": "1990-06-01",
+      "history_rows": 152,
+      "kind": "monthly_after_reload",
+      "log_rows": 183,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 152,
+      "canonical_bytes": 36675232,
+      "canonical_fnv64": "d1ba03b4b8f8e429",
+      "date": "1990-06-02",
+      "history_rows": 153,
+      "kind": "day_after_reload",
+      "log_rows": 186,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 181,
+      "canonical_bytes": 37476725,
+      "canonical_fnv64": "7d29ffefe7847d36",
+      "date": "1990-07-01",
+      "history_rows": 182,
+      "kind": "monthly_after_reload",
+      "log_rows": 193,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 182,
+      "canonical_bytes": 38061434,
+      "canonical_fnv64": "c07ad5d88367d9ea",
+      "date": "1990-07-02",
+      "history_rows": 183,
+      "kind": "day_after_reload",
+      "log_rows": 194,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 212,
+      "canonical_bytes": 38994994,
+      "canonical_fnv64": "7a2a101f5510af70",
+      "date": "1990-08-01",
+      "history_rows": 213,
+      "kind": "monthly_after_reload",
+      "log_rows": 196,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 213,
+      "canonical_bytes": 39569422,
+      "canonical_fnv64": "e71018b6c203fbff",
+      "date": "1990-08-02",
+      "history_rows": 214,
+      "kind": "day_after_reload",
+      "log_rows": 197,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 243,
+      "canonical_bytes": 40376825,
+      "canonical_fnv64": "a11b56118304cba1",
+      "date": "1990-09-01",
+      "history_rows": 244,
+      "kind": "monthly_after_reload",
+      "log_rows": 204,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 244,
+      "canonical_bytes": 40928568,
+      "canonical_fnv64": "99418b79c4c85509",
+      "date": "1990-09-02",
+      "history_rows": 245,
+      "kind": "day_after_reload",
+      "log_rows": 205,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 273,
+      "canonical_bytes": 41726593,
+      "canonical_fnv64": "255ea5ee4286e46f",
+      "date": "1990-10-01",
+      "history_rows": 274,
+      "kind": "monthly_after_reload",
+      "log_rows": 213,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 274,
+      "canonical_bytes": 42270071,
+      "canonical_fnv64": "3526eecdc4c8dac4",
+      "date": "1990-10-02",
+      "history_rows": 275,
+      "kind": "day_after_reload",
+      "log_rows": 219,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 304,
+      "canonical_bytes": 43208739,
+      "canonical_fnv64": "5d22edd9966272da",
+      "date": "1990-11-01",
+      "history_rows": 305,
+      "kind": "monthly_after_reload",
+      "log_rows": 223,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 305,
+      "canonical_bytes": 43727344,
+      "canonical_fnv64": "4b9e3899defd68e6",
+      "date": "1990-11-02",
+      "history_rows": 306,
+      "kind": "day_after_reload",
+      "log_rows": 224,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 334,
+      "canonical_bytes": 44493279,
+      "canonical_fnv64": "7215534c15edf623",
+      "date": "1990-12-01",
+      "history_rows": 335,
+      "kind": "monthly_after_reload",
+      "log_rows": 233,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 335,
+      "canonical_bytes": 44993670,
+      "canonical_fnv64": "0d6d7c46163db469",
+      "date": "1990-12-02",
+      "history_rows": 336,
+      "kind": "day_after_reload",
+      "log_rows": 238,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 365,
+      "canonical_bytes": 58696906,
+      "canonical_fnv64": "222ff3e26a20c400",
+      "date": "1991-01-01",
+      "history_rows": 366,
+      "kind": "monthly_after_reload",
+      "log_rows": 295,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 365,
+      "canonical_bytes": 58696906,
+      "canonical_fnv64": "222ff3e26a20c400",
+      "date": "1991-01-01",
+      "history_rows": 366,
+      "kind": "mandatory",
+      "log_rows": 295,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 366,
+      "canonical_bytes": 59097853,
+      "canonical_fnv64": "e588fcc5318bd91e",
+      "date": "1991-01-02",
+      "history_rows": 367,
+      "kind": "day_after_reload",
+      "log_rows": 309,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 396,
+      "canonical_bytes": 65755334,
+      "canonical_fnv64": "5a431ddc3104cfa5",
+      "date": "1991-02-01",
+      "history_rows": 397,
+      "kind": "monthly_after_reload",
+      "log_rows": 331,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 397,
+      "canonical_bytes": 66398563,
+      "canonical_fnv64": "af95ccc879ba294e",
+      "date": "1991-02-02",
+      "history_rows": 398,
+      "kind": "day_after_reload",
+      "log_rows": 334,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 424,
+      "canonical_bytes": 56111502,
+      "canonical_fnv64": "0b252fcdca46acd1",
+      "date": "1991-03-01",
+      "history_rows": 425,
+      "kind": "monthly_after_reload",
+      "log_rows": 348,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 425,
+      "canonical_bytes": 58348848,
+      "canonical_fnv64": "b3c512d4f407f859",
+      "date": "1991-03-02",
+      "history_rows": 426,
+      "kind": "day_after_reload",
+      "log_rows": 353,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 455,
+      "canonical_bytes": 59732774,
+      "canonical_fnv64": "c00cf927f2b13ff7",
+      "date": "1991-04-01",
+      "history_rows": 456,
+      "kind": "monthly_after_reload",
+      "log_rows": 357,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 456,
+      "canonical_bytes": 59488088,
+      "canonical_fnv64": "f2db7f145cd724e4",
+      "date": "1991-04-02",
+      "history_rows": 457,
+      "kind": "day_after_reload",
+      "log_rows": 359,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 485,
+      "canonical_bytes": 59675049,
+      "canonical_fnv64": "5e1b087a22c56deb",
+      "date": "1991-05-01",
+      "history_rows": 486,
+      "kind": "monthly_after_reload",
+      "log_rows": 361,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 486,
+      "canonical_bytes": 61089186,
+      "canonical_fnv64": "f2d0480776ea9bdb",
+      "date": "1991-05-02",
+      "history_rows": 487,
+      "kind": "day_after_reload",
+      "log_rows": 362,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 516,
+      "canonical_bytes": 63867961,
+      "canonical_fnv64": "81b1d68492feef4e",
+      "date": "1991-06-01",
+      "history_rows": 517,
+      "kind": "monthly_after_reload",
+      "log_rows": 435,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 517,
+      "canonical_bytes": 63656289,
+      "canonical_fnv64": "fda27e48c45c71cd",
+      "date": "1991-06-02",
+      "history_rows": 518,
+      "kind": "day_after_reload",
+      "log_rows": 436,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 546,
+      "canonical_bytes": 63701934,
+      "canonical_fnv64": "bc24ec908bdb92c6",
+      "date": "1991-07-01",
+      "history_rows": 547,
+      "kind": "monthly_after_reload",
+      "log_rows": 476,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 547,
+      "canonical_bytes": 65213179,
+      "canonical_fnv64": "45913defb4de43f5",
+      "date": "1991-07-02",
+      "history_rows": 548,
+      "kind": "day_after_reload",
+      "log_rows": 476,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 577,
+      "canonical_bytes": 68860823,
+      "canonical_fnv64": "f42cd63e5ea5c405",
+      "date": "1991-08-01",
+      "history_rows": 578,
+      "kind": "monthly_after_reload",
+      "log_rows": 484,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 578,
+      "canonical_bytes": 69505886,
+      "canonical_fnv64": "acb3f65646053277",
+      "date": "1991-08-02",
+      "history_rows": 579,
+      "kind": "day_after_reload",
+      "log_rows": 486,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 608,
+      "canonical_bytes": 71140640,
+      "canonical_fnv64": "024b148d6a438093",
+      "date": "1991-09-01",
+      "history_rows": 609,
+      "kind": "monthly_after_reload",
+      "log_rows": 497,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 609,
+      "canonical_bytes": 70905715,
+      "canonical_fnv64": "3b3d6105c208be10",
+      "date": "1991-09-02",
+      "history_rows": 610,
+      "kind": "day_after_reload",
+      "log_rows": 499,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 638,
+      "canonical_bytes": 71569955,
+      "canonical_fnv64": "a89c312fbd00a241",
+      "date": "1991-10-01",
+      "history_rows": 639,
+      "kind": "monthly_after_reload",
+      "log_rows": 524,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 639,
+      "canonical_bytes": 72758041,
+      "canonical_fnv64": "b3222f99a38ea1b3",
+      "date": "1991-10-02",
+      "history_rows": 640,
+      "kind": "day_after_reload",
+      "log_rows": 531,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 669,
+      "canonical_bytes": 75922844,
+      "canonical_fnv64": "152fc0f6ed535951",
+      "date": "1991-11-01",
+      "history_rows": 670,
+      "kind": "monthly_after_reload",
+      "log_rows": 535,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 670,
+      "canonical_bytes": 75698724,
+      "canonical_fnv64": "f470c33094123a8f",
+      "date": "1991-11-02",
+      "history_rows": 671,
+      "kind": "day_after_reload",
+      "log_rows": 536,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 699,
+      "canonical_bytes": 76806294,
+      "canonical_fnv64": "25e961233be4d085",
+      "date": "1991-12-01",
+      "history_rows": 700,
+      "kind": "monthly_after_reload",
+      "log_rows": 548,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 700,
+      "canonical_bytes": 78062994,
+      "canonical_fnv64": "a81c44d694aa89a1",
+      "date": "1991-12-02",
+      "history_rows": 701,
+      "kind": "day_after_reload",
+      "log_rows": 551,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 730,
+      "canonical_bytes": 81438557,
+      "canonical_fnv64": "f1b85484eb7f613f",
+      "date": "1992-01-01",
+      "history_rows": 731,
+      "kind": "monthly_after_reload",
+      "log_rows": 562,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 730,
+      "canonical_bytes": 81438557,
+      "canonical_fnv64": "f1b85484eb7f613f",
+      "date": "1992-01-01",
+      "history_rows": 731,
+      "kind": "mandatory",
+      "log_rows": 562,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 731,
+      "canonical_bytes": 81259146,
+      "canonical_fnv64": "a839c7bbda8c066d",
+      "date": "1992-01-02",
+      "history_rows": 732,
+      "kind": "day_after_reload",
+      "log_rows": 570,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 761,
+      "canonical_bytes": 84022260,
+      "canonical_fnv64": "8b128a42837358b4",
+      "date": "1992-02-01",
+      "history_rows": 762,
+      "kind": "monthly_after_reload",
+      "log_rows": 577,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 762,
+      "canonical_bytes": 83815865,
+      "canonical_fnv64": "047cbade7782f5fb",
+      "date": "1992-02-02",
+      "history_rows": 763,
+      "kind": "day_after_reload",
+      "log_rows": 578,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 790,
+      "canonical_bytes": 79804412,
+      "canonical_fnv64": "6ac840b16df15ff0",
+      "date": "1992-03-01",
+      "history_rows": 791,
+      "kind": "monthly_after_reload",
+      "log_rows": 590,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 791,
+      "canonical_bytes": 81751748,
+      "canonical_fnv64": "941c42aea9a24ed1",
+      "date": "1992-03-02",
+      "history_rows": 792,
+      "kind": "day_after_reload",
+      "log_rows": 599,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 821,
+      "canonical_bytes": 88655641,
+      "canonical_fnv64": "c1c073b2714e01bf",
+      "date": "1992-04-01",
+      "history_rows": 822,
+      "kind": "monthly_after_reload",
+      "log_rows": 608,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 822,
+      "canonical_bytes": 88303728,
+      "canonical_fnv64": "98f0d4c62e94a222",
+      "date": "1992-04-02",
+      "history_rows": 823,
+      "kind": "day_after_reload",
+      "log_rows": 611,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 851,
+      "canonical_bytes": 88957745,
+      "canonical_fnv64": "43d713f27e0511c0",
+      "date": "1992-05-01",
+      "history_rows": 852,
+      "kind": "monthly_after_reload",
+      "log_rows": 614,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 852,
+      "canonical_bytes": 90396760,
+      "canonical_fnv64": "a8ea721aa69646b8",
+      "date": "1992-05-02",
+      "history_rows": 853,
+      "kind": "day_after_reload",
+      "log_rows": 618,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 882,
+      "canonical_bytes": 93121473,
+      "canonical_fnv64": "dd4fcd4420711d1a",
+      "date": "1992-06-01",
+      "history_rows": 883,
+      "kind": "monthly_after_reload",
+      "log_rows": 622,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 883,
+      "canonical_bytes": 92792491,
+      "canonical_fnv64": "772c492024236d99",
+      "date": "1992-06-02",
+      "history_rows": 884,
+      "kind": "day_after_reload",
+      "log_rows": 627,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 912,
+      "canonical_bytes": 93188615,
+      "canonical_fnv64": "1019f02c52398916",
+      "date": "1992-07-01",
+      "history_rows": 913,
+      "kind": "monthly_after_reload",
+      "log_rows": 638,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 913,
+      "canonical_bytes": 94629990,
+      "canonical_fnv64": "4b890a77d36750f5",
+      "date": "1992-07-02",
+      "history_rows": 914,
+      "kind": "day_after_reload",
+      "log_rows": 638,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 943,
+      "canonical_bytes": 97563813,
+      "canonical_fnv64": "7a93498a87515d86",
+      "date": "1992-08-01",
+      "history_rows": 944,
+      "kind": "monthly_after_reload",
+      "log_rows": 684,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 944,
+      "canonical_bytes": 98198442,
+      "canonical_fnv64": "b46b3e42070e702e",
+      "date": "1992-08-02",
+      "history_rows": 945,
+      "kind": "day_after_reload",
+      "log_rows": 688,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 974,
+      "canonical_bytes": 99400979,
+      "canonical_fnv64": "1950515fec61f876",
+      "date": "1992-09-01",
+      "history_rows": 975,
+      "kind": "monthly_after_reload",
+      "log_rows": 719,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 975,
+      "canonical_bytes": 99214149,
+      "canonical_fnv64": "022d16a5bec113ee",
+      "date": "1992-09-02",
+      "history_rows": 976,
+      "kind": "day_after_reload",
+      "log_rows": 719,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1004,
+      "canonical_bytes": 99530898,
+      "canonical_fnv64": "07ec27618c919fe5",
+      "date": "1992-10-01",
+      "history_rows": 1005,
+      "kind": "monthly_after_reload",
+      "log_rows": 730,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1005,
+      "canonical_bytes": 100971212,
+      "canonical_fnv64": "6a86411bf93bf014",
+      "date": "1992-10-02",
+      "history_rows": 1006,
+      "kind": "day_after_reload",
+      "log_rows": 732,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1035,
+      "canonical_bytes": 103995289,
+      "canonical_fnv64": "bc7700cfa8cc0f0a",
+      "date": "1992-11-01",
+      "history_rows": 1036,
+      "kind": "monthly_after_reload",
+      "log_rows": 737,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1036,
+      "canonical_bytes": 103772614,
+      "canonical_fnv64": "e6e771ab5d02ad1a",
+      "date": "1992-11-02",
+      "history_rows": 1037,
+      "kind": "day_after_reload",
+      "log_rows": 741,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1065,
+      "canonical_bytes": 103912631,
+      "canonical_fnv64": "658c728701da5172",
+      "date": "1992-12-01",
+      "history_rows": 1066,
+      "kind": "monthly_after_reload",
+      "log_rows": 745,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1066,
+      "canonical_bytes": 105366623,
+      "canonical_fnv64": "889304fdb4b0ce23",
+      "date": "1992-12-02",
+      "history_rows": 1067,
+      "kind": "day_after_reload",
+      "log_rows": 746,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1096,
+      "canonical_bytes": 108099818,
+      "canonical_fnv64": "1ef398f5675dadc6",
+      "date": "1993-01-01",
+      "history_rows": 1097,
+      "kind": "monthly_after_reload",
+      "log_rows": 750,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1096,
+      "canonical_bytes": 108099818,
+      "canonical_fnv64": "1ef398f5675dadc6",
+      "date": "1993-01-01",
+      "history_rows": 1097,
+      "kind": "mandatory",
+      "log_rows": 750,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1097,
+      "canonical_bytes": 108042352,
+      "canonical_fnv64": "afab150fe113f4ef",
+      "date": "1993-01-02",
+      "history_rows": 1098,
+      "kind": "day_after_reload",
+      "log_rows": 754,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1127,
+      "canonical_bytes": 110324315,
+      "canonical_fnv64": "cabc71c7f73ea262",
+      "date": "1993-02-01",
+      "history_rows": 1099,
+      "kind": "monthly_after_reload",
+      "log_rows": 765,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1128,
+      "canonical_bytes": 110132105,
+      "canonical_fnv64": "9caea2b1aab6e48b",
+      "date": "1993-02-02",
+      "history_rows": 1100,
+      "kind": "day_after_reload",
+      "log_rows": 767,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1155,
+      "canonical_bytes": 104145388,
+      "canonical_fnv64": "9e116db4007cbe1d",
+      "date": "1993-03-01",
+      "history_rows": 1100,
+      "kind": "monthly_after_reload",
+      "log_rows": 775,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1156,
+      "canonical_bytes": 106515872,
+      "canonical_fnv64": "ffc0373062da8c09",
+      "date": "1993-03-02",
+      "history_rows": 1101,
+      "kind": "day_after_reload",
+      "log_rows": 779,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1186,
+      "canonical_bytes": 113723025,
+      "canonical_fnv64": "273c3aedad0d1fcc",
+      "date": "1993-04-01",
+      "history_rows": 1101,
+      "kind": "monthly_after_reload",
+      "log_rows": 796,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1187,
+      "canonical_bytes": 113437907,
+      "canonical_fnv64": "f45318faad31665a",
+      "date": "1993-04-02",
+      "history_rows": 1102,
+      "kind": "day_after_reload",
+      "log_rows": 801,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1216,
+      "canonical_bytes": 113196770,
+      "canonical_fnv64": "05db002592040369",
+      "date": "1993-05-01",
+      "history_rows": 1102,
+      "kind": "monthly_after_reload",
+      "log_rows": 802,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1217,
+      "canonical_bytes": 114553653,
+      "canonical_fnv64": "02fc9320ad2383ba",
+      "date": "1993-05-02",
+      "history_rows": 1103,
+      "kind": "day_after_reload",
+      "log_rows": 813,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1247,
+      "canonical_bytes": 117974415,
+      "canonical_fnv64": "8b21d1784974113b",
+      "date": "1993-06-01",
+      "history_rows": 1103,
+      "kind": "monthly_after_reload",
+      "log_rows": 824,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1248,
+      "canonical_bytes": 117614630,
+      "canonical_fnv64": "999472aa0a1832f6",
+      "date": "1993-06-02",
+      "history_rows": 1104,
+      "kind": "day_after_reload",
+      "log_rows": 826,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1277,
+      "canonical_bytes": 117309781,
+      "canonical_fnv64": "34168b13f8e33f60",
+      "date": "1993-07-01",
+      "history_rows": 1104,
+      "kind": "monthly_after_reload",
+      "log_rows": 842,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1278,
+      "canonical_bytes": 118809403,
+      "canonical_fnv64": "4bf67bc55e87a05e",
+      "date": "1993-07-02",
+      "history_rows": 1105,
+      "kind": "day_after_reload",
+      "log_rows": 842,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1308,
+      "canonical_bytes": 121510037,
+      "canonical_fnv64": "6e760f5bf292c37e",
+      "date": "1993-08-01",
+      "history_rows": 1105,
+      "kind": "monthly_after_reload",
+      "log_rows": 873,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1309,
+      "canonical_bytes": 122073638,
+      "canonical_fnv64": "75915eb0d3b84715",
+      "date": "1993-08-02",
+      "history_rows": 1106,
+      "kind": "day_after_reload",
+      "log_rows": 873,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1339,
+      "canonical_bytes": 125588265,
+      "canonical_fnv64": "7ad2b82a9ce1d1e1",
+      "date": "1993-09-01",
+      "history_rows": 1106,
+      "kind": "monthly_after_reload",
+      "log_rows": 995,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1340,
+      "canonical_bytes": 125454446,
+      "canonical_fnv64": "a1d9c03f840722cf",
+      "date": "1993-09-02",
+      "history_rows": 1107,
+      "kind": "day_after_reload",
+      "log_rows": 1004,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1369,
+      "canonical_bytes": 128282578,
+      "canonical_fnv64": "7f0e1f96e4fd78ba",
+      "date": "1993-10-01",
+      "history_rows": 1107,
+      "kind": "monthly_after_reload",
+      "log_rows": 1142,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1370,
+      "canonical_bytes": 129862596,
+      "canonical_fnv64": "90549c953a2fb0ff",
+      "date": "1993-10-02",
+      "history_rows": 1108,
+      "kind": "day_after_reload",
+      "log_rows": 1147,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1400,
+      "canonical_bytes": 133167907,
+      "canonical_fnv64": "d1de1270165f4a20",
+      "date": "1993-11-01",
+      "history_rows": 1108,
+      "kind": "monthly_after_reload",
+      "log_rows": 1197,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1401,
+      "canonical_bytes": 132868182,
+      "canonical_fnv64": "f64f38fe6fac170d",
+      "date": "1993-11-02",
+      "history_rows": 1109,
+      "kind": "day_after_reload",
+      "log_rows": 1202,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1430,
+      "canonical_bytes": 132786646,
+      "canonical_fnv64": "0a4cf9bf684ee0e9",
+      "date": "1993-12-01",
+      "history_rows": 1109,
+      "kind": "monthly_after_reload",
+      "log_rows": 1247,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1431,
+      "canonical_bytes": 134408540,
+      "canonical_fnv64": "306fe27f86dce4e9",
+      "date": "1993-12-02",
+      "history_rows": 1110,
+      "kind": "day_after_reload",
+      "log_rows": 1250,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1461,
+      "canonical_bytes": 136392316,
+      "canonical_fnv64": "ea473aeb92848cbd",
+      "date": "1994-01-01",
+      "history_rows": 1110,
+      "kind": "monthly_after_reload",
+      "log_rows": 1300,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1461,
+      "canonical_bytes": 136392316,
+      "canonical_fnv64": "ea473aeb92848cbd",
+      "date": "1994-01-01",
+      "history_rows": 1110,
+      "kind": "mandatory",
+      "log_rows": 1300,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1462,
+      "canonical_bytes": 136102780,
+      "canonical_fnv64": "978e522e46252700",
+      "date": "1994-01-02",
+      "history_rows": 1111,
+      "kind": "day_after_reload",
+      "log_rows": 1305,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1492,
+      "canonical_bytes": 136898525,
+      "canonical_fnv64": "fc3241bab054626c",
+      "date": "1994-02-01",
+      "history_rows": 1111,
+      "kind": "monthly_after_reload",
+      "log_rows": 1354,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1493,
+      "canonical_bytes": 136793272,
+      "canonical_fnv64": "6279b7a8ad303b53",
+      "date": "1994-02-02",
+      "history_rows": 1112,
+      "kind": "day_after_reload",
+      "log_rows": 1358,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1520,
+      "canonical_bytes": 132573223,
+      "canonical_fnv64": "b5de0483aea55cdb",
+      "date": "1994-03-01",
+      "history_rows": 1112,
+      "kind": "monthly_after_reload",
+      "log_rows": 1390,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1521,
+      "canonical_bytes": 134354533,
+      "canonical_fnv64": "7d74d5cfb41815d0",
+      "date": "1994-03-02",
+      "history_rows": 1113,
+      "kind": "day_after_reload",
+      "log_rows": 1393,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1551,
+      "canonical_bytes": 138714878,
+      "canonical_fnv64": "04f039657bd0683b",
+      "date": "1994-04-01",
+      "history_rows": 1113,
+      "kind": "monthly_after_reload",
+      "log_rows": 1437,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1552,
+      "canonical_bytes": 138695400,
+      "canonical_fnv64": "9fbba439ab7b58bb",
+      "date": "1994-04-02",
+      "history_rows": 1114,
+      "kind": "day_after_reload",
+      "log_rows": 1448,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1581,
+      "canonical_bytes": 138129999,
+      "canonical_fnv64": "83a5dc1be362d97c",
+      "date": "1994-05-01",
+      "history_rows": 1114,
+      "kind": "monthly_after_reload",
+      "log_rows": 1479,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1582,
+      "canonical_bytes": 139185536,
+      "canonical_fnv64": "53ae5f1b187e103c",
+      "date": "1994-05-02",
+      "history_rows": 1115,
+      "kind": "day_after_reload",
+      "log_rows": 1489,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1612,
+      "canonical_bytes": 139737377,
+      "canonical_fnv64": "286e3cb043e76993",
+      "date": "1994-06-01",
+      "history_rows": 1115,
+      "kind": "monthly_after_reload",
+      "log_rows": 1531,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1613,
+      "canonical_bytes": 139727556,
+      "canonical_fnv64": "383ee2b59dda86bf",
+      "date": "1994-06-02",
+      "history_rows": 1116,
+      "kind": "day_after_reload",
+      "log_rows": 1537,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1642,
+      "canonical_bytes": 139380905,
+      "canonical_fnv64": "91bdbbd56c6439ee",
+      "date": "1994-07-01",
+      "history_rows": 1116,
+      "kind": "monthly_after_reload",
+      "log_rows": 1588,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1643,
+      "canonical_bytes": 140415267,
+      "canonical_fnv64": "ca2d63d8ad01f972",
+      "date": "1994-07-02",
+      "history_rows": 1117,
+      "kind": "day_after_reload",
+      "log_rows": 1589,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1673,
+      "canonical_bytes": 141493337,
+      "canonical_fnv64": "544a12c5c7f826f2",
+      "date": "1994-08-01",
+      "history_rows": 1117,
+      "kind": "monthly_after_reload",
+      "log_rows": 1653,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1674,
+      "canonical_bytes": 142031038,
+      "canonical_fnv64": "2eb42d28ccb43063",
+      "date": "1994-08-02",
+      "history_rows": 1118,
+      "kind": "day_after_reload",
+      "log_rows": 1656,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1704,
+      "canonical_bytes": 141211691,
+      "canonical_fnv64": "62d66015944700ab",
+      "date": "1994-09-01",
+      "history_rows": 1118,
+      "kind": "monthly_after_reload",
+      "log_rows": 1768,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1705,
+      "canonical_bytes": 140806596,
+      "canonical_fnv64": "b873a5b02547966d",
+      "date": "1994-09-02",
+      "history_rows": 1119,
+      "kind": "day_after_reload",
+      "log_rows": 1772,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1734,
+      "canonical_bytes": 138837242,
+      "canonical_fnv64": "d1b276b574506ef7",
+      "date": "1994-10-01",
+      "history_rows": 1119,
+      "kind": "monthly_after_reload",
+      "log_rows": 1856,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1735,
+      "canonical_bytes": 140057723,
+      "canonical_fnv64": "d51f96cf755a0a9b",
+      "date": "1994-10-02",
+      "history_rows": 1120,
+      "kind": "day_after_reload",
+      "log_rows": 1862,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1765,
+      "canonical_bytes": 139388305,
+      "canonical_fnv64": "3c96fd27f9b33b74",
+      "date": "1994-11-01",
+      "history_rows": 1120,
+      "kind": "monthly_after_reload",
+      "log_rows": 1951,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1766,
+      "canonical_bytes": 139043972,
+      "canonical_fnv64": "e7b017a986361517",
+      "date": "1994-11-02",
+      "history_rows": 1121,
+      "kind": "day_after_reload",
+      "log_rows": 1956,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1795,
+      "canonical_bytes": 137042313,
+      "canonical_fnv64": "44634611fdff567a",
+      "date": "1994-12-01",
+      "history_rows": 1123,
+      "kind": "monthly_after_reload",
+      "log_rows": 2042,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1796,
+      "canonical_bytes": 138166659,
+      "canonical_fnv64": "6b665ddc0de4bd7f",
+      "date": "1994-12-02",
+      "history_rows": 1124,
+      "kind": "day_after_reload",
+      "log_rows": 2047,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1826,
+      "canonical_bytes": 137120071,
+      "canonical_fnv64": "1469e67babd47d27",
+      "date": "1995-01-01",
+      "history_rows": 1124,
+      "kind": "monthly_after_reload",
+      "log_rows": 2141,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1826,
+      "canonical_bytes": 137120071,
+      "canonical_fnv64": "1469e67babd47d27",
+      "date": "1995-01-01",
+      "history_rows": 1124,
+      "kind": "mandatory",
+      "log_rows": 2141,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1827,
+      "canonical_bytes": 136705082,
+      "canonical_fnv64": "9ede02e221f4e856",
+      "date": "1995-01-02",
+      "history_rows": 1125,
+      "kind": "day_after_reload",
+      "log_rows": 2149,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 1857,
+      "canonical_bytes": 136473590,
+      "canonical_fnv64": "8bc76cf0a89f1cc5",
+      "date": "1995-02-01",
+      "history_rows": 1125,
+      "kind": "monthly_after_reload",
+      "log_rows": 2252,
+      "matched": true,
+      "player": "Japan"
+    }
+  ],
+  "compiled_revision": "68ba0622ec70",
+  "country": "Japan",
+  "days_each_leg": 1857,
+  "end_native_date": "1995-02-01",
+  "failure": null,
+  "format": "spheres-stability-result/v1",
+  "id": "japan7-to1995",
+  "initial_rules": {
+    "ai_aggression": 1.0,
+    "crisis_intensity": 1.0,
+    "daily_simulation": true,
+    "economic_competition": true,
+    "fiscal_recovery": true,
+    "historical_party_leadership": true,
+    "ideology_blocs": true,
+    "industry_rebuild": true,
+    "logistics_routes": true,
+    "manufacturing_system": true,
+    "military_operations": true,
+    "operational_warfare": 1,
+    "physical_logistics": true,
+    "production_system": true,
+    "resource_market": true,
+    "seed": 7
+  },
+  "legs": 2,
+  "passed": false,
+  "provenance": {
+    "archive_exception": "Only terminal top-level saved_unix removed; remaining native encode bytes, key order and numeric spelling unchanged",
+    "cessation_policy": "Ordinary Russia continuation only for a dissolved USSR with an eligible living Russia; otherwise ordinary observer continuation. No grants or forced dissolution.",
+    "fingerprint_scope": "FNV64 is diagnostic only; the matrix wrapper supplies SHA256 provenance",
+    "initialization": "Real new_game; ordinary competition adoption; existing budget allocations/departments renewed through dated native commands",
+    "request_bytes": 164,
+    "request_fnv64": "554f4ffd46223604",
+    "request_path": "/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/s25-source-probe/japan7-to1995/request.json",
+    "request_unchanged": false,
+    "retention": "Two final native archives plus two sandbox archives for full-horizon cells; resumed/saves/monthly.json plus its native backup are bounded scratch; failing worlds retained when serializable"
+  },
+  "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "scope": "Native paired stability cell only; no S25 or CP1 certification",
+  "seed": 7,
+  "start_native_date": "1990-01-01",
+  "through": "1995-12-31"
+}

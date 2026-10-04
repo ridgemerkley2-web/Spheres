@@ -1,0 +1,42 @@
+Launch commands for the Linux probes in this directory, transcribed from the 4 Oct
+source-review session transcript (Claude, automated agent;
+subagents/workflows/wf_b8cbc010-251/agent-a57f31c2325b2dfc2.jsonl). The probe directories
+themselves do not record the address-space limits, so they are given here.
+
+Common: BIN=$S/target-68ba/release/deps/spheres_web-7f381178d9133e63  (S = session scratchpad)
+  sha256 a6e0dc501d4b23c2917b89f68cd4fff567927d33faeb03cbbc00300263f77f45, recorded 01:13Z;
+  built from scratch worktree wt-68ba at 68ba0622ec709b78617aadd1f9198d18f532bb32 (clean),
+  rustc 1.97.0 (2d8144b78 2026-07-07), x86_64-unknown-linux-gnu, release profile.
+  Every probe result.json records compiled_revision 68ba0622ec70.
+  Arguments: --exact s25_stability_tests::s25_stability_cell --ignored --nocapture --test-threads=1
+  Environment: SPHERES_S25_REQUEST=<dir>/request.json SPHERES_S25_OUT=<dir>/native (new directory)
+
+japan7-to1991      run_cell.sh japan7-to1991 Japan 7 1991-02-02 0.5     01:27:19Z..01:30:22Z exit 0
+japan7-to1995      run_cell.sh japan7-to1995 Japan 7 1995-12-31 1       01:30:31Z..01:59:24Z exit 143
+                   (stopped deliberately with kill at sim 1995-02-01; not a failure)
+                   watch_snap.sh copied resumed/saves/monthly.json at each Jan 1 / Jul 1 checkpoint,
+                   ran breakdown.py and analyze_depth.py on the copy, then deleted the copy.
+oom-japan7         (ulimit -v 1150000; ... timeout 900 $BIN ...)  through 1990-06-30  exit 0, 63.99 s
+oom2-japan7        (ulimit -v 900000;  ... timeout 900 $BIN ...)  through 1990-06-30  exit 0, 62.50 s
+oom3-japan7        (ulimit -v 650000;  ... timeout 900 $BIN ...)  through 1990-06-30  exit 134 (SIGABRT)
+                   stderr: "memory allocation of 632 bytes failed" / "stack backtrace:" /
+                   "memory allocation of 192 bytes failed" / "skipping backtrace printing to avoid
+                   potential recursion"; progress stopped at the 1990-01-01 opening; result.json failure null.
+                   RUST_BACKTRACE was set in this Linux environment (hence "stack backtrace:").
+vg-japan7-jan1990  timeout 7000 valgrind --tool=memcheck --error-exitcode=99 --leak-check=no
+                   --track-origins=no --log-file=valgrind.log $BIN ...   through 1990-01-31
+                   01:37:03Z..01:43:54Z exit 0; test passed in 409.45 s; ERROR SUMMARY 0 errors.
+
+stack/stackprobe   cargo build (debug) of a throwaway crate; results printed by the session:
+                   #[test] runs on thread "tests::where_does_this_test_run", tid != pid, 2048 KiB mapping;
+                   RUST_MIN_STACK=8388608 gives an 8192 KiB mapping; plain fn main runs on "main".
+                   overflow_probe (ignored test, deep recursion) printed
+                   "thread 'tests::overflow_probe' (16311) has overflowed its stack" and
+                   "fatal runtime error: stack overflow, aborting". That first run was piped through tail, which
+                   masked its status; a rerun with output discarded exited 134 (SIGABRT), and the
+                   RUST_MIN_STACK=8388608 variant also overflowed and exited 134.
+stack/h4-stack-hwm-review  run by the source-review H4 (S-H4) evidence-lens reviewer at 02:52Z with the same BIN path,
+                   through 1990-03-31, sampling /proc/PID/smaps every 0.5 s with sample.py; exit 0.
+
+The full-horizon rerun (../linux-rerun/) used a rebuild of the same path at 03:08Z; see that
+directory's binary.txt for its different sha256.

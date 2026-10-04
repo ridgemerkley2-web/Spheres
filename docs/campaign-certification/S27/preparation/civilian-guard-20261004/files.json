@@ -1,0 +1,109 @@
+{
+ "packet": "docs/campaign-certification/S27/preparation/civilian-guard-20261004",
+ "prepared_by": "Claude, automated agent - not human or Codex review",
+ "change_commit": "51a7ddfad9fccad821802d8aa4a5380b1ab373d7 (local branch claude/civilian-guard-wip, base 39369f0ee6451466d03778d0273a7f72aafcf8c0, not pushed)",
+ "note": "Every file in this packet except files.json itself, with byte count and SHA-256 of the bytes on disk. The packet .gitattributes keeps them byte-exact (-text).",
+ "files": {
+  ".gitattributes": {
+   "bytes": 143,
+   "sha256": "973fba074fbdc680226f29a7c473eb53230aa355ba0bfab8e5f33e367119ffc4"
+  },
+  "README.md": {
+   "bytes": 18043,
+   "sha256": "50163520564b31bf51288a8beae499af60dc23bfd7c17f52bc8871a731560d61"
+  },
+  "change.diff": {
+   "bytes": 15593,
+   "sha256": "90db5d9e1c2c90d80d70fe27c3ad0aa2586e26db7d366541bd93f782edc79855"
+  },
+  "diagnostics/cty-diff-vs-39369f0.txt": {
+   "bytes": 958,
+   "sha256": "4ef2e9b9574d1783aba8e2e943282565a682c889e0508ddb1c18d8e4cb92f851"
+  },
+  "diagnostics/d2-diag-seeds0-11.log": {
+   "bytes": 22442,
+   "sha256": "ed8d20b029a53f397513f6b58d5b8b305f477521966acf63ae18ff3c9ee65fed"
+  },
+  "edited-tests.json": {
+   "bytes": 2674,
+   "sha256": "b175d15bc7e809eff567a3582dc8399bd5721f79b6534b68b96b4ee26f6cf27c"
+  },
+  "followup.diff": {
+   "bytes": 1033,
+   "sha256": "75fa6535fe1397f84ac08433dee802e4af2e8205b496576637f0535be5c3723f"
+  },
+  "green.log": {
+   "bytes": 1048,
+   "sha256": "dc0b8e0a4437de18c690ee46ae122fdb678dc4679e6cf584dc41cce2b5869a85"
+  },
+  "harness/d2-diag/Cargo.lock": {
+   "bytes": 2751,
+   "sha256": "76ea494d9dc83e98b1ccd6bcc6d7e38c38b776f45fbb03ad0af2044a20dfe817"
+  },
+  "harness/d2-diag/Cargo.toml": {
+   "bytes": 233,
+   "sha256": "cc4309c8d80ad3ab38e36b819905cc84fba4b62581e613f9b6946cdcad647992"
+  },
+  "harness/d2-diag/src/main.rs": {
+   "bytes": 7105,
+   "sha256": "b45f5f07583758f09ab29fe914a22864bcbc83c684df118e26942db56db7ba73"
+  },
+  "logs/a1-seed-table.txt": {
+   "bytes": 1570,
+   "sha256": "87b3ea9ba1cd5bfd9a978edb34d1c7e6a54553e1afc42afede07e015cda73deb"
+  },
+  "logs/build-green.log": {
+   "bytes": 365,
+   "sha256": "54846d93bb834b896cb4e15cb2286c3122cabe86b83cca9c918e07ae12d88a21"
+  },
+  "logs/build-red.log": {
+   "bytes": 738,
+   "sha256": "862ed3d46393c7be75d3e85b1c9cbc4537f754f1d85a2728c6a3f810fa34152b"
+  },
+  "logs/existing-after-before-test-update.log": {
+   "bytes": 17681,
+   "sha256": "7a0807d2016f3b441b9d87168ef418527b18ffe1af3b55206656c689cede6d1b"
+  },
+  "logs/existing-after.log": {
+   "bytes": 16493,
+   "sha256": "f35fef95cf0bf07068332bb0ec2fa7baf181122017b938b61646b10f583c6c77"
+  },
+  "logs/existing-before.log": {
+   "bytes": 15792,
+   "sha256": "1f7d5a4aa6e21c074898dae564edcb10b9a7e36608d7b37b5ceddcab8834823d"
+  },
+  "logs/followup-focused-tests.log": {
+   "bytes": 297,
+   "sha256": "ab84edf2ff27b16f3ba88530f0e2a54cba85d0bd0fb3e1b1332c7cdc3f529bd6"
+  },
+  "logs/gate-build.log": {
+   "bytes": 365,
+   "sha256": "e113334341506d8bf19918436a857cfbf634da3f9b9f6592c03d24d1f0fbfb96"
+  },
+  "logs/gates-nocapture.log": {
+   "bytes": 13498,
+   "sha256": "9ef445a8acf503cd236928c95225e929996fb255c88a8e5e74454035f0527205"
+  },
+  "logs/resource-timing.log": {
+   "bytes": 1284,
+   "sha256": "f476d43e719e4b777e4ffb33a33a26c39ade38351934a1bb44b851da4ac82a7f"
+  },
+  "logs/workspace.log": {
+   "bytes": 220027,
+   "sha256": "b9c67f5983a15a54fe2401b269863cbfd99dc69029aaed1daab882d8440ee69a"
+  },
+  "plan.json": {
+   "bytes": 8198,
+   "sha256": "59d7d9c870f40440c8df562d464e2b97dcb0e8fb527144fd4b941cf6e7db7879"
+  },
+  "red-stage.diff": {
+   "bytes": 12384,
+   "sha256": "6389c39737e3d7b5d09a012c54406c9436dccd68021abd05be356f7aef48c6ed"
+  },
+  "red.log": {
+   "bytes": 4391,
+   "sha256": "6b378ab7450e17d3020e102c0acb4643c82bcbf3a322c380d0c5974f91a8bfb0"
+  }
+ },
+ "pull_request_commits": "215bd023 (from 51a7ddfa) and 2bce829a (follow-up test, from f6597cf5) on claude/nifty-bohr-0j27qi"
+}

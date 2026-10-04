@@ -1,0 +1,125 @@
+{
+ "packet": "docs/campaign-certification/S27/preparation/a1-claude-scope-20261004",
+ "prepared_by": "Claude, automated agent - not human or Codex review",
+ "note": "Every file in this packet except files.json itself, with byte count and SHA-256 of the bytes on disk. The packet .gitattributes keeps them byte-exact (-text).",
+ "files": {
+  ".gitattributes": {
+   "bytes": 143,
+   "sha256": "973fba074fbdc680226f29a7c473eb53230aa355ba0bfab8e5f33e367119ffc4"
+  },
+  "README.md": {
+   "bytes": 18797,
+   "sha256": "10f875de4b1ca79a417731a93f7e50388b6e316d49adda45e5d3328373f1ce3c"
+  },
+  "diagnostics/a1-breadth-arithmetic.txt": {
+   "bytes": 1304,
+   "sha256": "55ca146cfa9a7eba0bb50f5714e7bb91b64d4307c24e627cdccc19c01cce6328"
+  },
+  "diagnostics/a1-diag-a10-margin.log": {
+   "bytes": 2784,
+   "sha256": "1f7fcb97779ecba611838c11649519978f90b825d69a2a8a02b835e44d93a86b"
+  },
+  "diagnostics/a1-diag-a10lead.log": {
+   "bytes": 1785,
+   "sha256": "4eb069a175d3aab58ceb7aec19e008eb5087f3553568fd11f247b1a63d7f398b"
+  },
+  "diagnostics/a1-diag-seeds0-11.log": {
+   "bytes": 22442,
+   "sha256": "c3a7adaa539eef6e622647469199e832af99e713f3461ec22ea5972668bbb090"
+  },
+  "harness/a1-diag/Cargo.lock": {
+   "bytes": 2751,
+   "sha256": "09cd1bc766e5f62ca116de626cc9c0ff434077aa395fa22bd3763bc8672eb86a"
+  },
+  "harness/a1-diag/Cargo.toml": {
+   "bytes": 165,
+   "sha256": "36a4eea7bee9bebd364fcffa62ee3e0fd8e5616308320af49065dbd8930146f5"
+  },
+  "harness/a1-diag/src/bin/a10lead.rs": {
+   "bytes": 2197,
+   "sha256": "9328b4e926232cf7b3bde8414b6deb412aeab73ac8eab89eda351700a572d317"
+  },
+  "harness/a1-diag/src/bin/census_copy.rs": {
+   "bytes": 30772,
+   "sha256": "ceba36dc800111a04ed6d9e57dd422aded02595d74bcf2fe8f3db906a8cc9c94"
+  },
+  "harness/a1-diag/src/main.rs": {
+   "bytes": 7105,
+   "sha256": "b45f5f07583758f09ab29fe914a22864bcbc83c684df118e26942db56db7ba73"
+  },
+  "harness/breadth_arithmetic.py": {
+   "bytes": 1728,
+   "sha256": "698aa7986537651a9f5b93b2e0f7920bb8c38303524d66ce255043d3d903c4f5"
+  },
+  "reproduction/a1-binary.sha256": {
+   "bytes": 115,
+   "sha256": "cae1ca4a9d7dd3f6b18c789bc58ae15f6f34baca34578b816d104d9f85d40153"
+  },
+  "reproduction/a1-ci-ubuntu-table.txt": {
+   "bytes": 1570,
+   "sha256": "87b3ea9ba1cd5bfd9a978edb34d1c7e6a54553e1afc42afede07e015cda73deb"
+  },
+  "reproduction/a1-ci-windows-table.txt": {
+   "bytes": 1570,
+   "sha256": "87b3ea9ba1cd5bfd9a978edb34d1c7e6a54553e1afc42afede07e015cda73deb"
+  },
+  "reproduction/a1-local-table.txt": {
+   "bytes": 1570,
+   "sha256": "87b3ea9ba1cd5bfd9a978edb34d1c7e6a54553e1afc42afede07e015cda73deb"
+  },
+  "reproduction/a1-repro-nocapture.log": {
+   "bytes": 13397,
+   "sha256": "44af7744c60e1f000dbb056bebb0232db37795ab498fda4fb6bc4d6ab5b71ceb"
+  },
+  "reproduction/a1-repro.log": {
+   "bytes": 3579,
+   "sha256": "5dfe3dadfad282f65ebe11b8c54c17495707b0b691f0393aefae6e4d42881733"
+  },
+  "reproduction/ci-ubuntu-111000855599-tail400.log": {
+   "bytes": 32346,
+   "sha256": "7d086c48643f8f8db739ac7fcd71d90f9c8c067a32bd494dea25416a4a9a5968"
+  },
+  "reproduction/ci-windows-111000855667-tail60.log": {
+   "bytes": 6742,
+   "sha256": "a79df4467c046fa096de8fb1ae1bdb37bf6e1a3cf3f22d7b841a9b9fab126c91"
+  },
+  "reproduction/ci-windows-111000855667-toolchain-excerpt.txt": {
+   "bytes": 1559,
+   "sha256": "8ad24390cf44f0d5d4b7c2d62c8ba2c7461295b6453777d48c9758d81a782a95"
+  },
+  "review.json": {
+   "bytes": 84411,
+   "sha256": "11a0ddc0cc1d464b2accfaa90deee6ffcf02184de8893500165b24be024c8812"
+  }
+ },
+ "scratch_only_not_copied": [
+  {
+   "path": "/home/user/Spheres/target/release/deps/bloc_census-fcc63ad60c814b19",
+   "what": "local A1-A10 gate test binary (rustc 1.97.0, source 39369f0)",
+   "bytes": 25676104,
+   "sha256": "81f13be52cbd2a429314a9072f60685ffe2014c605d17b3e49012473056aac31",
+   "status": "scratch-only; not copied (> 1 MB binary); may be deleted with the container"
+  },
+  {
+   "path": "/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/a1-diag-target/release/a1-diag",
+   "what": "harness/a1-diag main binary",
+   "bytes": 24716920,
+   "sha256": "3197d4ecf20a04c386123b44c8ec3c199f7b84db84e5c8af74ea56b44db9ef01",
+   "status": "scratch-only; not copied (> 1 MB binary); may be deleted with the container"
+  },
+  {
+   "path": "/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/a1-diag-target/release/census_copy",
+   "what": "harness/a1-diag census_copy binary",
+   "bytes": 25021000,
+   "sha256": "af9540afbfad1673c40c44476186d6967837430ba56c88ff492e39da6bdd1947",
+   "status": "scratch-only; not copied (> 1 MB binary); may be deleted with the container"
+  },
+  {
+   "path": "/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/a1-diag-target/release/a10lead",
+   "what": "harness/a1-diag a10lead binary",
+   "bytes": 24694712,
+   "sha256": "f1937b7b56516c3d8c59bcd4638a51f19ac77ab02d1ef182da409380c74a3f68",
+   "status": "scratch-only; not copied (> 1 MB binary); may be deleted with the container"
+  }
+ ]
+}

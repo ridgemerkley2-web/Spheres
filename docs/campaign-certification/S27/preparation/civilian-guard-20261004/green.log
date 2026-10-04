@@ -1,0 +1,13 @@
+    Finished `release` profile [optimized] target(s) in 0.02s
+     Running unittests src/lib.rs (/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/target-d2/release/deps/spheres_sim-f433e4a939164539)
+
+running 6 tests
+test government::civilian_guard_tests::civilian_guard_control_programme_veto_consumer_stays_closed_under_civilian_control ... ok
+test government::civilian_guard_tests::civilian_guard_control_unknown_assessment_proxy_is_unchanged ... ok
+test government::civilian_guard_tests::civilian_guard_control_reading_is_pure_and_keeps_the_leverage_record ... ok
+test government::civilian_guard_tests::civilian_guard_control_lens_off_reads_no_confidence_channel ... ok
+test government::civilian_guard_tests::civilian_guard_control_sourced_leverage_above_the_boundary_keeps_its_penalty ... ok
+test government::civilian_guard_tests::sourced_leverage_does_not_bypass_civilian_control_at_or_below_point_twenty ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 1129 filtered out; finished in 0.08s
+

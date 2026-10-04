@@ -1,0 +1,12 @@
+france-1990 peak 2010-08-02 181971824 B | last 2036-01-02 142308878 B hist 1332 log 31025 | ratio last/peak 0.78
+france-7    peak 2010-06-01 183165596 B | last 2036-01-02 129573071 B hist 1332 log 30352 | ratio last/peak 0.71
+france-42   peak 2010-04-01 181838542 B | last 2036-01-02 128977693 B hist 1332 log 31185 | ratio last/peak 0.71
+japan-1990  peak 2010-02-01 179613674 B | last 2036-01-02 149674305 B hist 1332 log 31216 | ratio last/peak 0.83
+india-7     peak 2010-02-01 175360980 B | last 2024-12-01 126779357 B hist 1319 log 9464 | ratio last/peak 0.72
+india-1990  peak 2010-04-01 186650186 B | last 2023-10-01 133372614 B hist 1319 log 23469 | ratio last/peak 0.71
+japan-7     peak 2010-04-01 185188767 B | last 2031-01-01 133481930 B hist 1327 log 27374 | ratio last/peak 0.72
+japan-42    peak 2010-04-01 183200973 B | last 2027-10-01 133115700 B hist 1323 log 25383 | ratio last/peak 0.73
+wave1 ~2010 12:30:00 sum canonical 699.7 MB [('france-1990', '2008-10-02', 171982281), ('france-7', '2011-04-02', 179336679), ('france-42', '2008-04-02', 177104782), ('japan-1990', '2008-05-02', 171275785)]
+wave1 13:30 13:30:00 sum canonical 633.2 MB [('france-1990', '2014-04-02', 158289631), ('france-7', '2017-06-02', 137871368), ('france-42', '2013-08-02', 171511770), ('japan-1990', '2013-10-02', 165530033)]
+crash 23:28:41 sum canonical 540.8 MB [('india-7', '2024-11-02', 132922640), ('india-1990', '2023-08-02', 139895603), ('japan-7', '2030-12-02', 127843910), ('japan-42', '2027-08-02', 140111389)]
+wave1 max est sum canonical 709.4 MB at 12:40:00

@@ -1,0 +1,9 @@
+
+thread 's25_stability_tests::s25_stability_cell' (5575) panicked at spheres-web/src/s25_stability_tests.rs:634:5:
+Absolute immutable request and NEW output directory required
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: spheres_web::s25_stability_tests::s25_stability_cell
+   3: <spheres_web::s25_stability_tests::s25_stability_cell::{closure#0} as core::ops::function::FnOnce<()>>::call_once
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.

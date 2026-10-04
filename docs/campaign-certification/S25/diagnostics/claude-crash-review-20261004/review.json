@@ -1,0 +1,720 @@
+{
+ "format": "spheres-s25-claude-crash-review/v1",
+ "created_utc": "2026-10-04",
+ "task": "CODEX-S25-MATRIX-01",
+ "label": "Claude, automated agent - not human or Codex review",
+ "status": {
+  "proposed_for": "Codex review",
+  "qualification": false,
+  "task_closure": false,
+  "acceptance": false,
+  "remain_open": [
+   "CODEX-S25-MATRIX-01",
+   "S25",
+   "S27",
+   "G5",
+   "CP1"
+  ],
+  "repository_files_edited": false,
+  "committed": false,
+  "pushed": false
+ },
+ "fact_check": "On 4 Oct 2026 a second automated Claude pass checked the numbers, timestamps, citations and hashes in this packet against the repository evidence, git show at 68ba0622, scratch logs and the session transcripts, and corrected several figures and wordings. Still not human or Codex review.",
+ "integration_tip": "39369f0ee6451466d03778d0273a7f72aafcf8c0",
+ "candidate_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+ "compiled_revision": "68ba0622ec70",
+ "windows_test_binary": {
+  "path": "D:\\spheres-offload\\codex-next-20260928\\lazy-digest-validation-20260930\\spheres-web-test.exe",
+  "bytes": 353201472,
+  "sha256": "7c0a07733fa7079c1ee2d21691be6a89b0c26e2a977e44b2356b0ff491562bf8",
+  "source": "docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/cells/*/execution.json (binary_before/binary_after)"
+ },
+ "bottom_line": {
+  "native_faults": "Japan/7 and India/7: 0xc0000005 inside ntdll.dll 10.0.26100.7920, 16.76 s apart, at unrelated simulated dates (2031-01, 2024-12).",
+  "supported_medium_confidence": "Long-lived D: handles failed (D: is recorded in 28 Sep notes as the external USB drive) while new D: handles worked; the frozen runner turns the failed journal write into halt_children -> Popen.kill -> TerminateProcess(handle,1) (two exit-1 workers), the failed stderr into exit 120, and the verifier event write into Errno 13. Inference: the journal entry itself was lost, and the accepted journal-diagnosis record (S25/preparation/journal-diagnosis-20261001/README.md) does not attribute the exit-1s to the kill path.",
+  "not_supported": "In-process causes: deterministic sim defect, stack overflow and Rust OOM abort are contradicted by the exit signature; heap corruption is unsupported and does not by itself explain cross-process timing.",
+  "plausible_not_established": "A shared host-level event at ~23:28 UTC (~0.16% chance if the two fault times were independent and uniform over the 20,755 s four-worker window). Neither commit exhaustion nor the USB D: failure is shown to produce 0xc0000005 in ntdll.",
+  "unknown": "Native root cause."
+ },
+ "timeline": {
+  "four_concurrent_utc": [
+   "2026-09-30T17:43:07.688Z",
+   "2026-09-30T23:29:02.850Z"
+  ],
+  "wave1_completed_seconds": {
+   "france-7": 26854.0,
+   "france-1990": 30321.1,
+   "japan-1990": 31000.1,
+   "france-42": 31165.5,
+   "mean": 29835.1
+  },
+  "horizon_days": 16801,
+  "cells": [
+   {
+    "cell": "japan-7",
+    "start": "16:31:15.413",
+    "event_utc": "23:28:41.129 (Event 1000); WER EventTime 23:28:41.143",
+    "reaped": "23:29:02.850",
+    "exit": "0xc0000005 (3221225477)",
+    "ntdll_offset": "0x166167",
+    "pid": "0x9150",
+    "age_at_fault_s": 25045.7,
+    "last_checkpoint": "2031-01-01",
+    "fault_window": "after the 2031-01-01 checkpoint, before the 2031-02-01 save staging file",
+    "pct_of_wave1_mean": 83.9,
+    "pct_of_horizon": 89.1,
+    "days": 14975
+   },
+   {
+    "cell": "india-7",
+    "start": "17:43:07.688",
+    "event_utc": "23:28:57.885 (Event 1000); WER EventTime 23:28:58.235",
+    "reaped": "23:29:02.850",
+    "exit": "0xc0000005 (3221225477)",
+    "ntdll_offset": "0x10579",
+    "pid": "0x4B98",
+    "age_at_fault_s": 20750.2,
+    "last_checkpoint": "2024-12-01",
+    "fault_window": "after the 2024-12-01 checkpoint, before the 2025-01-01 staging file",
+    "pct_of_wave1_mean": 69.5,
+    "pct_of_horizon": 75.9,
+    "days": 12753
+   },
+   {
+    "cell": "japan-42",
+    "start": "17:29:07.695",
+    "end": "23:29:49.391",
+    "exit": 1,
+    "age_at_kill_s": 21641.1,
+    "last_checkpoint": "2027-10-01",
+    "pct_of_wave1_mean": 72.5,
+    "pct_of_horizon": 82.1,
+    "days": 13787
+   },
+   {
+    "cell": "india-1990",
+    "start": "17:40:25.953",
+    "end": "23:29:49.124",
+    "exit": 1,
+    "age_at_kill_s": 20962.6,
+    "last_checkpoint": "2023-10-01",
+    "pct_of_wave1_mean": 70.3,
+    "pct_of_horizon": 73.4,
+    "days": 12326
+   }
+  ],
+  "runner_exit": {
+   "utc": "23:30:51.085",
+   "code": 120
+  },
+  "verifier": {
+   "utc": "23:30:51.323",
+   "error": "PermissionError: [Errno 13] Permission denied"
+  },
+  "sources": [
+   "docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/windows-crashes.json",
+   "docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/cells/*/execution.json",
+   "docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/cells/*/native/result.json",
+   "docs/campaign-certification/S25/preparation/journal-diagnosis-20261001/failure-evidence.json",
+   "scripts/timeline.py",
+   "analysis-outputs/timeline.txt"
+  ]
+ },
+ "hypotheses": [
+  {
+   "row": 1,
+   "title": "Deterministic simulation/logic defect at a specific simulated state",
+   "ids": [
+    "E-H2"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "evidence-timeline",
+     "id": "H2",
+     "lens": "evidence",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "evidence-timeline",
+     "id": "H2",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    }
+   ],
+   "standing": "refuted",
+   "reason": "Safe-Rust defects in this release build end as Err/panic (stderr, result.json failure, exit 101), 0xc00000fd or 0xc0000409, never a silent 0xc0000005 in ntdll; faults 17 s apart at unrelated simulated dates. Residual variants (deep recursion; undefined behaviour in std or a dependency) are rows 2 and 4, which is why the evidence lens rated it unsupported rather than disproven."
+  },
+  {
+   "row": 2,
+   "title": "Stack exhaustion",
+   "ids": [
+    "E-H3",
+    "S-H4"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "evidence-timeline",
+     "id": "H3",
+     "lens": "evidence",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "evidence-timeline",
+     "id": "H3",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "source-review",
+     "id": "H4",
+     "lens": "evidence",
+     "refuted": true,
+     "overstated": false
+    },
+    {
+     "analysis": "source-review",
+     "id": "H4",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    }
+   ],
+   "standing": "refuted",
+   "reason": "Expected 0xc00000fd plus \"has overflowed its stack\"; observed 0xc0000005 and 0-byte stderr; JSON depth 13 (Linux snapshots 1991-1995) vs serde_json limit 128; Linux test-thread stack 116 KiB of 2 MiB (continuous to 1990-04-01, point readings to 1995-02)."
+  },
+  {
+   "row": 3,
+   "title": "Rust allocation failure (OOM abort)",
+   "ids": [
+    "S-H5"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "source-review",
+     "id": "H5",
+     "lens": "evidence",
+     "refuted": true,
+     "overstated": false
+    },
+    {
+     "analysis": "source-review",
+     "id": "H5",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    }
+   ],
+   "standing": "refuted",
+   "reason": "Expected \"memory allocation of N bytes failed\" plus 0xc0000409 in the exe (Linux control reproduced message + SIGABRT); observed 0xc0000005 at two different ntdll offsets."
+  },
+  {
+   "row": 4,
+   "title": "Heap corruption via unsafe code in std/dependencies (serde_json, itoa, memchr, zmij) or miscompile",
+   "ids": [
+    "E-H6",
+    "S-H3"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "evidence-timeline",
+     "id": "H6",
+     "lens": "evidence",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "evidence-timeline",
+     "id": "H6",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "source-review",
+     "id": "H3",
+     "lens": "evidence",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "source-review",
+     "id": "H3",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    }
+   ],
+   "standing": "unsupported",
+   "reason": "Not excluded by the exit code (undetected NT-heap damage can fault in ntdll), but no dump, unresolved offsets, valgrind clean (one Linux month); does not explain two processes 17 s apart or the Python-side failures."
+  },
+  {
+   "row": 5,
+   "title": "Worker memory as contributor",
+   "ids": [
+    "S-H2"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "source-review",
+     "id": "H2",
+     "lens": "evidence",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "source-review",
+     "id": "H2",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    }
+   ],
+   "standing": "unsupported",
+   "reason": "Workers are large (Linux VmHWM 1.50 GiB by 1994) but wave 1 ran four workers through the larger 2008-2014 state without fault; no crash-time memory data."
+  },
+  {
+   "row": 6,
+   "title": "Host commit/memory exhaustion at ~23:28",
+   "ids": [
+    "E-H1",
+    "S-H1 (ranked mechanism)"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "evidence-timeline",
+     "id": "H1",
+     "lens": "evidence",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "evidence-timeline",
+     "id": "H1",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    },
+    {
+     "analysis": "source-review",
+     "id": "H1",
+     "lens": "windows-mechanics",
+     "refuted": true,
+     "overstated": true
+    }
+   ],
+   "standing": "unsupported",
+   "reason": "No 23:28 commit sample (7.94-8.15 GiB headroom measured 3.5-4 h later); known exhaustion paths give 0xc0000409/0xc00000fd/0xc0000006; a concurrent rustc release build survived; Python errors were EACCES not MemoryError."
+  },
+  {
+   "row": 7,
+   "title": "Unbounded simulated-state growth",
+   "ids": [
+    "S-H6"
+   ],
+   "lens_verdicts": [],
+   "standing": "unsupported (contradicted by size data; not adversarially reviewed)",
+   "reason": "Archives stay between 116.6 and 186.7 MB after 1994, peak ~2010; crash-time 126.8-133.5 MB = 0.71-0.73 of each process's own survived peak."
+  },
+  {
+   "row": 8,
+   "title": "windows-gnu unwinding/TLS path faulting in ntdll",
+   "ids": [
+    "S-H7"
+   ],
+   "lens_verdicts": [],
+   "standing": "unsupported (not adversarially reviewed)",
+   "reason": "No panic message; catch_unwind recorded nothing; symbolizing the offsets would test it."
+  },
+  {
+   "row": 9,
+   "title": "Shared host-level event at ~23:28",
+   "ids": [
+    "S-H1 (core)"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "source-review",
+     "id": "H1",
+     "lens": "evidence",
+     "refuted": false,
+     "overstated": true
+    }
+   ],
+   "standing": "plausible; mechanism not established",
+   "reason": "Two independent processes faulted 16.76 s apart (~0.16% if fault times were independent and uniform over the four-worker window); every candidate mechanism lacks direct evidence."
+  },
+  {
+   "row": 10,
+   "title": "D: handle failure -> evidence loss and runner kill chain",
+   "ids": [
+    "E-H4 (narrowed)"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "evidence-timeline",
+     "id": "H4",
+     "lens": "evidence",
+     "refuted": false,
+     "overstated": true
+    },
+    {
+     "analysis": "evidence-timeline",
+     "id": "H4",
+     "lens": "windows-mechanics",
+     "refuted": false,
+     "overstated": true
+    }
+   ],
+   "standing": "supported (medium confidence; inference)",
+   "reason": "Long-open D: handles failed (runner journal, launcher stdout/stderr, verifier events.jsonl) while new D: handles worked; frozen runner/verifier code explains exit 1 x2, exit 120 and Errno 13. Win32 error unknown; \"device not ready\" plausible not shown; onset bounded only to after 17:43 (evidence lens: a D: build ran 23:19:04-23:36:50 successfully, so a volume event more likely preceded 23:19)."
+  },
+  {
+   "row": 11,
+   "title": "Same D: event caused the native faults",
+   "ids": [
+    "E-H4 (native link)"
+   ],
+   "lens_verdicts": [
+    {
+     "analysis": "evidence-timeline",
+     "id": "H4",
+     "lens": "evidence",
+     "refuted": false,
+     "overstated": true
+    },
+    {
+     "analysis": "evidence-timeline",
+     "id": "H4",
+     "lens": "windows-mechanics",
+     "refuted": false,
+     "overstated": true
+    }
+   ],
+   "standing": "unsupported (weakly contradicted)",
+   "reason": "A failed page-in of the D:-mapped image is 0xc0000006, even inside ntdll; the other two workers on the same image kept running until killed."
+  },
+  {
+   "row": 12,
+   "title": "Hardware fault or injected third-party module",
+   "ids": [
+    "E-H5"
+   ],
+   "lens_verdicts": [],
+   "standing": "open (no evidence either way; not adversarially reviewed)",
+   "reason": "No WHEA, security-product or loaded-module evidence collected."
+  }
+ ],
+ "verdict_flag_note": "Reviewers applied refuted=true both to contradicted and (default rule) to unsupported hypotheses; standings above separate these.",
+ "key_facts": [
+  {
+   "fact": "Both native faults are 0xc0000005 in ntdll.dll 10.0.26100.7920 (module timestamp 0x5ffc11eb): Japan/7 PID 0x9150 offset 0x166167 at 23:28:41.129Z; India/7 PID 0x4B98 offset 0x10579 at 23:28:57.885Z.",
+   "source": "docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/windows-crashes.json"
+  },
+  {
+   "fact": "WER EventTime 23:28:41.143 and 23:28:58.235 (17.09 s apart); neither Report.wer kept a minidump; no access subtype, address or stack is recorded.",
+   "source": "docs/campaign-certification/S25/preparation/journal-diagnosis-20261001/failure-evidence.json"
+  },
+  {
+   "fact": "Both crashed cells have 0-byte stderr.log, stdout ends at the test line, result.json failure null, passed false.",
+   "source": "docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/cells/{japan-7,india-7}/"
+  },
+  {
+   "fact": "India/1990 and Japan/42 exited 1 at 23:29:49.124 and 23:29:49.391, consistent with Popen.kill (TerminateProcess(handle,1)) from halt_children in the frozen runner.",
+   "source": "docs/campaign-certification/S25/preparation/local-matrix-20260930/stability_matrix.py lines 1039-1047, 1127-1141; docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/cells/*/execution.json"
+  },
+  {
+   "fact": "All four partial archive-manifest.json files: one record, roundtrip_verified true, raw_removed false; transfer.json present; verdict.json absent (first journal write after reap failed).",
+   "source": "docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/cells/*/archive-manifest.json, transfer.json"
+  },
+  {
+   "fact": "Runner (stability_matrix.py) exit 120, recorded by the run_full.py launcher, at 23:30:51.085 with 0-byte full.stdout.log/full.stderr.log on D:; verifier PermissionError [Errno 13] at 23:30:51.323 with no filename or WinError.",
+   "source": "docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/launcher/, docs/campaign-certification/S25/preparation/local-matrix-20260930/interruption-20260930/evidence/dependent/"
+  },
+  {
+   "fact": "Executable, runner journal, launcher logs and verifier lived under D:\\spheres-offload, which the 28 Sep records identify as the external USB drive (inferred from paths there, not stated outright).",
+   "source": "docs/campaign-certification/development/2026-09-28-ordered/README.md line 61; docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/pe-inspection.json"
+  },
+  {
+   "fact": "Leader-art release compile (attempt-02) ran 23:19:04 to ~23:31:21 on the same machine and its tests passed.",
+   "source": "docs/campaign-certification/development/2026-09-30-campaign-leader-art/native/attempt-02/"
+  },
+  {
+   "fact": "Commit headroom with no matrix running: 8,526,804 KiB free virtual (8.13 GiB) at 2026-10-01T02:59:46Z; 8,754,692,096 B available (8.15 GiB) at 03:26:09Z; 8,525,099,008 B (7.94 GiB) at 03:27:58Z. No sample exists for 23:28.",
+   "source": "docs/campaign-certification/S25/preparation/crash-capture-20261001/evidence/environment-before.json; docs/campaign-certification/S25/diagnostics/japan-7-20261001-01/preflight.json, startup-snapshot.json"
+  },
+  {
+   "fact": "Canonical state peaks 175.4-186.7 MB around 2010 in every cell; crash/kill-time 126.8-133.5 MB (0.71-0.73 of own peak). Summed four-worker state ~541 MB at the fault vs ~709 MB estimated wave-1 peak (uniform-pace assumption); alternatives: 526.7 MB summing each wave-2 cell's last checkpoint, 725.8 MB wave-1 peak with cells aligned by simulated date (2010-04-01).",
+   "source": "scripts/state.py; analysis-outputs/state.txt"
+  },
+  {
+   "fact": "No unsafe code in spheres-sim/src, spheres-web/src or vendored tiny_http (forbid(unsafe_code)) at 68ba0622; dependencies serde_json, itoa, memchr, zmij contain unsafe.",
+   "source": "adversarial-review/*.json (git grep and registry inspection by reviewers)"
+  },
+  {
+   "fact": "storage::write decodes the whole previous monthly file into a full Game before rotating the backup; atomic_write re-reads it for .bak.",
+   "source": "spheres-web/src/storage.rs@68ba0622 lines 207-237, 257-277"
+  },
+  {
+   "fact": "1 Oct Japan/7 ProcDump diagnostic stopped at its 12-hour bound; its terminal result is external and not in the repository.",
+   "source": "docs/planning/ai-handoffs/CODEX-C06-TONGA-PRODUCTION.md lines 44-46; docs/campaign-certification/S25/diagnostics/japan-7-20261001-01/README.md"
+  }
+ ],
+ "linux_measurements": {
+  "performed_by": "Claude, automated agent, 2026-10-04, scratch container (4 CPUs, ~16 GiB, no swap)",
+  "binary": {
+   "name": "spheres_web-7f381178d9133e63",
+   "sha256": "a6e0dc501d4b23c2917b89f68cd4fff567927d33faeb03cbbc00300263f77f45",
+   "recorded_utc": "2026-10-04T01:13Z",
+   "source_worktree_revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+   "compiled_revision": "68ba0622ec70",
+   "toolchain": "rustc 1.97.0 (2d8144b78 2026-07-07) x86_64-unknown-linux-gnu",
+   "note": "Same path was rebuilt at 03:08Z for the full-horizon rerun (different sha256); the a6e0dc50 file no longer exists."
+  },
+  "memory_by_year_japan7_to1995": [
+   {
+    "year": 1990,
+    "rss_mib": [
+     164,
+     722
+    ],
+    "cum_vmhwm_kb": 750828,
+    "max_canonical_bytes": 44993670
+   },
+   {
+    "year": 1991,
+    "rss_mib": [
+     621,
+     903
+    ],
+    "cum_vmhwm_kb": 954372,
+    "max_canonical_bytes": 78062994
+   },
+   {
+    "year": 1992,
+    "rss_mib": [
+     699,
+     1136
+    ],
+    "cum_vmhwm_kb": 1211144,
+    "max_canonical_bytes": 105366623
+   },
+   {
+    "year": 1993,
+    "rss_mib": [
+     874,
+     1451
+    ],
+    "cum_vmhwm_kb": 1535716,
+    "max_canonical_bytes": 134408540
+   },
+   {
+    "year": 1994,
+    "rss_mib": [
+     1089,
+     1491
+    ],
+    "cum_vmhwm_kb": 1576344,
+    "max_canonical_bytes": 142031038,
+    "note": "final VmHWM first reached after 1994-11-01"
+   },
+   {
+    "year": 1995,
+    "rss_mib": [
+     1143,
+     1483
+    ],
+    "cum_vmhwm_kb": 1576344,
+    "max_canonical_bytes": 137120071,
+    "note": "to 1995-02-01, then stopped by kill (exit 143)"
+   }
+  ],
+  "memory_notes": [
+   "sampling 1 s; threads 2 throughout; RssFile ~32 MB",
+   "japan7-to1991 short run VmHWM 951,792 kB includes terminal reloads; long run ~889,976 kB at the same date",
+   "2005-2015 peak-state years and the 2031 window not measured"
+  ],
+  "stack": {
+   "thread": "s25_stability_tests::s25_stability_cell (libtest spawned)",
+   "mapping_kib": 2048,
+   "resident_kib": {
+    "opening": 84,
+    "january_1990": 108,
+    "1990-02-01_to_1990-04-01": 116
+   },
+   "point_readings_kib": {
+    "~1991-04": 116,
+    "~1992-05": 116,
+    "~1994-07/08": 116,
+    "~1995-02": 116
+   },
+   "point_readings_source": "linux-probes/stack/smaps-point-readings.txt (transcribed from session transcript)",
+   "continuous_source": "linux-probes/stack/h4-stack-hwm-review/stack.csv"
+  },
+  "archive": {
+   "max_json_depth": 13,
+   "snapshots": "1991-07-01..1995-01-01 (8)",
+   "values": {
+    "1991-07-01": 3615990,
+    "1994-07-01": 7753112,
+    "1995-01-01": 7655577
+   },
+   "linux_archive_total_bytes": {
+    "1991-07-01": 63643396,
+    "1993-01-01": 108002869,
+    "1994-07-01": 139264412,
+    "1995-01-01": 137011182
+   },
+   "population_course_fragments": {
+    "1991-02": 69538,
+    "1994-07-01": 545417,
+    "1995-01-01": 508464
+   },
+   "windows_japan7_peak_bytes": 185188767,
+   "windows_japan7_2031_01_01_bytes": 133481930
+  },
+  "cross_platform": {
+   "linux_rows": 127,
+   "identical_to_windows_japan7_rows": 127,
+   "through": "1995-02-01",
+   "fields": [
+    "kind",
+    "date",
+    "canonical_bytes",
+    "canonical_fnv64",
+    "history_rows",
+    "log_rows"
+   ]
+  },
+  "valgrind": {
+   "tool": "memcheck 3.22.0",
+   "range": "1990-01-01..1990-01-31 paired cell",
+   "test_seconds": 409.45,
+   "errors": 0,
+   "allocs": 37640321,
+   "frees": 37404700,
+   "bytes_allocated": 10523808523,
+   "leak_check": "off"
+  },
+  "oom": {
+   "ulimit_v_kb_passed": [
+    1150000,
+    900000
+   ],
+   "ulimit_v_kb_failed": 650000,
+   "stderr": "memory allocation of 632 bytes failed / stack backtrace: / memory allocation of 192 bytes failed / skipping backtrace printing to avoid potential recursion",
+   "exit": 134,
+   "signal": "SIGABRT",
+   "sigsegv": false
+  }
+ },
+ "next_steps": [
+  {
+   "priority": 1,
+   "owner": "Windows owner",
+   "action": "Resolve ntdll+0x166167 and ntdll+0x10579 against Microsoft public symbols for ntdll 10.0.26100.7920 (verify sha256 E758FA414086189B0DF0B569750D1E4E164EE1A43598D758536ACEC159A5F3E5 first).",
+   "command": "cdb -z C:\\Windows\\System32\\ntdll.dll -y \"srv*C:\\symbols*https://msdl.microsoft.com/download/symbols\" -c \".reload /f; lmvm ntdll; ln ntdll+0x166167; ub ntdll+0x166167 L8; u ntdll+0x166167 L4; ln ntdll+0x10579; ub ntdll+0x10579 L8; u ntdll+0x10579 L4; q\" > ntdll-offsets.txt"
+  },
+  {
+   "priority": 2,
+   "owner": "Windows owner",
+   "action": "Export Windows System and Application logs for 2026-09-30 23:20-23:35 UTC (storage/USB providers 17:43-23:31) before roll-over.",
+   "look_for": [
+    "Microsoft-Windows-Resource-Exhaustion-Detector 2004",
+    "Application Popup 26",
+    "disk 7, 11, 51, 153, 157",
+    "Microsoft-Windows-Ntfs 50, 55, 98, 140",
+    "volmgr, partmgr, storport, USBSTOR, UASPStor",
+    "Kernel-PnP; Microsoft-Windows-Kernel-PnP/Configuration 400, 410, 420; Microsoft-Windows-Partition/Diagnostic 1006",
+    "Microsoft-Windows-WHEA-Logger (any); Kernel-Power; Power-Troubleshooter",
+    "Microsoft-Windows-Windows Defender/Operational 1116, 1117, 1123, 5007; third-party security logs",
+    "Application Error 1000, Windows Error Reporting 1001, Application Hang 1002 (any process)",
+    "Get-PhysicalDisk BusType for D:; pagefile settings"
+   ]
+  },
+  {
+   "priority": 3,
+   "owner": "Windows owner",
+   "action": "Inspect LoadedModule[] lists of the two retained Report.wer files for non-Windows modules.",
+   "files": {
+    "D:\\spheres-offload\\codex-next-20260928\\s25-diagnosis-raw-20261001T021229607793Z\\japan-7.Report.wer": {
+     "bytes": 30218,
+     "sha256": "20000af0b5944b3015fe4030a25f08aa73ba91b6f9b912a4bbbc84a5d7929993"
+    },
+    "D:\\spheres-offload\\codex-next-20260928\\s25-diagnosis-raw-20261001T021229607793Z\\india-7.Report.wer": {
+     "bytes": 30222,
+     "sha256": "68516fd94cb24935d4a2d467c2fdc613fd3d187890f78e16f3b34f0f750d691c"
+    }
+   },
+   "command": "Select-String -Path <file> -Encoding Unicode -Pattern '^LoadedModule\\[' | ForEach-Object Line"
+  },
+  {
+   "priority": 4,
+   "owner": "Windows owner",
+   "action": "Record the 1 Oct Japan/7 ProcDump diagnostic outcome: terminal result, last end_native_date (did it pass 2031-01-01 -> 2031-02-01?), any dump/exception, peak private bytes and commit from 2-s samples. Note it ran single-worker under procdump -x without _NO_DEBUG_HEAP.",
+   "locations": [
+    "D:\\spheres-offload\\codex-next-20260928\\japan-7-diagnostic-20261001-01\\",
+    "D:\\spheres-offload\\codex-next-20260928\\japan-7-launch-20261001-01\\"
+   ]
+  },
+  {
+   "priority": 5,
+   "owner": "Windows owner",
+   "action": "Keep long-lived journals, launcher/verifier logs and the test executable on an internal volume; copy to the external USB drive only after the terminal result."
+  },
+  {
+   "priority": 6,
+   "owner": "Windows owner",
+   "action": "Add commit-charge (Committed Bytes, Commit Limit) and per-worker PrivateMemorySize64/PeakPagedMemorySize64/WorkingSet64 + last end_native_date sampling (<=5 s) to the runner, in a separate append-only file on an internal volume. Model: crash-capture-20261001/launch-japan-diagnostic.ps1 lines 53-61, 135-144."
+  },
+  {
+   "priority": 7,
+   "owner": "optional",
+   "action": "Efficiency only, not a demonstrated cause: storage::write (storage.rs:257-277 at 68ba0622) fully decodes the previous monthly file into a third Game to validate it before backup rotation, and atomic_write re-reads it (line 219); a validation without a full Game would reduce the monthly transient. Needs its own review."
+  }
+ ],
+ "linux_rerun": {
+  "status": "in progress at time of writing; result to be added later if it completes",
+  "request": {
+   "country": "Japan",
+   "seed": 7,
+   "through": "2035-12-31",
+   "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32"
+  },
+  "sampling": "VmRSS, VmHWM (cumulative), VmSize, threads every 30 s",
+  "attempt_01": {
+   "started_utc": "2026-10-04T01:13:31Z",
+   "exit": 101,
+   "test_failed_after_s": 0.08,
+   "exit_recorded_utc": "2026-10-04T01:14:01Z",
+   "exit_recorded_note": "exit.txt is written when the 30 s sampling loop next sees the process gone",
+   "cause": "launcher pre-created the output directory (mkdir -p $D/native); test requires a NEW output directory (s25_stability_tests.rs:634)",
+   "classification": "launcher error, not a game result",
+   "files": "linux-rerun/attempt-01-failed/"
+  },
+  "attempt_02": {
+   "build_utc": "2026-10-04T03:08:21Z",
+   "started_utc": "2026-10-04T03:10:11Z",
+   "pid": 1821,
+   "binary_sha256": "250624d4aedb7fbbfa5474d895fff17f62702c2445d6012db49b7a582513f074",
+   "binary_bytes": 353075664,
+   "compiled_revision": "68ba0622ec70",
+   "progress_at_writing": "passed 1994-07-01 at 03:34Z, still running",
+   "progress_at_fact_check": "passed 1995-12-01 by 03:46:43Z, still running (read-only check)",
+   "files": "linux-rerun/attempt-02-launch/ (run.sh, request.json, binary.txt, build-start.txt, build.stderr, build-messages.jsonl [scratch name build.json], run-start.txt, pid.txt)"
+  },
+  "can_show": "cross-platform trajectory for Japan/7 through 2031 and 2035, which would count further against a platform-independent state trigger; Linux peak-state memory (cumulative VmHWM)",
+  "cannot_show": "Windows host, NT heap, USB drive or WER behaviour"
+ },
+ "does_not_establish": [
+  "native root cause",
+  "that the D: event or memory pressure caused the access violations",
+  "Windows behaviour from Linux runs",
+  "matrix qualification",
+  "closure of CODEX-S25-MATRIX-01, S25, S27, G5 or CP1",
+  "acceptance by Codex, root or a human"
+ ]
+}

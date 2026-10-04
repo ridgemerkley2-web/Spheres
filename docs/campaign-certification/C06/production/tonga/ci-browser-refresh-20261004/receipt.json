@@ -1,0 +1,498 @@
+{
+  "format": "spheres-tonga-production-browser-refresh-proposal/v1",
+  "prepared_at": "2026-10-04",
+  "prepared_by": "Claude automated review (Claude Code agent helping Codex task CLAUDE-C06-TONGA-01). Not Codex, not root, not a human reviewer.",
+  "status": "proposed_for_codex_root_review",
+  "requirement": "CLAUDE-C06-TONGA-01: current-source production-browser refresh (one of fifteen open requirements in ../REMAINING-WORK.md)",
+  "requirement_closed": false,
+  "accepted": false,
+  "tested_revision": "39369f0ee6451466d03778d0273a7f72aafcf8c0",
+  "tested_revision_note": "codex/campaign-certification tip; git ls-remote at about 2026-10-04T01:2xZ (drafting pass) and again at 2026-10-04T03:04:55Z (verification pass) reported this commit.",
+  "supersedes_nothing": "Historical receipt ../ci-browser-acceptance-20261001/receipt.json (sha256 9d35801c2c42cb387e47774d53f4a0a2adec884dce07f5a3e8033cabc3ca3f54) and ../../../render-return-20261002/tonga-source-refresh.json (sha256 4349cdc7abd2429b05f91faca7b7f78027116666374b8eb918d245dcdeaa9e13) were read, not modified.",
+  "run": {
+    "id": 37056033496,
+    "number": 418,
+    "attempt": 1,
+    "workflow": "Verify SPHERES (.github/workflows/verify.yml)",
+    "event": "push",
+    "head_branch": "codex/campaign-certification",
+    "head_sha": "39369f0ee6451466d03778d0273a7f72aafcf8c0",
+    "conclusion": "failure",
+    "url": "https://github.com/ridgemerkley2-web/Spheres/actions/runs/37056033496",
+    "failing_jobs": [
+      "political-calibration (ubuntu-latest) 111000855599",
+      "political-calibration (windows-latest) 111000855667",
+      "verify (ubuntu-latest) 111013206462",
+      "verify (windows-latest) 111013206441"
+    ],
+    "aggregate_gate_excerpt": "2026-10-02T20:19:22.5819086Z {'NATIVE_RESULT': 'success', 'JAVASCRIPT_RESULT': 'success', 'TOWN_BROWSER_RESULT': 'success', 'TONGA_BROWSER_RESULT': 'success', 'POLITICAL_RESULT': 'failure', 'PACKAGE_RESULT': 'success'}",
+    "whole_run_green_claimed": false,
+    "aggregate_gate_excerpt_source": "verify (ubuntu-latest) job 111013206462; verify (windows-latest) job 111013206441 printed the same result dictionary at 2026-10-02T20:18:58.2944504Z"
+  },
+  "executions": [
+    {
+      "platform": "linux",
+      "job": "tonga-browser (ubuntu-latest)",
+      "job_id": 111000855524,
+      "conclusion": "success",
+      "started_at": "2026-10-02T19:44:09Z",
+      "completed_at": "2026-10-02T19:55:12Z",
+      "runner": "ubuntu-24.04 image 20260927.320.1; rustc 1.99.0 (b940084d7 2026-09-28); node 22.23.3; Chrome for Testing / Headless Shell 145.0.7632.6 (playwright chromium v1208)",
+      "browser_step": {
+        "name": "Exercise Tonga institutions through the production browser",
+        "command": "node tools/ui/ci-tonga.cjs",
+        "conclusion": "success",
+        "started_at": "2026-10-02T19:54:17Z",
+        "completed_at": "2026-10-02T19:55:07Z"
+      },
+      "log": {
+        "path": "linux/job.log",
+        "source": "GitHub MCP get_job_logs return_content=true tail_lines=3000; logs_content stored unchanged",
+        "original_length_lines": 1059,
+        "stored_lines": 1059,
+        "bytes": 98141,
+        "sha256": "848d85eda0694ff734ae45e9f705c810aec8f9e611e22de3a62a3b8ef53dedc0",
+        "trailing_newline_present": false,
+        "utf8_bom_present": true,
+        "line_endings": "LF"
+      },
+      "key_log_lines": [
+        "2026-10-02T19:47:28.9427195Z 39369f0ee6451466d03778d0273a7f72aafcf8c0",
+        "2026-10-02T19:50:02.3159792Z test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 1119 filtered out; finished in 0.18s",
+        "2026-10-02T19:53:14.3269392Z test equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export ... ignored, Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days",
+        "2026-10-02T19:53:14.3937819Z test government_view::tests::tonga_institution_reviews_are_exact_read_only_and_keep_the_crown ... ok",
+        "2026-10-02T19:53:14.4119826Z test person_portraits::tests::tonga_institution_cards_keep_reference_civilian_and_crown_identities_separate ... ok",
+        "2026-10-02T19:53:14.4224692Z test person_portraits::tests::tonga_king_iv_reference_portrait_uses_assent_context_without_inventing_tenure ... ok",
+        "2026-10-02T19:53:14.4229444Z test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 481 filtered out; finished in 0.10s",
+        "2026-10-02T19:54:17.2983712Z Chrome Headless Shell 145.0.7632.6 (playwright chromium-headless-shell v1208) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1208",
+        "2026-10-02T19:54:17.4280461Z ##[group]Run node tools/ui/ci-tonga.cjs",
+        "2026-10-02T19:54:17.4345446Z   SPHERES_EXPECTED_REVISION: 39369f0ee6451466d03778d0273a7f72aafcf8c0",
+        "2026-10-02T19:55:07.5091812Z ##[group]Run actions/upload-artifact@v4",
+        "2026-10-02T19:55:07.7031250Z With the provided path, there will be 20 files uploaded",
+        "2026-10-02T19:55:09.1774613Z SHA256 digest of uploaded artifact zip is 2ac3314ca949dbb5c8132764238daca962419fc4eee8e66cca1bfdafac565ada",
+        "2026-10-02T19:55:09.4558313Z Artifact tonga-browser-evidence-ubuntu-latest has been successfully uploaded! Final size is 2789848 bytes. Artifact ID is 11248956048"
+      ]
+    },
+    {
+      "platform": "windows",
+      "job": "tonga-browser (windows-latest)",
+      "job_id": 111000855604,
+      "conclusion": "success",
+      "started_at": "2026-10-02T19:44:08Z",
+      "completed_at": "2026-10-02T20:08:11Z",
+      "runner": "windows-2025-vs2026 image 20260925.250.1; rustc 1.99.0 (b940084d7 2026-09-28); node 22.23.3; Chrome for Testing / Headless Shell 145.0.7632.6 (playwright chromium v1208)",
+      "browser_step": {
+        "name": "Exercise Tonga institutions through the production browser",
+        "command": "node tools/ui/ci-tonga.cjs",
+        "conclusion": "success",
+        "started_at": "2026-10-02T20:07:02Z",
+        "completed_at": "2026-10-02T20:08:03Z"
+      },
+      "log": {
+        "path": "windows/job.log",
+        "source": "GitHub MCP get_job_logs return_content=true tail_lines=3000; logs_content stored unchanged (CRLF as returned)",
+        "original_length_lines": 921,
+        "stored_lines": 921,
+        "bytes": 88499,
+        "sha256": "03cf8ce3876f871c419af4cb2fd3711abe7d63a491de696ae4f47f95f5d4e4f0",
+        "trailing_newline_present": false,
+        "utf8_bom_present": true,
+        "line_endings": "CRLF (920 CRLF pairs)"
+      },
+      "key_log_lines": [
+        "2026-10-02T19:50:29.7030266Z 39369f0ee6451466d03778d0273a7f72aafcf8c0",
+        "2026-10-02T19:56:28.6242842Z test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 1119 filtered out; finished in 0.24s",
+        "2026-10-02T20:03:19.1915855Z test equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export ... ignored, Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days",
+        "2026-10-02T20:03:19.2683804Z test government_view::tests::tonga_institution_reviews_are_exact_read_only_and_keep_the_crown ... ok",
+        "2026-10-02T20:03:19.2895484Z test person_portraits::tests::tonga_institution_cards_keep_reference_civilian_and_crown_identities_separate ... ok",
+        "2026-10-02T20:03:19.3031199Z test person_portraits::tests::tonga_king_iv_reference_portrait_uses_assent_context_without_inventing_tenure ... ok",
+        "2026-10-02T20:03:19.3032743Z test result: ok. 3 passed; 0 failed; 1 ignored; 0 measured; 481 filtered out; finished in 0.11s",
+        "2026-10-02T20:07:02.0694076Z Chrome Headless Shell 145.0.7632.6 (playwright chromium-headless-shell v1208) downloaded to C:\\Users\\runneradmin\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1208",
+        "2026-10-02T20:07:02.4329105Z ##[group]Run node tools/ui/ci-tonga.cjs",
+        "2026-10-02T20:07:02.4440580Z   SPHERES_EXPECTED_REVISION: 39369f0ee6451466d03778d0273a7f72aafcf8c0",
+        "2026-10-02T20:08:03.6060729Z ##[group]Run actions/upload-artifact@v4",
+        "2026-10-02T20:08:04.0310141Z With the provided path, there will be 20 files uploaded",
+        "2026-10-02T20:08:05.8379455Z SHA256 digest of uploaded artifact zip is 9d65c5b1ddff3dbd60c0295b62bd301f297e34344b959ddd96ce39cea8dc76f4",
+        "2026-10-02T20:08:06.1803352Z Artifact tonga-browser-evidence-windows-latest has been successfully uploaded! Final size is 2697792 bytes. Artifact ID is 11249411890"
+      ]
+    }
+  ],
+  "harness_output_note": "tools/ui/ci-tonga.cjs prints nothing to stdout on success; it writes result.json, fixture-provenance.json and screenshots only into the uploaded artifact. The historical Linux job.log likewise shows no harness output between the step header and upload-artifact. Journey, command, refusal, snapshot, page-error and reference counts are therefore NOT present in either CI log and could not be read from CI for this refresh.",
+  "count_comparison": {
+    "historical_f5bd_ci": {
+      "journey_checks": 14,
+      "confirmed_commands": 12,
+      "refusals": 7,
+      "archive_snapshots": 46,
+      "page_errors": 0,
+      "historical_references": 50,
+      "fictional_previews": 4,
+      "advance_posts": 0,
+      "native_tests_passed": 13,
+      "native_tests_ignored": 1
+    },
+    "refresh_ci_observed_in_logs": {
+      "native_tests_passed": 13,
+      "native_tests_ignored": 1,
+      "harness_step": "success on both platforms (exit 0)",
+      "journey_checks": null,
+      "confirmed_commands": null,
+      "refusals": null,
+      "archive_snapshots": null,
+      "page_errors": null,
+      "historical_references": null,
+      "fictional_previews": null
+    },
+    "refresh_ci_inferred_not_observed": "The harness is byte-identical to the accepted one and reaches process exit 0 only after every check push, assert.deepEqual(errors,[]) and the zero /api/advance assertion. Its fixed control flow implies 14 checks, 12 commands, 7 refusals, 46 archive() snapshots and two 50-binding assertions. This is an inference from code, not an observed CI count.",
+    "local_linux_diagnostic_observed": {
+      "journey_checks": 14,
+      "confirmed_commands": 12,
+      "refusals": 7,
+      "archive_snapshots": 46,
+      "page_errors": 0,
+      "historical_references": 50,
+      "distinct_reference_person_ids": 32,
+      "references_without_art": [
+        "to_fatai_helu"
+      ],
+      "fictional_previews": 4,
+      "portrait_byte_checks": 10,
+      "advance_posts": 0
+    },
+    "differences_found": [
+      "spheres-web unit filter: 480 filtered out at f5bd vs 481 at tip (one added non-Tonga test); executed counts unchanged (3 passed, 1 ignored).",
+      "Artifact ZIP sizes: Linux 2789848 vs 2789844 historical; Windows 2697792 vs 2697794 historical. Contents not inspected because download was blocked.",
+      "No difference observed in any Tonga count that could be observed."
+    ],
+    "uploaded_file_count_observation": "The upload step reported 20 files on both platforms in this run and in the historical f5bd run; the local substituted-browser run also left exactly 20 files in artifacts/tonga-browser-ci. Corroborating only: a harness failure would add failure.png and failure.html, but exit 0 is the actual success evidence."
+  },
+  "harness_inputs": {
+    "comparison": "git blob identical at f5bd21932d687532d8fda9f428b2f35a377b3f9a and the tip (same git object id)",
+    "files": {
+      "tools/ui/ci-tonga.cjs": {
+        "git_object": "7cfbc3d6ff12039215a03458212a4cff0cc69532",
+        "sha256": "cb2b520bd6d2aef38aa8f978cc12e95881d939514839cbb6dec07cc9953978ce",
+        "bytes": 18449
+      },
+      "tools/ui/ci-tonga-contract.cjs": {
+        "git_object": "8a3aa56be58132f60bb2c3e15bcfb9c61f0ea428",
+        "sha256": "0a6655418e79dc65e0f7d3bc0a6609a4a60c96d64acfac289a5e6b7480174885",
+        "bytes": 3875
+      },
+      "tools/ui/ci-integrated.cjs": {
+        "git_object": "04848dff4498a16c2ecc1d5632368d1b6d20f3f7"
+      },
+      "spheres-sim/examples/tonga_browser_fixtures.rs": {
+        "git_object": "99686e4ba7a53eaed29fea0c12f429bcc0effd08",
+        "sha256": "a4e9ae72505305b629b722e4bda1048be2b185a1b30f702a9df732ee2a966e44",
+        "bytes": 4492
+      },
+      ".github/workflows/verify.yml": {
+        "git_object": "452e7c6364d242c0cbf28563ce5687f961981df4",
+        "sha256": "ff863dc160ce60443d5eb7276f928c88eb3ec9aabe33c21ecd210bbd47d1201f",
+        "bytes": 11645,
+        "tonga_job_changed": false
+      },
+      "tools/ui/package-lock.json": {
+        "git_object": "38a7293e6683d334635b44693bff86f68a16dbd4"
+      }
+    },
+    "ci_checkout_bytes_note": "CI-side fixture-provenance.json (which records checkout bytes, CRLF on Windows) is inside the unretrieved artifacts; CI checkout bytes were not independently verified for this refresh."
+  },
+  "source_pins": {
+    "source": "historical_browser_check.source_pins of ../../../render-return-20261002/tonga-source-refresh.json, recomputed with git show 39369f0e:<path> | sha256sum",
+    "total": 19,
+    "changed": 3,
+    "unchanged": 16,
+    "rows": [
+      {
+        "path": "spheres-sim/data/party_leaders.json",
+        "historical_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+        "tip_sha256": "b330e2c49fa14a615bcb50fe7e5c6b240bd6678076869699788fdd36f6fdf077",
+        "changed": false
+      },
+      {
+        "path": "spheres-sim/data/tonga_institutional_leadership.json",
+        "historical_sha256": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
+        "tip_sha256": "1f91f872b52998e9c113364aae5b989d478db3155576611765f13351aaaf4bf3",
+        "changed": false
+      },
+      {
+        "path": "spheres-sim/src/company_save.rs",
+        "historical_sha256": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+        "tip_sha256": "cc78c502448871ec943391f4cefe77ce23243ff86cf65b2bb8a0ec97c9cf736b",
+        "changed": false
+      },
+      {
+        "path": "spheres-sim/src/data/mod.rs",
+        "historical_sha256": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+        "tip_sha256": "f0d02d04d955f5040019ee3b5695858084e77b2f2c594fd77609b6ca19f8a4bc",
+        "changed": false
+      },
+      {
+        "path": "spheres-sim/src/government.rs",
+        "historical_sha256": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+        "tip_sha256": "59faacfc666dbdada687791ed77454824ef2320a569a2683d213ee91cf6d30a9",
+        "changed": false
+      },
+      {
+        "path": "spheres-sim/src/institutional_leadership.rs",
+        "historical_sha256": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+        "tip_sha256": "12704c007460d0a04d98e0437f641981ea5605c176d2b0cdb008fc7b002c021f",
+        "changed": false
+      },
+      {
+        "path": "spheres-sim/src/lib.rs",
+        "historical_sha256": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+        "tip_sha256": "c7ce92dfe223f1e53be0f5b30d235fa80ec9fd7989161e5a8c980f0a747d13dc",
+        "changed": false
+      },
+      {
+        "path": "spheres-sim/src/party_leadership.rs",
+        "historical_sha256": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+        "tip_sha256": "e4a6bad37399bd1bc1bf8d2dde1851cddded0fcd829852e1d548d2cc435f0995",
+        "changed": false
+      },
+      {
+        "path": "spheres-sim/src/world.rs",
+        "historical_sha256": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
+        "tip_sha256": "54ffea41b3345b4e56b727af2a6f9d6c34e9e2b18401b3d75b75132b80ac914d",
+        "changed": false
+      },
+      {
+        "path": "spheres-web/data/fictional_portraits.json",
+        "historical_sha256": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+        "tip_sha256": "e5bfcff486383785f23e9121e0bb7312a2b4e540409384304b54bbbe63a9ebea",
+        "changed": false
+      },
+      {
+        "path": "spheres-web/data/future_candidates_2035.json",
+        "historical_sha256": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
+        "tip_sha256": "ca2eb2216e049b578d9aadfe1042446a6a22abbbea6e6388a48fa907192e43bd",
+        "changed": false
+      },
+      {
+        "path": "spheres-web/data/person_portraits.json",
+        "historical_sha256": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+        "tip_sha256": "aafc849d4b8c9cc981d70a3735f709802955579a68bb3e5663cea480839890aa",
+        "changed": true,
+        "change_note": "Whole-file hash changed twice after f5bd: cc843d78... at 0c74f00a (France, 2026-10-02) then aafc849d... at a982f752 (six cast batches). Structural comparison f5bd vs tip: 620 people in both, none added or removed, 32 non-Tonga entries changed only in portraits/identity_sources; all 30 to_* entries and the three Tonga Crown entries (taufaahau_tupou_iv, fatafehi_tuipelehake, siaosi_taufaahau_manumataongo) are value-identical."
+      },
+      {
+        "path": "spheres-web/src/government_view.rs",
+        "historical_sha256": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
+        "tip_sha256": "5e7e8fe82292ad4f9f1d4cb65153a5f1cbd332096f288edf3e1b1c1457bb46fa",
+        "changed": false
+      },
+      {
+        "path": "spheres-web/src/main.rs",
+        "historical_sha256": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+        "tip_sha256": "6e7db7b33a2050b4ca2ab1a78d5a53e90e75ef8f9be73061790146620330dd3a",
+        "changed": false
+      },
+      {
+        "path": "spheres-web/src/person_avatar_assets.rs",
+        "historical_sha256": "e67bbe976416dbca7a9808e081002b9dbe503b55ab8f489fdd076391323df4c3",
+        "tip_sha256": "73ee08c14ea1fe836c8f1219acd24fc1f2e04a96acb303b618724b7ca6035175",
+        "changed": true,
+        "change_note": "+38/-0 lines (f5bd..tip, introduced at a982f752): additive cartoon_asset match arms for non-Tonga cartoons only; no Tonga arm added or removed."
+      },
+      {
+        "path": "spheres-web/src/person_portraits.rs",
+        "historical_sha256": "1cdb635ad2b9bf683cf166e8d11a36be8751a0c273308ca2651a7d9731e9e657",
+        "tip_sha256": "899e7605fdfc78f4557ac32992e4ffc8bbff0bae6ca8e351b4286b647708bd50",
+        "changed": true,
+        "change_note": "+51/-0 lines (introduced at a982f752): adds test registered_cartoon_eras_resolve_exact_assets_at_both_boundaries inside mod tests; this is why the spheres-web tonga_ filter now reports 481 filtered out instead of 480."
+      },
+      {
+        "path": "spheres-web/ui/government-ui.css",
+        "historical_sha256": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
+        "tip_sha256": "fe7fdc061eb31ec4638977e9408a1526e5d4618f4787a235d9b7440a92348656",
+        "changed": false
+      },
+      {
+        "path": "spheres-web/ui/government-ui.js",
+        "historical_sha256": "c8bff0746bad3d2e2108646c1c63f4ab2cea6af9a37013e648899705409319ae",
+        "tip_sha256": "c8bff0746bad3d2e2108646c1c63f4ab2cea6af9a37013e648899705409319ae",
+        "changed": false
+      },
+      {
+        "path": "spheres-web/ui/index.html",
+        "historical_sha256": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
+        "tip_sha256": "6e9a82434f7800933b1c0cd827173a3577e8160074b27cf0361a4971cb1cb04c",
+        "changed": false
+      }
+    ]
+  },
+  "manifest_check": {
+    "path": "spheres-web/data/person_portraits.json",
+    "refresh_record_current_manifest_sha256": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+    "tip_sha256": "aafc849d4b8c9cc981d70a3735f709802955579a68bb3e5663cea480839890aa",
+    "matches_refresh_record": false,
+    "history": {
+      "f5bd2193 / 1cbf6200": "45fb29edd8b2b3499f47593376fe009db9a6da329d2d79e061128d2d0e333825",
+      "0c74f00a / ed9786fb": "cc843d78cb81ef9d2f89857562902052048e07d9fe2af8e559fc042e7981b5cc",
+      "a982f752 / 39369f0e (tip)": "aafc849d4b8c9cc981d70a3735f709802955579a68bb3e5663cea480839890aa"
+    },
+    "interpretation": "The 2026-10-02 refresh record was accurate at ed9786fb but is stale at the tip; a later additive registration (a982f752) changed the manifest again. The CI run tested the tip, i.e. the aafc849d... manifest."
+  },
+  "unpinned_changes_f5bd_to_tip": {
+    "spheres-web/data/leadership_production_2035.json": "modified (+2491/-1754); git grep finds no reference from spheres-web/src, spheres-sim/src or spheres-web/ui/*.js (tooling/census data).",
+    "added_files": "81 added image files: 40 under spheres-web/ui/person-portraits, 41 under spheres-web/ui/person-portraits/references; none Tonga-named.",
+    "other_spheres_sim_or_spheres_web_changes": "none besides the four modified files listed (three pinned, one unpinned)"
+  },
+  "artifacts": {
+    "retrieved": false,
+    "attempt": "GitHub MCP download_workflow_run_artifact returned signed URLs (host productionresultssa9.blob.core.windows.net) for both ids; curl through the session egress proxy failed: CONNECT tunnel failed, response 403. Proxy status recorded connect_rejected for productionresultssa9.blob.core.windows.net:443 at 2026-10-04T01:12:36Z with detail 'gateway answered 403 to CONNECT (policy denial or upstream failure)'; the session proxy documentation treats a 403 as a host not allowed by egress policy.",
+    "items": [
+      {
+        "platform": "linux",
+        "id": 11248956048,
+        "name": "tonga-browser-evidence-ubuntu-latest",
+        "bytes": 2789848,
+        "zip_sha256_reported_by_github": "2ac3314ca949dbb5c8132764238daca962419fc4eee8e66cca1bfdafac565ada",
+        "zip_sha256_in_upload_log": "2ac3314ca949dbb5c8132764238daca962419fc4eee8e66cca1bfdafac565ada",
+        "files_uploaded": 20,
+        "expires_at": "2026-10-09T19:55:07Z",
+        "downloaded_hash_verified": false
+      },
+      {
+        "platform": "windows",
+        "id": 11249411890,
+        "name": "tonga-browser-evidence-windows-latest",
+        "bytes": 2697792,
+        "zip_sha256_reported_by_github": "9d65c5b1ddff3dbd60c0295b62bd301f297e34344b959ddd96ce39cea8dc76f4",
+        "zip_sha256_in_upload_log": "9d65c5b1ddff3dbd60c0295b62bd301f297e34344b959ddd96ce39cea8dc76f4",
+        "files_uploaded": 20,
+        "expires_at": "2026-10-09T20:08:04Z",
+        "downloaded_hash_verified": false
+      }
+    ],
+    "action_needed": "Someone with artifact access should download both ZIPs before 2026-10-09 (retention 7 days), verify the digests above, and read result.json counts and screenshots.",
+    "verification_retry": "During the verification pass the Linux artifact URL was re-requested once at 2026-10-04T03:04:42Z and failed identically (403, same proxy detail). The Windows URL is on the same host and was not re-requested. Artifacts remain unretrieved."
+  },
+  "local_reproduction": {
+    "host": "Claude Code cloud container, Linux x86_64, 4 CPUs; local checkout at the tested revision, clean tracked tree; rustc 1.97.0 (2d8144b78 2026-07-07) locally vs 1.99.0 in CI; node v22.22.0; npm ci --prefix tools/ui installed playwright 1.58.2",
+    "binary": {
+      "path": "target/release/spheres-web",
+      "sha256": "2e99375f6a24490489d0feb40fe9280d18891437afd09aea5fbf87d87446fc76",
+      "note": "cargo build --locked --release -p spheres-web was a no-op (already fresh); /api/build reported revision 39369f0ee645, full_revision 39369f0ee6451466d03778d0273a7f72aafcf8c0, branch claude/nifty-bohr-0j27qi (same commit as the integration tip; the local branch name differs from CI), built_at_unix_seconds 1791075897 (2026-10-04T01:04:57Z), and the harness verifyBuild assertion passed"
+    },
+    "environment_deviations": [
+      "CI=true was set locally because the harness refuses to run otherwise; the server and saves were disposable and confined to the harness output directory.",
+      "The harness hard-codes its output to artifacts/tonga-browser-ci in the checkout (gitignored). After each run the directory was moved to a scratch directory and removed from the checkout."
+    ],
+    "as_specified_run": {
+      "command": "CI=true SPHERES_EXPECTED_REVISION=39369f0ee6451466d03778d0273a7f72aafcf8c0 node tools/ui/ci-tonga.cjs (PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers)",
+      "window_utc": [
+        "2026-10-04T01:14:45Z",
+        "2026-10-04T01:14:48Z"
+      ],
+      "exit_code": 1,
+      "result": "failed at chromium.launch (stage server-start): Executable doesn't exist at /opt/pw-browsers/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell. Only chromium-1194 / chromium_headless_shell-1194 (Chromium 141.0.7390.37) are preinstalled; playwright 1.58.2 requires revision 1208 (145.0.7632.6). The harness exposes no executablePath override. Browsers were not installed.",
+      "native_fixture_export": "succeeded before the browser failure; the four authored fixtures have sha256/bytes identical to the historical Linux CI fixture-provenance at f5bd (f99a0f07..., d30725a3..., 92cbb75f..., dabb8e93...). This run's fixture-provenance.json is retained as local-linux-diagnostic/as-specified-run-fixture-provenance.json; it differs from the substituted-run copy only in the temporary campaign directory name inside the recorded command.",
+      "retained": {
+        "local-linux-diagnostic/as-specified-run-output.txt": {
+          "bytes": 1201,
+          "sha256": "dccc77d94aa98a5ca0a03eb79d865aedb879895769bac9c8d64c9feb569f7a16"
+        },
+        "local-linux-diagnostic/as-specified-run-result.json": {
+          "bytes": 1783,
+          "sha256": "73f9b1be3f6fc4f9c42e79d8377cc96054f63af6ca5ac1a46a3838dfa86297e7"
+        },
+        "local-linux-diagnostic/as-specified-run-fixture-provenance.json": {
+          "bytes": 2120,
+          "sha256": "e2b045af326fc1550c6428be7a2c1bb9d4b05dac8c088d82eaea32601cdef604"
+        }
+      }
+    },
+    "substituted_browser_diagnostic_run": {
+      "not_ci_equivalent": true,
+      "deviation": "A scratch PLAYWRIGHT_BROWSERS_PATH contained only chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell as a symlink to the preinstalled /opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell (Chromium 141.0.7390.37). Playwright 1.58.2 therefore drove an older headless shell than the 145.0.7632.6 build used in CI. Harness, contract, fixtures and binary were unmodified.",
+      "window_utc": [
+        "2026-10-04T01:15:08Z",
+        "2026-10-04T01:16:03Z"
+      ],
+      "exit_code": 0,
+      "result": {
+        "passed": true,
+        "stage": "complete",
+        "checks": 14,
+        "confirmed_commands": 12,
+        "refusals": 7,
+        "archive_snapshots": 46,
+        "page_errors": 0,
+        "advance_posts": 0,
+        "historical_reference_bindings": 50,
+        "distinct_reference_person_ids": 32,
+        "references_without_art": [
+          "to_fatai_helu"
+        ],
+        "fictional_previews": 4,
+        "portrait_byte_checks": 10
+      },
+      "comparison_with_historical_f5bd_linux_ci_result": {
+        "checks_identical": true,
+        "commands_identical": true,
+        "refusals_identical": true,
+        "portraits_identical": true,
+        "page_errors_identical": true,
+        "archive_hashes_identical": "all 46 identical (also identical to the historical Windows result)",
+        "opening_government_payload_identical": true,
+        "latest_government_payload_identical": true,
+        "requests": "50 POSTs in both; identical after removing per-session session_id, client_id and review_token values",
+        "opening_mobile_png": "byte-identical to ../ci-browser-acceptance-20261001/linux/opening-mobile.png (sha256 05f683d2770bf0ead377562a534bee36a4ec2d46b640da60116f1812096f5123); not duplicated here",
+        "appointed_desktop_png": "208 of 1,440,000 pixels differ from the historical Linux screenshot, all within rows 100-113 (the tab-label strip), max channel difference 54; consistent with the different Chromium build, not reviewed further"
+      },
+      "retained": {
+        "local-linux-diagnostic/result.json": {
+          "bytes": 576070,
+          "sha256": "d5a71c165b640aaf9994ed79adbab54e1c8851f23e6a8d5c810bf7ccd79732db"
+        },
+        "local-linux-diagnostic/fixture-provenance.json": {
+          "bytes": 2120,
+          "sha256": "27bf5c7d512eda0b370e9fcc7824f8ca5fef6850c4e5ae99e76c85e02b89be6b"
+        },
+        "local-linux-diagnostic/appointed-desktop.png": {
+          "bytes": 532575,
+          "sha256": "e5f2efc93a20f95110db1a87dcde9e847f2c5b782b14a6db12ef3b8fdd46a553"
+        }
+      }
+    },
+    "repo_paths_written_and_cleaned": [
+      "artifacts/tonga-browser-ci (moved to scratch, removed from checkout)",
+      "tools/ui/node_modules (npm ci; gitignored, left in place)",
+      "target/release/examples/tonga_browser_fixtures* (cargo build output; gitignored)"
+    ]
+  },
+  "visual_observations": "Claude viewed only the local substituted-browser screenshots; the CI screenshots were not retrievable and were not seen. opening-mobile.png (414x896): Government header with Tonga selected and Back to map; scrolled historical reference cards for SPEAKER Siale'ataongo Tu'ivakano (\"Historical reference · no campaign appointment\", \"Attested on 2015-02-24\", cartoon avatar with appearance reference 2010-01-01 to before 2020-01-01) and PRIME MINISTER Samuela 'Akilisi Pohiva (cartoon avatar, same appearance window). Office labels are readable words, cards fit the mobile width, no horizontal overflow visible. appointed-desktop.png (1440x1000): Institutions & people tab active; NON-ELECTED MINISTER Pisila Tukuafu and POLITICAL ORGANIZER · REFERENCE ONLY Kalolo Matalehu, both tagged Fictional successor with decoded cartoon avatars labelled imagined appearance 2026-09-08 to before 2036-01-01; Pisila shows \"This person already holds a Cabinet appointment.\" and Kalolo shows \"Reference only · no appointment action\". Scrolled card text is faintly visible behind the sticky tab bar at the top, exactly as in the historical accepted Linux screenshot. This is interface observation by an automated agent, not likeness approval or country review.",
+  "limits": [
+    "Proposed for Codex/root review only. Does not close CLAUDE-C06-TONGA-01, C06, S23 or CP1, does not replace root acceptance, and does not mark the refresh requirement complete.",
+    "CI evidence is the job conclusions, step conclusions and log lines of run 37056033496. The harness prints no counts; CI result.json, fixture-provenance.json and screenshots were not retrieved (egress policy 403), so CI-side counts and visuals at the tip are unobserved.",
+    "Local counts come from a Linux run with a substituted, older Chromium headless shell and a different local rustc; they corroborate determinism of the native/save path but are not CI-equivalent production-browser evidence and say nothing about Windows.",
+    "The 2026-10-02 refresh record current_manifest_sha256 is stale at the tip (cc843d78... vs aafc849d...); three of nineteen pins changed. This receipt records that; it does not edit or repin the refresh record.",
+    "Authored date fixtures, 500 political capital and zero simulated days, as in the accepted journey: no elapsed-campaign, endurance, performance, history-completeness, likeness-approval or country/CP1 qualification.",
+    "The whole workflow is not green: political-calibration failed on both platforms and is a separate blocker."
+  ],
+  "automated_verification": {
+    "performed_by": "A second Claude automated verification pass (Claude Code subagent), 2026-10-04. Not Codex, not root and not a human reviewer; it confers no acceptance.",
+    "rechecked": [
+      "Run 37056033496 (number 418, attempt 1, push, conclusion failure, head 39369f0e) and all 14 job conclusions via the GitHub Actions API; the four failing job ids match.",
+      "Tonga job ids, start/completion times and browser-step times for 111000855524 and 111000855604.",
+      "Both stored job logs are byte-identical to a fresh get_job_logs logs_content (tail_lines=3000; original_length 1059 and 921), and every key_log_line occurs verbatim.",
+      "Aggregate gate excerpt verbatim in the verify (ubuntu-latest) log.",
+      "Artifact ids, sizes, digests and expiry times via list_workflow_run_artifacts.",
+      "All 19 source pins at f5bd2193 and 39369f0e with git show | sha256sum; 3 changed, 16 unchanged. Manifest hash history at f5bd2193, 1cbf6200, 0c74f00a, ed9786fb, a982f752 and 39369f0e.",
+      "person_portraits.json structure: 620 people at both revisions; 32 non-Tonga entries changed only by additions to portraits and identity_sources; all 30 to_* and the three Crown entries value-identical.",
+      "Line counts of the two changed Rust files, 81 added images (40 + 41), and git object ids and hashes of the harness inputs.",
+      "Local result.json against the historical Linux result.json: checks, commands, refusals, portraits, 46 archive hashes and both government payloads identical; requests identical after removing session_id, client_id and review_token; 50 bindings, 32 distinct people, only to_fatai_helu without art.",
+      "Independent PNG decode: appointed-desktop.png differs from the historical Linux screenshot in 208 of 1,440,000 pixels, rows 100-113, maximum channel difference 54. The local opening-mobile.png is byte-identical to the historical Linux file.",
+      "files.json sizes and sha256 values after the edits recorded here."
+    ],
+    "corrections_made": [
+      "Proxy failure detail quoted exactly ('policy denial or upstream failure') instead of 'policy denial' alone.",
+      "Added the verification retry, a second ls-remote time, the log BOM and line-ending facts, the source job of the aggregate excerpt, the local build branch and build time, and the 20-file upload observation.",
+      "Retained the as-specified run's fixture-provenance.json so that its fixture-hash claim is backed by a file in this directory."
+    ]
+  }
+}

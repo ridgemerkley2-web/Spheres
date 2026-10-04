@@ -1,0 +1,17 @@
+s0 coupEl 7 a10 n 10 median +0.333 | with +k zero-lead takeovers k=0..4: [0.333, 0.302, 0.299, 0.296, 0.275] | sorted [0.23, 0.237, 0.253, 0.296, 0.302, 0.364, 0.374, 0.445, 0.446, 0.517]
+s1 coupEl 6 a10 n 10 median +0.335 | with +k zero-lead takeovers k=0..4: [0.335, 0.309, 0.306, 0.303, 0.278] | sorted [0.222, 0.229, 0.254, 0.303, 0.309, 0.361, 0.369, 0.37, 0.448, 0.514]
+s2 coupEl 5 a10 n 10 median +0.320 | with +k zero-lead takeovers k=0..4: [0.32, 0.313, 0.285, 0.257, 0.246] | sorted [0.187, 0.232, 0.234, 0.257, 0.313, 0.327, 0.359, 0.365, 0.42, 0.54]
+s3 coupEl 8 a10 n 12 median +0.336 | with +k zero-lead takeovers k=0..4: [0.336, 0.316, 0.313, 0.31, 0.304] | sorted [0.233, 0.234, 0.255, 0.298, 0.31, 0.316, 0.356, 0.369, 0.371, 0.465, 0.466, 0.549]
+s4 coupEl 8 a10 n 13 median +0.324 | with +k zero-lead takeovers k=0..4: [0.324, 0.321, 0.318, 0.314, 0.309] | sorted [0.225, 0.23, 0.255, 0.293, 0.309, 0.318, 0.324, 0.365, 0.369, 0.372, 0.482, 0.489, 0.536]
+s5 coupEl 8 a10 n 12 median +0.343 | with +k zero-lead takeovers k=0..4: [0.343, 0.329, 0.313, 0.298, 0.294] | sorted [0.232, 0.236, 0.255, 0.291, 0.298, 0.329, 0.357, 0.358, 0.369, 0.423, 0.454, 0.506]
+s6 coupEl 7 a10 n 12 median +0.329 | with +k zero-lead takeovers k=0..4: [0.329, 0.305, 0.304, 0.303, 0.295] | sorted [0.195, 0.224, 0.257, 0.286, 0.303, 0.305, 0.353, 0.362, 0.366, 0.439, 0.529, 0.561]
+s7 coupEl 8 a10 n 13 median +0.323 | with +k zero-lead takeovers k=0..4: [0.323, 0.308, 0.292, 0.292, 0.292] | sorted [0.228, 0.231, 0.251, 0.253, 0.292, 0.292, 0.323, 0.363, 0.372, 0.416, 0.462, 0.48, 0.526]
+s8 coupEl 8 a10 n 11 median +0.346 | with +k zero-lead takeovers k=0..4: [0.346, 0.333, 0.321, 0.319, 0.317] | sorted [0.216, 0.232, 0.257, 0.317, 0.321, 0.346, 0.362, 0.374, 0.446, 0.526, 0.543]
+s9 coupEl 7 a10 n 12 median +0.350 | with +k zero-lead takeovers k=0..4: [0.35, 0.345, 0.332, 0.32, 0.315] | sorted [0.232, 0.234, 0.255, 0.31, 0.32, 0.345, 0.355, 0.366, 0.423, 0.443, 0.474, 0.586]
+s10 coupEl 8 a10 n 13 median +0.346 | with +k zero-lead takeovers k=0..4: [0.346, 0.331, 0.315, 0.314, 0.312] | sorted [0.236, 0.24, 0.259, 0.302, 0.312, 0.315, 0.346, 0.36, 0.376, 0.378, 0.411, 0.488, 0.523]
+s11 coupEl 7 a10 n 12 median +0.358 | with +k zero-lead takeovers k=0..4: [0.358, 0.354, 0.326, 0.298, 0.295] | sorted [0.19, 0.235, 0.255, 0.293, 0.298, 0.354, 0.362, 0.368, 0.384, 0.458, 0.464, 0.499]
+A10 across seeds with +0 zero-lead takeovers per seed: median 0.335 min 0.320
+A10 across seeds with +1 zero-lead takeovers per seed: median 0.319 min 0.302
+A10 across seeds with +2 zero-lead takeovers per seed: median 0.313 min 0.285
+A10 across seeds with +3 zero-lead takeovers per seed: median 0.303 min 0.257
+A10 across seeds with +4 zero-lead takeovers per seed: median 0.295 min 0.246

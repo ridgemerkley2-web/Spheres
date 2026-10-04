@@ -8502,8 +8502,15 @@ pub fn army_resource_loyalty_target(resources: f64, income_per_head: f64, exhaus
 /// losing confidence in sustained civilian crisis; they are not coup estimates.
 /// Known historical leverage replaces the old authoritarianism proxy only in
 /// this political channel. Unknown assessments retain the original proxy.
+/// Sourced leverage does not bypass civilian control: the confidence channel
+/// keeps the documented `.20` authoritarianism boundary below.
 pub const ARMY_CRISIS_CONFIDENCE_WEIGHT: f64 = 0.65;
 pub const ARMY_PROGRAMME_VETO_WEIGHT: f64 = 0.45;
+/// The documented civilian-control boundary of the confidence channel, the
+/// same `.20` at which the unknown-assessment proxy reaches zero. It names an
+/// existing design rule (docs/political-arm/2026-09-22-calibration-repairs.md);
+/// it is not a new coefficient.
+const CIVILIAN_CONTROL_AUTHORITARIANISM: f64 = 0.20;
 
 fn civilian_army_executive_leverage(w: &WorldState, id: NationId) -> f64 {
     if !w.rules.ideology_blocs || !is_electoral(w, id)
@@ -8573,6 +8580,12 @@ fn civilian_public_mandate(w: &WorldState, id: NationId) -> f64 {
 pub fn army_civilian_confidence_penalty(w: &WorldState, id: NationId) -> f64 {
     let leverage = civilian_army_executive_leverage(w, id);
     if leverage <= 0.0 { return 0.0; }
+    // Civilian control blocks this channel even when sourced leverage exists
+    // (2026-09-22 calibration record: "Civilian control at authoritarianism
+    // .20 or below blocks it"; restored by the user's 4 October 2026 decision).
+    // The unknown-assessment proxy already reads zero here. Leverage itself
+    // is not rewritten, and the programme veto keeps its own guards.
+    if w.nation(id).authoritarianism <= CIVILIAN_CONTROL_AUTHORITARIANISM { return 0.0; }
     let Some(record) = established_civilian_record(w, id) else { return 0.0; };
     let discontent = crate::blocs::discontent(w, id);
     if discontent < ELECTORAL_COUP_DISCONTENT { return 0.0; }
@@ -13501,9 +13514,15 @@ mod tests {
         assert_eq!(army_programme_veto_loyalty(&zero, id, "dz_fis"), 0.60);
         let known = state(&one, id).unwrap().army_authority.clone();
         let penalty = army_civilian_confidence_penalty(&one, id);
-        one.nation_mut(id).authoritarianism = 0.05;
+        one.nation_mut(id).authoritarianism = 0.25;
         assert_eq!(army_civilian_confidence_penalty(&one, id), penalty,
             "a nominal authoritarianism edit is not evidence of new military authority");
+        // Civilian control at .20 or below still blocks this confidence channel
+        // (2026-09-22 calibration record; user decision of 4 October 2026). It
+        // closes the channel without rewriting the sourced leverage record.
+        one.nation_mut(id).authoritarianism = 0.05;
+        assert_eq!(army_civilian_confidence_penalty(&one, id), 0.0,
+            "civilian control at authoritarianism .20 or below blocks the confidence channel");
         assert_eq!(state(&one, id).unwrap().army_authority, known);
         // A known zero blocks this political-leverage channel, not material
         // neglect, casualties, grievances, or the existing Army coup route.
@@ -13520,7 +13539,11 @@ mod tests {
         assert_eq!(crate::army_authority::current_leverage(&zero, id), Some(1.0));
         assert_eq!(state(&zero, id).unwrap().army_authority.as_ref().unwrap().source,
             known.as_ref().unwrap().source, "an actual seizure changes campaign leverage, never its historical input");
+        // Above the civilian-control boundary, so only the missing Army can
+        // close the channel.
         let mut no_army = one.clone();
+        no_army.nation_mut(id).authoritarianism = 0.25;
+        assert!(army_civilian_confidence_penalty(&no_army, id) > 0.0);
         state_mut(&mut no_army, id).unwrap().pillars.retain(|(p, _)| *p != Pillar::Army);
         assert_eq!(army_civilian_confidence_penalty(&no_army, id), 0.0);
         assert_eq!(crate::army_authority::current_leverage(&no_army, id), None);
@@ -15820,3 +15843,8 @@ pub(crate) mod a1_observer;
 #[cfg(test)]
 #[path = "government_opening_tests.rs"]
 mod opening_tests;
+
+// Civilian-control boundary of the Army civilian-confidence channel (S27 D2).
+#[cfg(test)]
+#[path = "government_civilian_guard_tests.rs"]
+mod civilian_guard_tests;

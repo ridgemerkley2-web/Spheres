@@ -1,0 +1,10 @@
+current (diagnostic counts, seeds 0-11)                    median coups   7.5 median top3 0.5714 (4/7) seeds<0.5: 1/12 -> A1 FAIL
+repeats removed (each country at most 1/seed)              median coups   6.0 median top3 0.5000 (1/2) seeds<0.5: 4/12 -> A1 FAIL
++1 new distinct single-coup countries per seed             median coups   8.5 median top3 0.5000 (1/2) seeds<0.5: 4/12 -> A1 FAIL
++2 new distinct single-coup countries per seed             median coups   9.5 median top3 0.4444 (4/9) seeds<0.5: 8/12 -> A1 PASS
++3 new distinct single-coup countries per seed             median coups  10.5 median top3 0.4000 (2/5) seeds<0.5: 12/12 -> A1 PASS
++4 new distinct single-coup countries per seed             median coups  11.5 median top3 0.3636 (4/11) seeds<0.5: 12/12 -> A1 PASS
++5 new distinct single-coup countries per seed             median coups  12.5 median top3 0.3333 (1/3) seeds<0.5: 12/12 -> A1 PASS
++2 new distinct countries AND +1 repeat in top country     median coups  10.5 median top3 0.5000 (1/2) seeds<0.5: 4/12 -> A1 FAIL
++1 new country with 2 coups per seed                       median coups   9.5 median top3 0.5556 (5/9) seeds<0.5: 1/12 -> A1 FAIL
++2 new countries with 2 coups each per seed                median coups  11.5 median top3 0.5000 (1/2) seeds<0.5: 1/12 -> A1 FAIL

@@ -1,0 +1,21 @@
+{
+  "label": "Claude, automated agent - not human or Codex review",
+  "excludes": "files.json",
+  "files": [
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/claude-visual-review-20261004/README.md",
+      "bytes": 30193,
+      "sha256": "d0eb23ce7406b4152cf7445db2afdf9b0ea6dcddb16e78e018c04ab83d002720"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/claude-visual-review-20261004/contact-sheet.png",
+      "bytes": 442890,
+      "sha256": "3dd002a8ce5fb0b6a392010683a726f84b578e42fda00568a209d4e2f9abf9ff"
+    },
+    {
+      "path": "docs/campaign-certification/C06/production/tonga/claude-visual-review-20261004/review.json",
+      "bytes": 293287,
+      "sha256": "41b992427614fc1515583f38ab7f889eb73f95cdb100e2755cf8b2cf91123f5a"
+    }
+  ]
+}

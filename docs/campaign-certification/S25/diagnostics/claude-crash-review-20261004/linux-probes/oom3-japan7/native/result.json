@@ -1,0 +1,86 @@
+{
+  "actions": [
+    {
+      "date": "1990-01-01",
+      "kind": "competition_adoption",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "command": {
+          "kind": "enable_economic_competition"
+        },
+        "pc_after": 65.4496,
+        "pc_before": 65.4496,
+        "price_pc": 0.0
+      }
+    }
+  ],
+  "artifact_errors": [],
+  "artifacts": [],
+  "checks": {
+    "competition_adoptions": 2,
+    "daily_invariant_checks": 0,
+    "full_horizon_pause": null,
+    "monthly_reloads": 0,
+    "native_validation_checks": 2,
+    "sandbox_continued": false,
+    "sandbox_daily_invariant_checks": 0,
+    "terminal_reloads": 0
+  },
+  "comparisons": [
+    {
+      "absolute_day": 0,
+      "canonical_bytes": 13182157,
+      "canonical_fnv64": "112f3c9b300c96d0",
+      "date": "1990-01-01",
+      "history_rows": 1,
+      "kind": "opening",
+      "log_rows": 1,
+      "matched": true,
+      "player": "Japan"
+    }
+  ],
+  "compiled_revision": "68ba0622ec70",
+  "country": "Japan",
+  "days_each_leg": 0,
+  "end_native_date": "1990-01-01",
+  "failure": null,
+  "format": "spheres-stability-result/v1",
+  "id": "oom3-japan7",
+  "initial_rules": {
+    "ai_aggression": 1.0,
+    "crisis_intensity": 1.0,
+    "daily_simulation": true,
+    "economic_competition": true,
+    "fiscal_recovery": true,
+    "historical_party_leadership": true,
+    "ideology_blocs": true,
+    "industry_rebuild": true,
+    "logistics_routes": true,
+    "manufacturing_system": true,
+    "military_operations": true,
+    "operational_warfare": 1,
+    "physical_logistics": true,
+    "production_system": true,
+    "resource_market": true,
+    "seed": 7
+  },
+  "legs": 2,
+  "passed": false,
+  "provenance": {
+    "archive_exception": "Only terminal top-level saved_unix removed; remaining native encode bytes, key order and numeric spelling unchanged",
+    "cessation_policy": "Ordinary Russia continuation only for a dissolved USSR with an eligible living Russia; otherwise ordinary observer continuation. No grants or forced dissolution.",
+    "fingerprint_scope": "FNV64 is diagnostic only; the matrix wrapper supplies SHA256 provenance",
+    "initialization": "Real new_game; ordinary competition adoption; existing budget allocations/departments renewed through dated native commands",
+    "request_bytes": 162,
+    "request_fnv64": "e84d536c251394d2",
+    "request_path": "/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/s25-source-probe/oom3-japan7/request.json",
+    "request_unchanged": false,
+    "retention": "Two final native archives plus two sandbox archives for full-horizon cells; resumed/saves/monthly.json plus its native backup are bounded scratch; failing worlds retained when serializable"
+  },
+  "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "scope": "Native paired stability cell only; no S25 or CP1 certification",
+  "seed": 7,
+  "start_native_date": "1990-01-01",
+  "through": "1990-06-30"
+}

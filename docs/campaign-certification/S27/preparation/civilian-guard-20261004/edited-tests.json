@@ -1,0 +1,19 @@
+{
+  "prepared_by": "Claude, automated agent - not human or Codex review",
+  "rule": "An existing test may be updated only if its assertion directly encodes the overturned behaviour (a nonzero civilian-confidence penalty at authoritarianism <= .20 with sourced leverage). Every other failure is reported as a regression and not masked.",
+  "edited": [
+    {
+      "test": "government::tests::sourced_executive_removal_leverage_is_distinct_from_auth_resources_and_coup_risk",
+      "file": "spheres-sim/src/government.rs",
+      "predeclared": "yes - named in plan.json expected_existing_test_conflict before the runtime edit",
+      "failure_on_changed_runtime": "spheres-sim/src/government.rs:13518:9 assertion `left == right` failed: a nominal authoritarianism edit is not evidence of new military authority; left: 0.0; right: 0.5441583333333334 (logs/existing-after-before-test-update.log)",
+      "old_assertion": "one.nation_mut(id).authoritarianism = 0.05;\nassert_eq!(army_civilian_confidence_penalty(&one, id), penalty,\n    \"a nominal authoritarianism edit is not evidence of new military authority\");\nassert_eq!(state(&one, id).unwrap().army_authority, known);",
+      "old_expectation": "Algeria with sourced leverage 1.0, moved from authoritarianism .58 to .05, keeps the same nonzero civilian-confidence penalty (.5441583).",
+      "why_it_encodes_the_overturned_behaviour": "Authoritarianism .05 is below the documented civilian-control boundary. calibration-repairs.md line 87 says civilian control at .20 or below blocks this channel, and the user decided on 4 October 2026 that the guard applies even with sourced leverage. The assertion requires the opposite: a nonzero penalty at .05.",
+      "new_assertion": "one.nation_mut(id).authoritarianism = 0.25;\nassert_eq!(army_civilian_confidence_penalty(&one, id), penalty,\n    \"a nominal authoritarianism edit is not evidence of new military authority\");\none.nation_mut(id).authoritarianism = 0.05;\nassert_eq!(army_civilian_confidence_penalty(&one, id), 0.0,\n    \"civilian control at authoritarianism .20 or below blocks the confidence channel\");\nassert_eq!(state(&one, id).unwrap().army_authority, known);",
+      "new_expectation": "The test's original intent is kept above the boundary: at .25 the sourced penalty is unchanged (authoritarianism does not rescale known leverage). At .05 the penalty is 0 and the sourced army_authority record is unchanged. The rest of the test runs on the same .05 world as before and is unchanged.",
+      "result_after_update": "passes (logs/existing-after.log: 167 passed, 0 failed, 1 ignored)"
+    }
+  ],
+  "other_existing_failures_in_focused_set": "none"
+}

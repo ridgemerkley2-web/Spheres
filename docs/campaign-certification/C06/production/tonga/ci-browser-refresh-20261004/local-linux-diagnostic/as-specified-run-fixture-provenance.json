@@ -1,0 +1,58 @@
+{
+  "revision": "39369f0ee6451466d03778d0273a7f72aafcf8c0",
+  "command": [
+    "cargo",
+    "run",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-sim",
+    "--example",
+    "tonga_browser_fixtures",
+    "--",
+    "/home/user/Spheres/artifacts/tonga-browser-ci/campaign-N9KScP/authored-fixtures",
+    "39369f0ee6451466d03778d0273a7f72aafcf8c0"
+  ],
+  "days_advanced": 0,
+  "scope": "Public native init/command/save API fixtures. Dates and 500 political capital are authored test inputs, no days were simulated. Opening Crown and PM are intentionally retained counterfactually. Future commands are explicit; this is not historical chronology, a 46-year campaign, human signoff or country qualification. Normal production Load may adopt its standard legacy-save capabilities.",
+  "inputs": {
+    "spheres-sim/examples/tonga_browser_fixtures.rs": {
+      "sha256": "a4e9ae72505305b629b722e4bda1048be2b185a1b30f702a9df732ee2a966e44",
+      "bytes": 4492
+    },
+    "tools/ui/ci-tonga.cjs": {
+      "sha256": "cb2b520bd6d2aef38aa8f978cc12e95881d939514839cbb6dec07cc9953978ce",
+      "bytes": 18449
+    },
+    "tools/ui/ci-tonga-contract.cjs": {
+      "sha256": "0a6655418e79dc65e0f7d3bc0a6609a4a60c96d64acfac289a5e6b7480174885",
+      "bytes": 3875
+    },
+    ".github/workflows/verify.yml": {
+      "sha256": "ff863dc160ce60443d5eb7276f928c88eb3ec9aabe33c21ecd210bbd47d1201f",
+      "bytes": 11645
+    }
+  },
+  "fixtures": {
+    "tonga-reference-cutoff": {
+      "sha256": "f99a0f07fef9aaf52743bafc66a9e482c9bed309c4f4525dd259fa12bc6bbf57",
+      "bytes": 1208243,
+      "date": "2026-09-07"
+    },
+    "tonga-first-fiction": {
+      "sha256": "d30725a3a9344110316441f8759b0dcca0db30929c68df64371c1739fd45d955",
+      "bytes": 1208243,
+      "date": "2026-09-08"
+    },
+    "tonga-last-fiction": {
+      "sha256": "92cbb75f4dd72c4d3c030ceecdeafde567edec9a7089729c415599fc5fe26df5",
+      "bytes": 1208245,
+      "date": "2035-12-31"
+    },
+    "tonga-after-endpoint": {
+      "sha256": "dabb8e93949c9be85941de96354d6301a5cb921c17e0a6d2996649523074cdbc",
+      "bytes": 1209988,
+      "date": "2036-01-01"
+    }
+  }
+}

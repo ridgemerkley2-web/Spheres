@@ -1,0 +1,13 @@
+{
+  "passed": false,
+  "stage": "server-start",
+  "scope": "Public native init/command/save API fixtures. Dates and 500 political capital are authored test inputs, no days were simulated. Opening Crown and PM are intentionally retained counterfactually. Future commands are explicit; this is not historical chronology, a 46-year campaign, human signoff or country qualification. Normal production Load may adopt its standard legacy-save capabilities.",
+  "revision": "39369f0ee6451466d03778d0273a7f72aafcf8c0",
+  "checks": [],
+  "commands": [],
+  "refusals": [],
+  "portraits": [],
+  "error": "browserType.launch: Executable doesn't exist at /opt/pw-browsers/chromium_headless_shell-1208/chrome-headless-shell-linux64/chrome-headless-shell\n╔═════════════════════════════════════════════════════════════════════════╗\n║ Looks like Playwright Test or Playwright was just installed or updated. ║\n║ Please run the following command to download new browsers:              ║\n║                                                                         ║\n║     npx playwright install                                              ║\n║                                                                         ║\n║ <3 Playwright Team                                                      ║\n╚═════════════════════════════════════════════════════════════════════════╝\n    at main (/home/user/Spheres/tools/ui/ci-tonga.cjs:30:26)",
+  "page_errors": [],
+  "requests": []
+}
