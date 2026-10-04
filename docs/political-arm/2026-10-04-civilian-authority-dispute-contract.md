@@ -234,7 +234,7 @@ committed in `eac153f7` before any runtime edit.
   that helper as if D2 provided it. It does not exist.
 - **Gate result.** The local Linux run of the unchanged gate printed every value identical to
   the `39369f0` baseline, including the per-seed A1 fractions; the 12 seed rows hash to
-  `87b3ea9b…3deb`. The Windows and CI runs are still pending.
+  `87b3ea9b…3deb`. The Windows and CI runs are still pending. *(Update, later on 4 Oct: CI run 37178241397 on `e857e8ac` reproduced the identical A1 seed table on ubuntu and windows, and every other CI result passed; see section 9 of the D2 packet README.)*
 
 **D1 therefore cannot rely on D2 to keep disputes out of civilian-control states.** It carries
 its own explicit guard: legality rule 9 and the validation in 8.3. Rule 9's reach beyond the
@@ -1510,7 +1510,7 @@ and records:
      identical to `39369f0`** (3.1), so the post-D2 baseline equals the pre-D2 baseline: A1 7.5
      and .571429, failing, with per-seed fractions as in 1.2; A2 8/12 (Algeria Islamist 0/12,
      annulled 12/12); A3 0/20; A4 16; A5 12/12; A6 0 in 12/12; A7 8.462; A8 40/40; A9 168/168;
-     A10 .335; attribution passes. D2's Windows and CI runs are still pending. If they, or D2's
+     A10 .335; attribution passes. D2's Windows and CI runs are still pending. *(Update, later on 4 Oct: CI run 37178241397 on `e857e8ac` reproduced the identical A1 seed table on ubuntu and windows, and every other CI result passed; see section 9 of the D2 packet README.)* If they, or D2's
      integration, show any different value, that value is the baseline and Q14 applies.
    - **Time:** about 100 s locally and 93-97 s in CI. The build takes about 2.5 min locally
      (`-j3`) and 1.5 min in CI.
@@ -1609,7 +1609,7 @@ one is answered.
 11. **Q11. Pressure across a negotiation.** (a) pressure accrued against the wider order is kept, as drafted; (b) it is rescaled to the narrower scope's gap; (c) it is reset to 0 on narrowing. *ER L2, Q22.*
 12. **Q12. Enforcement at zero political capital.** (a) enforcement continues at no cost, as drafted (consistent with the existing upkeep); (b) it lapses into a withdrawal; (c) another consequence. *DA LOW-1, QK.*
 13. **Q13. Escalation headline and takeover-watch legibility.** Headline: (a) the exact route-2 template, as drafted, or (b) the template plus a census-compatible suffix naming the refused order. Watch: (c) no fifth road, as drafted (the coup road reads far from its trigger before a dispute coup, and the hatching and chip stay quiet), or (d) a fifth road or gauge (changes the watch payload in every lens-on world). *Was Q10; DA MEDIUM-5, QH.*
-14. **Q14. Sequencing if D2 moves a gate.** On current evidence D2 moved no gate: its local Linux run is identical to `39369f0`, so the post-D2 baseline equals the pre-D2 baseline (3.1, 15). The question is conditional. If D2's pending Windows or CI runs, or its integration, show a regression other than A1: (a) D1 waits until it is resolved; or (b) D1 proceeds against that baseline, with a stated reading of the stop rule, Q25 and the 0-199 condition. *DA MEDIUM-7, QJ.*
+14. **Q14. Sequencing if D2 moves a gate.** On current evidence D2 moved no gate (confirmed on ubuntu and windows CI, run 37178241397): its local Linux run is identical to `39369f0`, so the post-D2 baseline equals the pre-D2 baseline (3.1, 15). The question is conditional. If D2's pending Windows or CI runs, or its integration, show a regression other than A1: (a) D1 waits until it is resolved; or (b) D1 proceeds against that baseline, with a stated reading of the stop rule, Q25 and the 0-199 condition. *DA MEDIUM-7, QJ.*
 
 ### 17.2 Before implementation
 

@@ -280,3 +280,19 @@ does not affect the gate binary's behaviour.
 
 Commits as proposed in the pull request (cherry-picked unchanged from the local branch):
 `215bd023` (guard, from `51a7ddfa`) and `2bce829a` (follow-up test, from `f6597cf5`).
+
+## 9. CI confirmation on both platforms (later on 4 October)
+
+GitHub Actions ran the pull-request head `e857e8ac` (which carries `215bd023` and `2bce829a`) in
+[run 37178241397](https://github.com/ridgemerkley2-web/Spheres/actions/runs/37178241397):
+
+- `political-calibration (ubuntu-latest)` job 111365283293 and `(windows-latest)` job 111365283301:
+  10 passed, A1 failed, and all 12 A1 seed rows are identical to the 39369f0 baseline on both platforms
+  (median 7.5, top-3 0.57).
+- The aggregate `verify (ubuntu-latest)` job 111370077793 reports `NATIVE_RESULT`, `JAVASCRIPT_RESULT`,
+  `TOWN_BROWSER_RESULT`, `TONGA_BROWSER_RESULT` and `PACKAGE_RESULT` as success and only
+  `POLITICAL_RESULT` as failure. The native jobs include the full workspace suite and the isolated
+  resource-timing test on Linux and Windows CI runners.
+
+This resolves the "Windows run of the gate and the CI run are pending" limit in section 7. The
+quiet-hardware timing on the user's machine remains pending, and A1 still fails.
