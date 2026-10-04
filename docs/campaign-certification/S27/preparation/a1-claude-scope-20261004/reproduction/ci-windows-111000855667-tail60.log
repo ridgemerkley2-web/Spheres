@@ -1,0 +1,60 @@
+2026-10-02T19:51:21.1356056Z 
+2026-10-02T19:51:21.1356485Z running 11 tests
+2026-10-02T19:51:44.1162969Z test a1_coups_against_elected_governments_are_spread_not_three_micro_polities ... FAILED
+2026-10-02T19:51:44.2073187Z test a10_discontent_leads_the_roster_by_a_quarter_before_a_takeover ... ok
+2026-10-02T19:51:44.3069757Z test a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000 ... ok
+2026-10-02T19:51:57.8387221Z test a3_a_communist_takeover_without_a_ballot_is_rare ... ok
+2026-10-02T19:52:04.6141669Z test a4_the_democratisation_wave_opens_fifteen_regimes_by_1996 ... ok
+2026-10-02T19:52:04.7612404Z test a5_ex_communists_return_by_ballot_in_most_seeds ... ok
+2026-10-02T19:52:18.4071265Z test a7_ballots_flip_the_ruling_bloc_three_times_as_often_as_takeovers ... ok
+2026-10-02T19:52:18.4074525Z test a_ballot_and_an_uncoloured_collapse_do_not_fabricate_a_movement_takeover ... ok
+2026-10-02T19:52:19.4249071Z test a6_no_road_reaches_a_1990_democracy_in_thirty_five_years ... ok
+2026-10-02T19:52:23.5572411Z test a9_four_coups_in_five_strike_nations_under_8000_a_head ... ok
+2026-10-02T19:52:53.8867767Z test a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds ... ok
+2026-10-02T19:52:53.8868446Z 
+2026-10-02T19:52:53.8868942Z failures:
+2026-10-02T19:52:53.8869178Z 
+2026-10-02T19:52:53.8873414Z ---- a1_coups_against_elected_governments_are_spread_not_three_micro_polities stdout ----
+2026-10-02T19:52:53.8874169Z A1: median coups 7.5 top-3 share median 0.57
+2026-10-02T19:52:53.8874768Z s0 coupEl 7 annul 2 regCoup 6 take [0, 0, 8, 1, 1] upr [1, 0, 1, 1, 1, 7] open96 16 a6 0/1 big8 8 poor 15/15 a10 +0.333 top3 0.43
+2026-10-02T19:52:53.8875524Z s1 coupEl 6 annul 2 regCoup 3 take [0, 0, 8, 1, 1] upr [1, 0, 1, 1, 1, 8] open96 17 a6 0/1 big8 8 poor 11/11 a10 +0.335 top3 0.67
+2026-10-02T19:52:53.8876264Z s2 coupEl 5 annul 3 regCoup 5 take [0, 0, 9, 1, 0] upr [0, 0, 2, 1, 0, 3] open96 18 a6 0/1 big8 8 poor 13/13 a10 +0.320 top3 0.60
+2026-10-02T19:52:53.8876995Z s3 coupEl 8 annul 2 regCoup 4 take [0, 0, 11, 0, 1] upr [1, 0, 2, 0, 1, 3] open96 16 a6 0/1 big8 8 poor 14/14 a10 +0.336 top3 0.62
+2026-10-02T19:52:53.8878022Z s4 coupEl 8 annul 2 regCoup 3 take [0, 0, 10, 1, 2] upr [1, 0, 1, 1, 2, 3] open96 18 a6 0/1 big8 8 poor 13/13 a10 +0.324 top3 0.50
+2026-10-02T19:52:53.8882596Z s5 coupEl 8 annul 2 regCoup 4 take [0, 0, 10, 1, 1] upr [2, 0, 1, 1, 1, 8] open96 14 a6 0/1 big8 8 poor 14/14 a10 +0.343 top3 0.50
+2026-10-02T19:52:53.8886517Z s6 coupEl 7 annul 2 regCoup 7 take [0, 0, 10, 1, 1] upr [1, 0, 2, 1, 1, 6] open96 15 a6 0/1 big8 8 poor 16/16 a10 +0.329 top3 0.57
+2026-10-02T19:52:53.8887405Z s7 coupEl 8 annul 2 regCoup 5 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 9] open96 17 a6 0/1 big8 8 poor 15/15 a10 +0.323 top3 0.62
+2026-10-02T19:52:53.8888240Z s8 coupEl 8 annul 2 regCoup 4 take [0, 0, 9, 1, 1] upr [0, 0, 1, 1, 1, 3] open96 16 a6 0/1 big8 8 poor 14/14 a10 +0.346 top3 0.50
+2026-10-02T19:52:53.8889052Z s9 coupEl 7 annul 2 regCoup 3 take [0, 0, 11, 0, 1] upr [1, 0, 3, 0, 1, 3] open96 15 a6 0/1 big8 8 poor 12/12 a10 +0.350 top3 0.57
+2026-10-02T19:52:53.8889887Z s10 coupEl 8 annul 2 regCoup 5 take [0, 0, 11, 1, 1] upr [0, 0, 2, 1, 1, 7] open96 18 a6 0/1 big8 8 poor 15/15 a10 +0.346 top3 0.62
+2026-10-02T19:52:53.8890756Z s11 coupEl 7 annul 2 regCoup 7 take [0, 0, 11, 1, 0] upr [0, 0, 3, 1, 0, 8] open96 13 a6 0/1 big8 8 poor 16/16 a10 +0.358 top3 0.57
+2026-10-02T19:52:53.8891252Z 
+2026-10-02T19:52:53.8891931Z thread 'a1_coups_against_elected_governments_are_spread_not_three_micro_polities' (9708) panicked at spheres-sim\tests\bloc_census.rs:992:5:
+2026-10-02T19:52:53.8892756Z three nations hold 0.57 of a seed's coups
+2026-10-02T19:52:53.8893258Z note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-10-02T19:52:53.8893659Z 
+2026-10-02T19:52:53.8893664Z 
+2026-10-02T19:52:53.8893754Z failures:
+2026-10-02T19:52:53.8894146Z     a1_coups_against_elected_governments_are_spread_not_three_micro_polities
+2026-10-02T19:52:53.8894531Z 
+2026-10-02T19:52:53.8894854Z test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 92.75s
+2026-10-02T19:52:53.8895329Z 
+2026-10-02T19:52:53.8924079Z [1m[91merror[0m: test failed, to rerun pass `-p spheres-sim --test bloc_census`
+2026-10-02T19:52:55.7913421Z ##[error]Process completed with exit code 1.
+2026-10-02T19:52:55.8467756Z Post job cleanup.
+2026-10-02T19:52:57.4275903Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-10-02T19:52:57.4571005Z git version 2.55.0.windows.5
+2026-10-02T19:52:57.4997360Z Temporarily overriding HOME='D:\a\_temp\9485e76b-a759-47af-bcba-10b2ea75f9e4' before making global git config changes
+2026-10-02T19:52:57.4998296Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-02T19:52:57.5062614Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\Spheres\Spheres
+2026-10-02T19:52:57.5406251Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-10-02T19:52:57.5752591Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-10-02T19:52:58.4286244Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-02T19:52:58.4502221Z http.https://github.com/.extraheader
+2026-10-02T19:52:58.4541296Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-10-02T19:52:58.4788072Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-10-02T19:52:58.9015605Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-02T19:52:58.9259565Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-10-02T19:52:59.3989512Z Cleaning up orphan processes
+2026-10-02T19:52:59.5303761Z Terminate orphan process: pid (9832) (vctip)
+2026-10-02T19:52:59.8004079Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

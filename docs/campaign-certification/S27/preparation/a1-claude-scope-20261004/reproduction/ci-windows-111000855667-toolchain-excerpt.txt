@@ -1,0 +1,20 @@
+Excerpt transcribed by Claude (automated agent) on 2026-10-04 from the full
+530-line log of GitHub Actions job 111000855667 (run 37056033496,
+political-calibration (windows-latest), head 39369f0ee6451466d03778d0273a7f72aafcf8c0),
+as returned by the GitHub MCP get_job_logs tool. Timestamps and text are
+verbatim except that ANSI colour codes were removed; only these lines are
+kept. The retained 60-line tail (from the earlier scout fetch) is
+ci-windows-111000855667-tail60.log.
+
+2026-10-02T19:48:19.2330546Z 39369f0ee6451466d03778d0273a7f72aafcf8c0
+2026-10-02T19:48:44.4774244Z   stable-x86_64-pc-windows-msvc updated - rustc 1.99.0 (b940084d7 2026-09-28) (from rustc 1.98.1 (48a229cea 2026-09-01))
+2026-10-02T19:48:46.7641953Z rustc 1.99.0 (b940084d7 2026-09-28)
+2026-10-02T19:48:46.7645009Z commit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4
+2026-10-02T19:48:46.7645684Z host: x86_64-pc-windows-msvc
+2026-10-02T19:48:46.7645958Z release: 1.99.0
+2026-10-02T19:48:46.7646181Z LLVM version: 23.1.1
+2026-10-02T19:48:46.7936375Z ##[group]Run cargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census
+2026-10-02T19:51:21.1124148Z     Finished `release` profile [optimized] target(s) in 2m 31s
+2026-10-02T19:51:21.1241607Z     Running tests\bloc_census.rs (target\release\deps\bloc_census-2b58032257a105d6.exe)
+2026-10-02T19:52:53.8894854Z test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 92.75s
+2026-10-02T19:52:55.7913421Z ##[error]Process completed with exit code 1.
