@@ -1,0 +1,24 @@
+Point readings of the S25 test thread's stack mapping during the japan7-to1995 probe
+(Linux, PID 14561, test thread TID 14566 named s25_stability_t[ests::...]).
+
+These four readings were taken by the 4 Oct source-review session (Claude, automated agent)
+with one-off awk/python reads of /proc/14561/smaps. They were printed to that session's
+tool output only and were not written to a file at the time. They are transcribed here
+verbatim from the session transcript
+(subagents/workflows/wf_b8cbc010-251/agent-a57f31c2325b2dfc2.jsonl, local to the session).
+The simulated date is the last end_native_date in the probe's memory.csv nearest the
+command's issue time. Continuous retained sampling exists only for 1990-01-01..1990-04-01
+(h4-stack-hwm-review/stack.csv).
+
+issued_utc            sim_date (approx)   reading
+2026-10-04T01:34:13Z  1991-04-01          7f0e04400000-7f0e04600000 rw-p 00000000 00:00 0  Size 2048 Rss 116
+                                          [stack] (main thread) Size 140 Rss 24
+2026-10-04T01:39:30Z  1992-05-01          7f0e04400000-7f0e04600000 rw-p 00000000 00:00 0  Size 2048 Rss 116
+                                          VmHWM 1046668 kB, VmRSS 782056 kB, RssAnon 749092 kB
+2026-10-04T01:54:39Z  1994-07/08          7f0e04400000-7f0e04600000 rw-p 00000000 00:00 0  Size 2048 Rss 116
+                                          VmHWM 1541940 kB, VmRSS 1220248 kB, RssAnon 1187288 kB, RssFile 32960 kB
+                                          (same command: last comparison 1994-08-01 monthly_after_reload 141493337)
+                                          (that command slept 20 s before reading, so this reading is from about 01:54:59Z)
+2026-10-04T01:59:23Z  1995-02-01          test-thread stack mapping Rss KiB: 116   (read immediately before kill; exit 143)
+
+Linux x86_64 frame sizes are not Windows x64 frame sizes; this is a proxy only.

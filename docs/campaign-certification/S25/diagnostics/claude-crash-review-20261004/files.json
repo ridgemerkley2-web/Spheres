@@ -1,0 +1,473 @@
+{
+ "format": "spheres-claude-packet-files/v1",
+ "label": "Claude, automated agent - not human or Codex review",
+ "note": "files lists every file in this packet except files.json itself. scratch_only_not_copied lists large scratch files referenced by the packet; they live in the session scratchpad (/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad) and are hashed here only. Probe campaign saves from s25-source-probe were deleted in scratch after measurement and are not hashed. The full-horizon rerun outputs in scratchpad/s25-linux-japan7/ were still growing and are not hashed.",
+ "files": {
+  ".gitattributes": {
+   "bytes": 8,
+   "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+  },
+  "README.md": {
+   "bytes": 22073,
+   "sha256": "8094c7fbf4cd3c407ee66bac1d79d27293ac79035bd758565555c159cc6c619b"
+  },
+  "adversarial-review/evidence-timeline.json": {
+   "bytes": 110797,
+   "sha256": "2ad717e36d8ba69e7e3bcdfe515fde2a609809ff70170ebfa6084dc0c7c1490f"
+  },
+  "adversarial-review/source-review.json": {
+   "bytes": 107121,
+   "sha256": "6f75ef54622a77f399b3674f4be891baf624384a0b6b132450b5c2e74605704a"
+  },
+  "analysis-outputs/linux-measurements.txt": {
+   "bytes": 2491,
+   "sha256": "30d1f45500ccb155eb5473fd98c93bf1216b3bffc21cfa121c4f58c336b44eb6"
+  },
+  "analysis-outputs/state.txt": {
+   "bytes": 1561,
+   "sha256": "fa4dadeeeb91e9564e0ccf8d23c81eb42edb6500055968938266d6d3c11a56f4"
+  },
+  "analysis-outputs/timeline.txt": {
+   "bytes": 4580,
+   "sha256": "c86712ebdbfc24afc0550b73f76aff8baf2e178dfbb26a3b9c27319ccc81b02f"
+  },
+  "linux-probes/analyze.py": {
+   "bytes": 1546,
+   "sha256": "012e87f73fd50afe458adc61231ba4f9ed4683a249e72ba5176e5f5a2c0d6cde"
+  },
+  "linux-probes/analyze_depth.py": {
+   "bytes": 304,
+   "sha256": "7c22246b7294ba17e97092518a1cce30f1e68e7fbf1c35f6096f6fdf2185315a"
+  },
+  "linux-probes/breakdown.py": {
+   "bytes": 1730,
+   "sha256": "4da0804dd38fe5f7feb61012f05e6e87ca1e80ec62a9dd5f041a7dff107b7937"
+  },
+  "linux-probes/japan7-to1991/exit.txt": {
+   "bytes": 28,
+   "sha256": "d2a387a5c046888a09b50b5130526314660a78c7430cd6e9a926f44541954a4a"
+  },
+  "linux-probes/japan7-to1991/memory.csv": {
+   "bytes": 16991,
+   "sha256": "0ac5ef865625ff9e289d63948f2f043c0cdbdd6e7a5d35db7ffc5bd4b44e447f"
+  },
+  "linux-probes/japan7-to1991/native/progress.jsonl": {
+   "bytes": 1521,
+   "sha256": "41c63caf38fd6c4979f9cfaf3dc3c1464ba73722e85d6776f7096e63c31083e5"
+  },
+  "linux-probes/japan7-to1991/native/result.json": {
+   "bytes": 15878,
+   "sha256": "cc36307a0558879f7dbc8aa95a6265b5d89bda699bfbd1f781ca8923d614c683"
+  },
+  "linux-probes/japan7-to1991/pid.txt": {
+   "bytes": 6,
+   "sha256": "b5c39cc14d8f97bed0501eb13f476b1e6a13691e8ce83a4e68ead5b42448f45d"
+  },
+  "linux-probes/japan7-to1991/request.json": {
+   "bytes": 164,
+   "sha256": "c38e4f2cbe595f86c62d65eadf29a3ca4dae8cfed04e614df75450f2eba30fa7"
+  },
+  "linux-probes/japan7-to1991/start.txt": {
+   "bytes": 21,
+   "sha256": "d76fa7e2a3621ae74343a41438fbbd880bd0a3bce735dea07220543205633b3b"
+  },
+  "linux-probes/japan7-to1991/stderr.log": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "linux-probes/japan7-to1991/stdout.log": {
+   "bytes": 168,
+   "sha256": "40bbdc3c933d69c43a3eb9998e249b11a97650dfee7acec2324cede6c8184148"
+  },
+  "linux-probes/japan7-to1995/exit.txt": {
+   "bytes": 30,
+   "sha256": "fd9b5bb886d4a66ede382ab5bd77606605180dec91431fc7988a4a84139be797"
+  },
+  "linux-probes/japan7-to1995/memory.csv": {
+   "bytes": 86043,
+   "sha256": "29bae5c5388a5cfd8bb03bfcda6ca483f4136075cf14dfcdd9fa38185bbe66e2"
+  },
+  "linux-probes/japan7-to1995/native/progress.jsonl": {
+   "bytes": 6407,
+   "sha256": "267cf76ebefd62e3cdd91ae488b63bfb4f8682d7989275749dcf5e2513c435aa"
+  },
+  "linux-probes/japan7-to1995/native/result.json": {
+   "bytes": 55959,
+   "sha256": "27bc77dc85ab923486e20b7da92fee1c9242cab536850fde0377a0d6dd7fda7a"
+  },
+  "linux-probes/japan7-to1995/pid.txt": {
+   "bytes": 6,
+   "sha256": "41e80155a0930b4385bf05ce1b7e68551f5c9c257f36f5d59e1f54c5c6ffe8c9"
+  },
+  "linux-probes/japan7-to1995/request.json": {
+   "bytes": 164,
+   "sha256": "3727c5657e8ae463d34e0f54a992b65d5ea3bc783b4a30888dd1d8541e376c1f"
+  },
+  "linux-probes/japan7-to1995/start.txt": {
+   "bytes": 21,
+   "sha256": "b6fd78e5dbb23f8fcc436894d2729ccd1242b39b146595d9b2df28a4aad45784"
+  },
+  "linux-probes/japan7-to1995/stderr.log": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "linux-probes/japan7-to1995/stdout.log": {
+   "bytes": 65,
+   "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+  },
+  "linux-probes/launch-commands.txt": {
+   "bytes": 3519,
+   "sha256": "d4f0c526f8e357bd2c123732d921164b08ddcda5e5eccde01e1acbca92c45ddf"
+  },
+  "linux-probes/oom-japan7/exit.txt": {
+   "bytes": 7,
+   "sha256": "28d3b9e880a77975493dc7e359144c0295a4f694cfe0af4f928c22307bc5c320"
+  },
+  "linux-probes/oom-japan7/native/progress.jsonl": {
+   "bytes": 801,
+   "sha256": "de1a15e3724e4eeac90ff9d7691dbb0ac1530321cd91cb4f53d3c8e3613a9ae8"
+  },
+  "linux-probes/oom-japan7/native/result.json": {
+   "bytes": 9105,
+   "sha256": "17149b502f2b2aa61286888d80cbf280343fcbdb5210bc0b059bac8b0f278fe3"
+  },
+  "linux-probes/oom-japan7/request.json": {
+   "bytes": 161,
+   "sha256": "b97966639b85b76ce820f82c7156436bfd2eaf3df4bd580a35eb565b0cb83b1d"
+  },
+  "linux-probes/oom-japan7/stderr.log": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "linux-probes/oom-japan7/stdout.log": {
+   "bytes": 167,
+   "sha256": "03ebf3f228f080e229899c8d285c1baa22640adc21e69202d85cf3adeee41260"
+  },
+  "linux-probes/oom2-japan7/exit.txt": {
+   "bytes": 7,
+   "sha256": "28d3b9e880a77975493dc7e359144c0295a4f694cfe0af4f928c22307bc5c320"
+  },
+  "linux-probes/oom2-japan7/native/progress.jsonl": {
+   "bytes": 801,
+   "sha256": "de1a15e3724e4eeac90ff9d7691dbb0ac1530321cd91cb4f53d3c8e3613a9ae8"
+  },
+  "linux-probes/oom2-japan7/native/result.json": {
+   "bytes": 9107,
+   "sha256": "d06ea60b8189b6d2097b58625a5e699f6863988e3db2c0d52a764a7c59545d55"
+  },
+  "linux-probes/oom2-japan7/request.json": {
+   "bytes": 162,
+   "sha256": "1b910784548e5b5d9c977c5e437dbf8006cd45bc9fef48afbd33fc9610b95b41"
+  },
+  "linux-probes/oom2-japan7/stderr.log": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "linux-probes/oom2-japan7/stdout.log": {
+   "bytes": 167,
+   "sha256": "e2030558e98d3f70aee3d23e5463aed38ffe6e60630215529ed8e4125f968203"
+  },
+  "linux-probes/oom3-japan7/exit.txt": {
+   "bytes": 9,
+   "sha256": "d17c67f7e63e86a48e226fc1f9964573000c382bd44159aa5a4343096d31f73f"
+  },
+  "linux-probes/oom3-japan7/native/progress.jsonl": {
+   "bytes": 96,
+   "sha256": "af8e223c3a1724010c60f0f4127f7834a70738c8e7088fdf3ea3b020cbe891b3"
+  },
+  "linux-probes/oom3-japan7/native/result.json": {
+   "bytes": 2952,
+   "sha256": "949a4d768e98bfdd02ce8152e633494558657c4b6fa3977d93aadd73d6d88921"
+  },
+  "linux-probes/oom3-japan7/request.json": {
+   "bytes": 162,
+   "sha256": "c46a00bc4fe3bd4d39ebc08b495e7f8048bae2d5fbe010939fdea8c8cad3a8f8"
+  },
+  "linux-probes/oom3-japan7/stderr.log": {
+   "bytes": 150,
+   "sha256": "0a39abbe5944607d0e275ce5b0d8fe442b6abffad86a7eb17e7f37d2ce48d8f6"
+  },
+  "linux-probes/oom3-japan7/stdout.log": {
+   "bytes": 65,
+   "sha256": "cc13a5e05fcc3cefcc7560d8d3d7bfb263eaf2050a89c48c5174ed069fbcfe2c"
+  },
+  "linux-probes/run_cell.sh": {
+   "bytes": 1430,
+   "sha256": "1700d8a6a9bd8a3421443310bb30c8a01eb0d65558e959e9aebf5d69c17e50ad"
+  },
+  "linux-probes/snapshots/breakdown-1991-07-01.json": {
+   "bytes": 1041,
+   "sha256": "e66f847990c772365b1ac2be2511d57da108df0c6614e8cd47e5aa11cae3c738"
+  },
+  "linux-probes/snapshots/breakdown-1992-01-01.json": {
+   "bytes": 1104,
+   "sha256": "3bc4641074589ae0859b8f2aee0de531e1041d9ea9929f62dd06d887116be10a"
+  },
+  "linux-probes/snapshots/breakdown-1992-07-01.json": {
+   "bytes": 1263,
+   "sha256": "b820a1cbad9556b11f815c1af2d0c15822aceb8b3f20774a7f6afe637ab04b16"
+  },
+  "linux-probes/snapshots/breakdown-1993-01-01.json": {
+   "bytes": 1329,
+   "sha256": "3c1128bd68b8865e6294da4815e55c51d78516d4ce90ccb4af85b57b6e0a0bd5"
+  },
+  "linux-probes/snapshots/breakdown-1993-07-01.json": {
+   "bytes": 1266,
+   "sha256": "38c91730b836c8ebc9eb42a7f9a507889424f7313fe70b244c435648b92a8883"
+  },
+  "linux-probes/snapshots/breakdown-1994-01-01.json": {
+   "bytes": 1410,
+   "sha256": "451bfb9e8819cf82a9da345e9da58ba0cb5ca1195a1772d6faaa00e0ed83435a"
+  },
+  "linux-probes/snapshots/breakdown-1994-07-01.json": {
+   "bytes": 1346,
+   "sha256": "996ee1be466bcf856cfdddfa93a09c372ebd47212701c7619920f03c45e069cd"
+  },
+  "linux-probes/snapshots/breakdown-1995-01-01.json": {
+   "bytes": 1409,
+   "sha256": "917507c481cf48870de0e90d640f429c10b43359d8b679c3870c1e28ca9c5833"
+  },
+  "linux-probes/snapshots/depth-1991-07-01.txt": {
+   "bytes": 41,
+   "sha256": "3917715a8909eee3e572779e258173f9bb316391c4ecc47d0b4b63d7dd97d7bc"
+  },
+  "linux-probes/snapshots/depth-1992-01-01.txt": {
+   "bytes": 41,
+   "sha256": "9f7b31c7dc7be1575196f06ffb7bcc8ec672e56833bd3234785b3db2f92f0b5e"
+  },
+  "linux-probes/snapshots/depth-1992-07-01.txt": {
+   "bytes": 41,
+   "sha256": "f47d38d1df89da89977cafc5502182784fb8233cbbb4d614be4a9ea2cca83441"
+  },
+  "linux-probes/snapshots/depth-1993-01-01.txt": {
+   "bytes": 41,
+   "sha256": "4e00e0f3861f1ea98dd9d9c25c4fcbc687206774212eac04d7345c36dea701d8"
+  },
+  "linux-probes/snapshots/depth-1993-07-01.txt": {
+   "bytes": 41,
+   "sha256": "b8901b8e29a9bc719a9de078d203a1ee559731c4bc47d70029f46fc9c3120157"
+  },
+  "linux-probes/snapshots/depth-1994-01-01.txt": {
+   "bytes": 41,
+   "sha256": "5144a03a02eb9d850432753918702683f77c29aadacf3cb32ba84a5eab4f32c2"
+  },
+  "linux-probes/snapshots/depth-1994-07-01.txt": {
+   "bytes": 41,
+   "sha256": "7049c819fa66c20e8682e426755e8f5fc79c8b6f91b3d11e2db419b547a9300a"
+  },
+  "linux-probes/snapshots/depth-1995-01-01.txt": {
+   "bytes": 41,
+   "sha256": "939fd25c54cd4220207fa3271e118862feeff7f9ebfb6274d7182a4877de0251"
+  },
+  "linux-probes/snapshots/japan7-1991-breakdown.json": {
+   "bytes": 1324,
+   "sha256": "5d9506fa65c116f7f9b3c784d0cb1326100837ab65b9b8884966f3751f2ce676"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/exit.txt": {
+   "bytes": 7,
+   "sha256": "28d3b9e880a77975493dc7e359144c0295a4f694cfe0af4f928c22307bc5c320"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/native/progress.jsonl": {
+   "bytes": 494,
+   "sha256": "fe88184af16abe7745f57419c4f0da1886eca4d7e3a661139f556017c1c7ab4c"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/native/result.json": {
+   "bytes": 6736,
+   "sha256": "3a116bc8a86180b039d55635ce9654ae22aa6acf2536c8700fc42ecd5d584752"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/pid.txt": {
+   "bytes": 6,
+   "sha256": "88451aa4f6e633e3e8e2b7240a86f49e12b7e4636860d35b0ee500d54cc29af8"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/request.json": {
+   "bytes": 166,
+   "sha256": "336d0a6b03b47fa4f48ecc39ca4f3766d41bc33eb8334f89fe49a9cf3e7c74dd"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/sample.py": {
+   "bytes": 1092,
+   "sha256": "6609b1d0d3d39715dcff8950e7b46b0e8cf851e06a699431c1116cf2dd7f255b"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/stack.csv": {
+   "bytes": 5082,
+   "sha256": "204eb8acb22fe3e3ed89072e72e67893d7f825568839e888d92f23e5b8e0bab5"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/stderr.log": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "linux-probes/stack/h4-stack-hwm-review/stdout.log": {
+   "bytes": 167,
+   "sha256": "c9acf4b2e13c3e35cfbbbc13c124d61ee814e336b63ff950b4d9545296379856"
+  },
+  "linux-probes/stack/smaps-point-readings.txt": {
+   "bytes": 1878,
+   "sha256": "c0c52be50e84d4dc851727cfc701801eab8c8b3842d2ada044328fa44484db50"
+  },
+  "linux-probes/stack/stackprobe/Cargo.lock": {
+   "bytes": 154,
+   "sha256": "a3e32accb7fe3893080bd2f186b334be145e8568d8ef1751b53ea729449448c9"
+  },
+  "linux-probes/stack/stackprobe/Cargo.toml": {
+   "bytes": 80,
+   "sha256": "e6bfcb5dc192d71f9c9a0120dc5f82d49103d5efa5927849121f85bff5d9d58e"
+  },
+  "linux-probes/stack/stackprobe/src/bin/mainprobe.rs": {
+   "bytes": 163,
+   "sha256": "d59c69c4df821d70e96d68072579b9819be2fc1c28ce458d8e393a0976700111"
+  },
+  "linux-probes/stack/stackprobe/src/lib.rs": {
+   "bytes": 2189,
+   "sha256": "498c769844e56dd91df92efb1bffce43bcd71c8dcc1b761bb46bb3b32182c1cb"
+  },
+  "linux-probes/vg-japan7-jan1990/exit.txt": {
+   "bytes": 28,
+   "sha256": "46ab5af22b59807f636370104650c23097992c83a09b86d9ab49d22d8f0c9aa7"
+  },
+  "linux-probes/vg-japan7-jan1990/native/progress.jsonl": {
+   "bytes": 294,
+   "sha256": "e6aced1442935492b6b6c2d671a7523b02127a8b2b111e6aa3f970fc3d2649d3"
+  },
+  "linux-probes/vg-japan7-jan1990/native/result.json": {
+   "bytes": 5215,
+   "sha256": "aca8a163a96cc31bd8bac54e83bedd275b6cec3845d39b554bb7f4c6478cf2f6"
+  },
+  "linux-probes/vg-japan7-jan1990/request.json": {
+   "bytes": 160,
+   "sha256": "42f165ab4135ca305ee364c4edf51d4a054ed7721c1046798cdef10e5e7b2602"
+  },
+  "linux-probes/vg-japan7-jan1990/start.txt": {
+   "bytes": 21,
+   "sha256": "794ae913d4649d2ca2a25d560cf1e3d74e6dd9450e10b771c131fe779b8caecb"
+  },
+  "linux-probes/vg-japan7-jan1990/stderr.log": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "linux-probes/vg-japan7-jan1990/stdout.log": {
+   "bytes": 168,
+   "sha256": "6c92b3a92dde0aacfd9c62e016b641693d4cdd7b0ab4f82a521c0642e7f57cd7"
+  },
+  "linux-probes/vg-japan7-jan1990/valgrind.log": {
+   "bytes": 997,
+   "sha256": "859d18de8cafac0b7ee2baa41220a3807333f412cbc2ca97b093ae804f8b4c94"
+  },
+  "linux-probes/watch_snap.sh": {
+   "bytes": 856,
+   "sha256": "26e6f3f54e50916bbc82ba86d02379bf9f6b69c66c53e6547c905c97fec195c3"
+  },
+  "linux-rerun/attempt-01-failed/exit.txt": {
+   "bytes": 30,
+   "sha256": "cbe1f95aeb33137dda784f4fe35c419a402b6caf08e13bdded40bc09d77c1593"
+  },
+  "linux-rerun/attempt-01-failed/memory.csv": {
+   "bytes": 114,
+   "sha256": "6d0c737aa89edb4061320800800fe3a6f5dadcd042f860395e7ae95675ea33e6"
+  },
+  "linux-rerun/attempt-01-failed/pid.txt": {
+   "bytes": 5,
+   "sha256": "5887510e43792c835b8ed496d8ea76465e8e6687927633cd424c8684a61c37f1"
+  },
+  "linux-rerun/attempt-01-failed/run-start.txt": {
+   "bytes": 21,
+   "sha256": "7059d11bf3562ff5de3a5aeb8fbc75284d0eaa3d3bba53ca0f429ec21a06415b"
+  },
+  "linux-rerun/attempt-01-failed/stderr.log": {
+   "bytes": 526,
+   "sha256": "14a57680ba80743ee5f750e8dc2aef4f745211c1d815008651446069826c9c4b"
+  },
+  "linux-rerun/attempt-01-failed/stdout.log": {
+   "bytes": 240,
+   "sha256": "8f8f3c3f68ad167202019a48e19569a8e088139840556df60ea33beafd5110cf"
+  },
+  "linux-rerun/attempt-02-launch/binary.txt": {
+   "bytes": 336,
+   "sha256": "c2891babcea366b80371d9dce32001edcf79b4b1908a61307210561340e7fc22"
+  },
+  "linux-rerun/attempt-02-launch/build-messages.jsonl": {
+   "bytes": 32178,
+   "sha256": "1b6300cb277011766db69977c876c4e050d0925f601f81099f6ad0f62374a58c"
+  },
+  "linux-rerun/attempt-02-launch/build-start.txt": {
+   "bytes": 34,
+   "sha256": "de849c7b3a18fd3d77ddd1738c59eb6b32290c3bc8182263b95f51719fd97cff"
+  },
+  "linux-rerun/attempt-02-launch/build.stderr": {
+   "bytes": 198,
+   "sha256": "a85d5354bb6d45c914d5de00b23cf00f63c25ca89af85b716d599f189b1d27c4"
+  },
+  "linux-rerun/attempt-02-launch/pid.txt": {
+   "bytes": 5,
+   "sha256": "3c7fe4f45c4eaccde18cfc6e0c78059a09d5c196c0ca32f664cd81f3efbe7b50"
+  },
+  "linux-rerun/attempt-02-launch/request.json": {
+   "bytes": 183,
+   "sha256": "283ffcbf56774b69abc6af7bdc1d561d7cbd9af0dbc868c331e7d85d6f3b746e"
+  },
+  "linux-rerun/attempt-02-launch/run-start.txt": {
+   "bytes": 21,
+   "sha256": "3c4bdb0ba4f371f87225635c57ad48915c65d4252c68c678397b1d5161a909d3"
+  },
+  "linux-rerun/attempt-02-launch/run.sh": {
+   "bytes": 1980,
+   "sha256": "6bdc8dba9aa45d6c744554f2d195e5f1135daf2ea91242abedd21f93f22537ff"
+  },
+  "review.json": {
+   "bytes": 27455,
+   "sha256": "4d879401e57d60e0fbf4c650c9216e2ec8baf2489ea15551f5fefa21437b9be6"
+  },
+  "scripts/linux_measurements.py": {
+   "bytes": 4563,
+   "sha256": "29a71beb2a5d1b9e255c57e90b224cb0eda2272474639c8d944108863e8b93b3"
+  },
+  "scripts/state.py": {
+   "bytes": 2074,
+   "sha256": "bdc7ee432ff0fbbb65cc04c2f9fbc9be5e53f356f9ec6efd59e9d5b2cd496039"
+  },
+  "scripts/timeline.py": {
+   "bytes": 4052,
+   "sha256": "6998c13a42f4a0dc83162d1d95c7039f044e8aa9215b5e97c910a23462d4702b"
+  }
+ },
+ "scratch_only_not_copied": {
+  "scratchpad/target-68ba/release/deps/spheres_web-7f381178d9133e63": {
+   "bytes": 353075664,
+   "sha256": "250624d4aedb7fbbfa5474d895fff17f62702c2445d6012db49b7a582513f074",
+   "note": "Linux release test binary as rebuilt at 03:08-03:10Z for the full-horizon rerun (attempt 02). The earlier build at the same path used by all probes (sha256 a6e0dc501d4b23c2917b89f68cd4fff567927d33faeb03cbbc00300263f77f45, recorded 01:13Z) was overwritten and is not retained."
+  },
+  "scratchpad/h4-stack-hwm-review/native/resumed/saves/monthly.json": {
+   "bytes": 33047792,
+   "sha256": "c17de9ac2d6040088d2075c25b59a01d5aaab16369c4ce47b03c57bd5e59ea3e",
+   "note": "Campaign save from the 1990-03-31 stack probe; not needed for the stack measurement."
+  },
+  "scratchpad/h4-stack-hwm-review/native/resumed/saves/monthly.json.bak": {
+   "bytes": 31159945,
+   "sha256": "5d5a17bc5907c28a6e2d29bf4de72dde6f911a36c832ffef982b1d4060316a3e",
+   "note": "Campaign save from the 1990-03-31 stack probe; not needed for the stack measurement."
+  },
+  "scratchpad/h4-stack-hwm-review/native/resumed/saves/final.json": {
+   "bytes": 33047792,
+   "sha256": "a49da9342fb7e76f6ae7b7f600610eae55da6e0697b25d415014abe31d2e9b0a",
+   "note": "Campaign save from the 1990-03-31 stack probe; not needed for the stack measurement."
+  },
+  "scratchpad/h4-stack-hwm-review/native/uninterrupted/saves/final.json": {
+   "bytes": 33047792,
+   "sha256": "a49da9342fb7e76f6ae7b7f600610eae55da6e0697b25d415014abe31d2e9b0a",
+   "note": "Campaign save from the 1990-03-31 stack probe; not needed for the stack measurement."
+  },
+  "scratchpad/stackprobe/target/debug/deps/stackprobe-80840a0d7dcc2320": {
+   "bytes": 7300064,
+   "sha256": "420793c61ed95a8b831d43b10cc7730832a5bf74ff4f25abb130e537716df5d9",
+   "note": "Debug build of the throwaway stack probe (sources copied under linux-probes/stack/stackprobe/)."
+  },
+  "scratchpad/stackprobe/target/debug/deps/mainprobe-6f4bf88a0dc9cb1c": {
+   "bytes": 4936656,
+   "sha256": "0b0853eaab9ff8f6ad681ca88ab031cc9534e86bcfddc071ab189b87f9d7fbd9",
+   "note": "Debug build of the throwaway stack probe (sources copied under linux-probes/stack/stackprobe/)."
+  },
+  "scratchpad/stackprobe/target/debug/deps/mainprobe-d48a408f92a8c491": {
+   "bytes": 6986360,
+   "sha256": "9ce4a69481c98ac6460c8e6406ee1759aad8b95ebe85c6464c55a257ab25a5f2",
+   "note": "Debug build of the throwaway stack probe (sources copied under linux-probes/stack/stackprobe/)."
+  }
+ }
+}

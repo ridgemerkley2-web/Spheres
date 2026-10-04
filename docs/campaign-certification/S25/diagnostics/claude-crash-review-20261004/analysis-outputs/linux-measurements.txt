@@ -1,0 +1,27 @@
+== japan7-to1991: 356 samples, threads=['2']
+year      n checkpoints                RSS min-max MiB       cumulative VmHWM    max canonical bytes
+1990    241 1990-01-01..1990-12-01       165-722            734 MiB (751148 kB)             44,993,670
+1991    113 1991-01-01..1991-02-01       622-918            929 MiB (951792 kB)             66,398,563
+final VmHWM 951792 kB; last end_native_date 1991-02-03; passed=True
+
+== japan7-to1995: 1704 samples, threads=['2']
+year      n checkpoints                RSS min-max MiB       cumulative VmHWM    max canonical bytes
+1990    123 1990-01-01..1990-12-01       164-722            733 MiB (750828 kB)             44,993,670
+1991    297 1991-01-01..1991-12-01       621-903            932 MiB (954372 kB)             78,062,994
+1992    345 1992-01-01..1992-12-01       699-1136          1183 MiB (1211144 kB)            105,366,623
+1993    417 1993-01-01..1993-12-01       874-1451          1500 MiB (1535716 kB)            134,408,540
+1994    471 1994-01-01..1994-12-01      1089-1491          1539 MiB (1576344 kB)            142,031,038
+1995     50 1995-01-01..1995-02-01      1143-1483          1539 MiB (1576344 kB)            137,120,071
+final VmHWM 1576344 kB; last end_native_date 1995-02-01; passed=False
+
+== h4-stack-hwm-review: test-thread stack mapping Rss (KiB) change points
+  t=1791082320.9 last_progress=-          mapping=2048 KiB rss=84 KiB
+  t=1791082328.4 last_progress=1990-01-01 mapping=2048 KiB rss=108 KiB
+  t=1791082335.0 last_progress=1990-02-01 mapping=2048 KiB rss=116 KiB
+
+== Linux japan7-to1995 vs Windows Japan/7 (30 Sep) comparisons
+linux rows 127, windows rows 1027; index-aligned rows identical on kind/date/canonical_bytes/canonical_fnv64/history_rows/log_rows: 127 of 127
+linux last row 1995-02-01 monthly_after_reload 136473590 8bc76cf0a89f1cc5
+windows Japan/7 max canonical bytes per year (MB):
+  1990 45.0, 1991 78.1, 1992 105.4, 1993 134.4, 1994 142.0, 1995 137.1, 1996 130.0, 1997 133.1, 1998 138.7, 1999 144.3, 2000 146.9, 2001 150.1, 2002 154.1, 2003 156.8, 2004 155.3, 2005 152.5, 2006 160.3, 2007 170.7, 2008 180.0, 2009 184.6, 2010 185.2, 2011 182.9, 2012 178.6, 2013 173.7, 2014 160.9, 2015 149.8, 2016 141.4, 2017 136.5, 2018 135.7, 2019 136.3, 2020 136.5, 2021 136.4, 2022 136.4, 2023 138.2, 2024 140.5, 2025 141.5, 2026 140.8, 2027 140.4, 2028 139.7, 2029 138.2, 2030 136.8, 2031 133.5
+windows peak 2010-04-01 monthly_after_reload 185188767; last 2031-01-01 mandatory 133481930 a1bd0d0f4f98ac5f

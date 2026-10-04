@@ -1,0 +1,44 @@
+cell        exec_start                 exec_finish                  elapsed       exit lastdate     days   pct
+france-1990 09:03:12.109677            17:28:33.843855              30321.1          0 2036-01-01  16801 100.0 journal_start=09:03:12.108475 journal_finish=17:29:07.465538
+france-7    09:03:12.346118            16:30:46.938671              26854.0          0 2036-01-01  16801 100.0 journal_start=09:03:12.299784 journal_finish=16:31:15.237186
+france-42   09:03:12.538310            17:42:38.718700              31165.5          0 2036-01-01  16801 100.0 journal_start=09:03:12.537403 journal_finish=17:43:07.453025
+japan-1990  09:03:12.768173            17:39:53.507873              31000.1          0 2036-01-01  16801 100.0 journal_start=09:03:12.725279 journal_finish=17:40:25.726391
+japan-7     16:31:15.413459            23:29:02.849962              25066.8 3221225477 2031-01-01  14975  89.1 journal_start=16:31:15.412698 journal_finish=None
+japan-42    17:29:07.694672            23:29:49.391327              21641.1          1 2027-10-01  13787  82.1 journal_start=17:29:07.658185 journal_finish=None
+india-1990  17:40:25.953235            23:29:49.124402              20962.6          1 2023-10-01  12326  73.4 journal_start=17:40:25.918599 journal_finish=None
+india-7     17:43:07.688158            23:29:02.850329              20754.6 3221225477 2024-12-01  12753  75.9 journal_start=17:43:07.642939 journal_finish=None
+completed durations [26853.968988000008, 30321.065387299983, 31000.056636200025, 31165.492886299995] mean 29835.145974450003 median 30660.561011750004 min 26853.968988000008 max 31165.492886299995
+france-1990 rate days/s 0.5541 s/day 1.805 elapsed/mean 1.016 elapsed/min 1.129 elapsed/max 0.973 days frac 1.000
+france-7 rate days/s 0.6256 s/day 1.598 elapsed/mean 0.900 elapsed/min 1.000 elapsed/max 0.862 days frac 1.000
+france-42 rate days/s 0.5391 s/day 1.855 elapsed/mean 1.045 elapsed/min 1.161 elapsed/max 1.000 days frac 1.000
+japan-1990 rate days/s 0.5420 s/day 1.845 elapsed/mean 1.039 elapsed/min 1.154 elapsed/max 0.995 days frac 1.000
+india-7 rate days/s 0.6145 s/day 1.627 elapsed/mean 0.696 elapsed/min 0.773 elapsed/max 0.666 days frac 0.759
+india-1990 rate days/s 0.5880 s/day 1.701 elapsed/mean 0.703 elapsed/min 0.781 elapsed/max 0.673 days frac 0.734
+japan-7 rate days/s 0.5974 s/day 1.674 elapsed/mean 0.840 elapsed/min 0.933 elapsed/max 0.804 days frac 0.891
+japan-42 rate days/s 0.6371 s/day 1.570 elapsed/mean 0.725 elapsed/min 0.806 elapsed/max 0.694 days frac 0.821
+japan-7 projected full-horizon wall s (linear) 28123
+india-7 projected full-horizon wall s (linear) 27342
+japan-42 projected full-horizon wall s (linear) 26372
+india-1990 projected full-horizon wall s (linear) 28573
+WER app start japan-7 2026-09-30 16:31:15.758938+00:00 india-7 2026-09-30 17:43:08.052758+00:00
+WER EventTime japan-7 2026-09-30 23:28:41.142934+00:00 india-7 2026-09-30 23:28:58.235386+00:00
+japan-7 fault-start 25045.7 s exit observed - fault 21.721 s
+india-7 fault-start 20750.2 s exit observed - fault 4.966 s
+japan-7 23:28:41.128712 active: ['india-7', 'india-1990', 'japan-7', 'japan-42'] {'india-7': 20733, 'india-1990': 20895, 'japan-7': 25046, 'japan-42': 21573}
+india-7 23:28:57.884586 active: ['india-7', 'india-1990', 'japan-7', 'japan-42'] {'india-7': 20750, 'india-1990': 20912, 'japan-7': 25062, 'japan-42': 21590}
+kill 23:29:49.124402 active: ['india-1990', 'japan-42'] {'india-1990': 20963, 'japan-42': 21641}
+runner_exit 23:30:51.085314 active: [] {}
+second wave starts [('japan-7', datetime.time(16, 31, 15, 413459)), ('japan-42', datetime.time(17, 29, 7, 694672)), ('india-1990', datetime.time(17, 40, 25, 953235)), ('india-7', datetime.time(17, 43, 7, 688158))]
+all four second-wave concurrent from 17:43:07.688158 to 23:29:02.849962 20733.440554 s before first fault
+first wave all 4 concurrent until 16:30:46.938671
+ 09:03:12.768173 -> 16:30:46.938671   26854s  native processes=4
+ 16:30:46.938671 -> 16:31:15.413459      28s  native processes=3
+ 16:31:15.413459 -> 17:28:33.843855    3438s  native processes=4
+ 17:28:33.843855 -> 17:29:07.694672      34s  native processes=3
+ 17:29:07.694672 -> 17:39:53.507873     646s  native processes=4
+ 17:39:53.507873 -> 17:40:25.953235      32s  native processes=3
+ 17:40:25.953235 -> 17:42:38.718700     133s  native processes=4
+ 17:42:38.718700 -> 17:43:07.688158      29s  native processes=3
+ 17:43:07.688158 -> 23:29:02.849962   20755s  native processes=4
+ 23:29:02.850329 -> 23:29:49.124402      46s  native processes=2
+launcher 2026-09-30 23:30:50.178306+00:00

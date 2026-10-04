@@ -1,0 +1,174 @@
+{
+  "actions": [
+    {
+      "date": "1990-01-01",
+      "kind": "competition_adoption",
+      "legs": 2,
+      "matched": true,
+      "observation": {
+        "command": {
+          "kind": "enable_economic_competition"
+        },
+        "pc_after": 65.4496,
+        "pc_before": 65.4496,
+        "price_pc": 0.0
+      }
+    },
+    {
+      "commands": [
+        {
+          "SetAnnualBudget": {
+            "allocations": [
+              0.053500000000000006,
+              0.038520000000000006,
+              0.042800000000000005,
+              0.059920000000000015,
+              0.027500000000000004,
+              0.015,
+              0.0075,
+              0.01,
+              0.014980000000000004,
+              0.004280000000000001
+            ],
+            "fiscal_year": 1990,
+            "nation": "Japan"
+          }
+        }
+      ],
+      "date": "1990-01-01",
+      "kind": "budget_renewal",
+      "legs": 2,
+      "matched": true,
+      "prices_pc": [
+        0.0
+      ]
+    },
+    {
+      "date": "1990-01-31",
+      "kind": "event_acknowledgment",
+      "legs": 2,
+      "matched": true,
+      "reason": "Afghanistan exposes Saudi Arabia backing the Islamist movement in Afghanistan — the scandal rallies the country behind its government."
+    }
+  ],
+  "artifact_errors": [],
+  "artifacts": [
+    {
+      "bytes": 25786431,
+      "canonical_fnv64": "2a6e1dafa34e5a82",
+      "date": "1990-02-01",
+      "file_fnv64": "9540d7f09a228464",
+      "kind": "final",
+      "leg": "uninterrupted",
+      "path": "uninterrupted/saves/final.json"
+    },
+    {
+      "bytes": 25786431,
+      "canonical_fnv64": "2a6e1dafa34e5a82",
+      "date": "1990-02-01",
+      "file_fnv64": "7e7147f9aad37599",
+      "kind": "final",
+      "leg": "resumed",
+      "path": "resumed/saves/final.json"
+    }
+  ],
+  "checks": {
+    "competition_adoptions": 2,
+    "daily_invariant_checks": 62,
+    "full_horizon_pause": null,
+    "monthly_reloads": 1,
+    "native_validation_checks": 8,
+    "sandbox_continued": false,
+    "sandbox_daily_invariant_checks": 0,
+    "terminal_reloads": 2
+  },
+  "comparisons": [
+    {
+      "absolute_day": 0,
+      "canonical_bytes": 13182157,
+      "canonical_fnv64": "112f3c9b300c96d0",
+      "date": "1990-01-01",
+      "history_rows": 1,
+      "kind": "opening",
+      "log_rows": 1,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 31,
+      "canonical_bytes": 25786407,
+      "canonical_fnv64": "2a6e1dafa34e5a82",
+      "date": "1990-02-01",
+      "history_rows": 32,
+      "kind": "monthly_after_reload",
+      "log_rows": 146,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 31,
+      "canonical_bytes": 25786407,
+      "canonical_fnv64": "2a6e1dafa34e5a82",
+      "date": "1990-02-01",
+      "history_rows": 32,
+      "kind": "terminal",
+      "log_rows": 146,
+      "matched": true,
+      "player": "Japan"
+    },
+    {
+      "absolute_day": 31,
+      "canonical_bytes": 25786407,
+      "canonical_fnv64": "2a6e1dafa34e5a82",
+      "date": "1990-02-01",
+      "history_rows": 32,
+      "kind": "terminal_reload",
+      "log_rows": 146,
+      "matched": true,
+      "player": "Japan"
+    }
+  ],
+  "compiled_revision": "68ba0622ec70",
+  "country": "Japan",
+  "days_each_leg": 31,
+  "end_native_date": "1990-02-01",
+  "failure": null,
+  "format": "spheres-stability-result/v1",
+  "id": "vg-japan7",
+  "initial_rules": {
+    "ai_aggression": 1.0,
+    "crisis_intensity": 1.0,
+    "daily_simulation": true,
+    "economic_competition": true,
+    "fiscal_recovery": true,
+    "historical_party_leadership": true,
+    "ideology_blocs": true,
+    "industry_rebuild": true,
+    "logistics_routes": true,
+    "manufacturing_system": true,
+    "military_operations": true,
+    "operational_warfare": 1,
+    "physical_logistics": true,
+    "production_system": true,
+    "resource_market": true,
+    "seed": 7
+  },
+  "legs": 2,
+  "passed": true,
+  "provenance": {
+    "archive_exception": "Only terminal top-level saved_unix removed; remaining native encode bytes, key order and numeric spelling unchanged",
+    "cessation_policy": "Ordinary Russia continuation only for a dissolved USSR with an eligible living Russia; otherwise ordinary observer continuation. No grants or forced dissolution.",
+    "fingerprint_scope": "FNV64 is diagnostic only; the matrix wrapper supplies SHA256 provenance",
+    "initialization": "Real new_game; ordinary competition adoption; existing budget allocations/departments renewed through dated native commands",
+    "request_bytes": 160,
+    "request_fnv64": "9e8f5f6f7c4b8cdb",
+    "request_path": "/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/s25-source-probe/vg-japan7-jan1990/request.json",
+    "request_unchanged": true,
+    "retention": "Two final native archives plus two sandbox archives for full-horizon cells; resumed/saves/monthly.json plus its native backup are bounded scratch; failing worlds retained when serializable"
+  },
+  "revision": "68ba0622ec709b78617aadd1f9198d18f532bb32",
+  "scope": "Native paired stability cell only; no S25 or CP1 certification",
+  "seed": 7,
+  "start_native_date": "1990-01-01",
+  "through": "1990-01-31"
+}
