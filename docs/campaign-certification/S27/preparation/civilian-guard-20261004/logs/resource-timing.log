@@ -1,0 +1,27 @@
+# uptime before:  04:30:32 up  3:37,  0 user,  load average: 2.72, 3.59, 3.52
+# nproc: 4
+#   PID %CPU     ELAPSED COMMAND
+#  1821 98.3    01:20:21 spheres_web-7f3
+#  3472 20.0       00:00 bash
+#    85  5.1    03:36:57 claude
+#     1  0.0    03:37:00 process_api
+#    46  0.0    03:37:00 kcompactd0
+    Finished `release` profile [optimized] target(s) in 0.02s
+     Running unittests src/lib.rs (/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/target-d2/release/deps/spheres_sim-f433e4a939164539)
+
+running 1 test
+test tests::the_resource_pass_stays_under_budget ...     resources       0.0640 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    buy pass        0.0197 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    appetite term   0.0278 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    total           0.1114 ms/month  (market on, best of 3, 1200 months, 137 living at start)
+    budget 0.05 ms/month NOT met on this reading (a loaded machine?); bar 0.15
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 1134 filtered out; finished in 14.99s
+
+
+real	0m15.077s
+user	0m14.953s
+sys	0m0.049s
+EXIT=0
+# uptime after:  04:30:47 up  3:37,  0 user,  load average: 2.52, 3.48, 3.49

@@ -1,0 +1,10 @@
+[package]
+name = "d2-diag"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+spheres-sim = { path = "/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/wt-d2/spheres-sim" }
+
+[workspace]

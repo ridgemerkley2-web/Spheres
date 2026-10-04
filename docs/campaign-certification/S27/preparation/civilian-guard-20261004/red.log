@@ -1,0 +1,39 @@
+    Finished `release` profile [optimized] target(s) in 0.03s
+     Running unittests src/lib.rs (/tmp/claude-0/-home-user-Spheres/e3d5a311-d2fe-504d-bb9f-1264447cf21c/scratchpad/target-d2/release/deps/spheres_sim-f433e4a939164539)
+
+running 6 tests
+test government::civilian_guard_tests::civilian_guard_control_programme_veto_consumer_stays_closed_under_civilian_control ... ok
+test government::civilian_guard_tests::civilian_guard_control_unknown_assessment_proxy_is_unchanged ... ok
+test government::civilian_guard_tests::civilian_guard_control_reading_is_pure_and_keeps_the_leverage_record ... ok
+test government::civilian_guard_tests::civilian_guard_control_lens_off_reads_no_confidence_channel ... ok
+test government::civilian_guard_tests::civilian_guard_control_sourced_leverage_above_the_boundary_keeps_its_penalty ... ok
+test government::civilian_guard_tests::sourced_leverage_does_not_bypass_civilian_control_at_or_below_point_twenty ... FAILED
+
+failures:
+
+---- government::civilian_guard_tests::sourced_leverage_does_not_bypass_civilian_control_at_or_below_point_twenty stdout ----
+
+thread 'government::civilian_guard_tests::sourced_leverage_does_not_bypass_civilian_control_at_or_below_point_twenty' (21725) panicked at spheres-sim/src/government_civilian_guard_tests.rs:91:5:
+civilian control at authoritarianism <= .20 must block the civilian-confidence channel even with sourced leverage; 9 nation(s) are still charged:
+France auth 0.12 leverage 0.1: penalty 0.053896 (formula 0.053896); Army target 0.796104 vs material 0.850000; AI floor Some(0.012152908723580604) vs Some(0.009573145462080398); 48-month (loyalty, pressure) (0.7800781925293147, 0.0) vs (0.8280622626951976, 0.0)
+Brazil auth 0.20 leverage 0.375: penalty 0.202109 (formula 0.202109); Army target 0.647891 vs material 0.850000; AI floor Some(0.006042022787951486) vs Some(0.003005163850234273); 48-month (loyalty, pressure) (0.6479040462896025, 0.0) vs (0.8280622626951976, 0.0)
+Spain auth 0.13 leverage 0.167: penalty 0.090006 (formula 0.090006); Army target 0.624490 vs material 0.714496; AI floor Some(0.01014607118701168) vs Some(0.006997144699953243); 48-month (loyalty, pressure) (0.624651850430265, 0.0) vs (0.7074211419034435, 0.0)
+Argentina auth 0.15 leverage 0.2: penalty 0.107792 (formula 0.107792); Army target 0.742208 vs material 0.850000; AI floor Some(0.0) vs Some(0.0); 48-month (loyalty, pressure) (0.7320941223634319, 0.0) vs (0.8280622626951976, 0.0)
+Venezuela auth 0.18 leverage 0.286: penalty 0.154142 (formula 0.154142); Army target 0.695858 vs material 0.850000; AI floor Some(0.010395261014705457) vs Some(0.005870672537339205); 48-month (loyalty, pressure) (0.6908278220207724, 0.0) vs (0.8280622626951976, 0.0)
+Uruguay auth 0.12 leverage 0.6: penalty 0.323375 (formula 0.323375); Army target 0.273868 vs material 0.597243; AI floor Some(0.015999999999999993) vs Some(0.011579818031430935); 48-month (loyalty, pressure) (0.2762610676521576, 1.5) vs (0.5975785342476302, 0.0)
+Jamaica auth 0.15 leverage 0.2: penalty 0.107792 (formula 0.107792); Army target 0.742208 vs material 0.850000; AI floor Some(0.0033381125954655365) vs Some(0.0021690727573080515); 48-month (loyalty, pressure) (0.7320941223634319, 0.0) vs (0.8280622626951976, 0.0)
+PapuaNewGuinea auth 0.15 leverage 0.5: penalty 0.269479 (formula 0.269479); Army target 0.580521 vs material 0.850000; AI floor Some(0.0) vs Some(0.0); 48-month (loyalty, pressure) (0.5809629074155457, 0.0) vs (0.8280622626951976, 0.0)
+Botswana auth 0.20 leverage 0.2: penalty 0.107792 (formula 0.107792); Army target 0.742208 vs material 0.850000; AI floor Some(0.010294869199626284) vs Some(0.006689504827156649); 48-month (loyalty, pressure) (0.7320941223634319, 0.0) vs (0.8280622626951976, 0.0)
+stack backtrace:
+   0: __rustc::rust_begin_unwind
+   1: core::panicking::panic_fmt
+   2: <spheres_sim::government::civilian_guard_tests::sourced_leverage_does_not_bypass_civilian_control_at_or_below_point_twenty::{closure#0} as core::ops::function::FnOnce<()>>::call_once
+note: Some details are omitted, run with `RUST_BACKTRACE=full` for a verbose backtrace.
+
+
+failures:
+    government::civilian_guard_tests::sourced_leverage_does_not_bypass_civilian_control_at_or_below_point_twenty
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 1129 filtered out; finished in 0.15s
+
+error: test failed, to rerun pass `-p spheres-sim --lib`

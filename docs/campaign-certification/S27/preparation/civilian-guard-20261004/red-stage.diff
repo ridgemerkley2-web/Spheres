@@ -1,0 +1,239 @@
+diff --git a/spheres-sim/src/government.rs b/spheres-sim/src/government.rs
+index e414dec..6b53a02 100644
+--- a/spheres-sim/src/government.rs
++++ b/spheres-sim/src/government.rs
+@@ -15820,3 +15820,8 @@ pub(crate) mod a1_observer;
+ #[cfg(test)]
+ #[path = "government_opening_tests.rs"]
+ mod opening_tests;
++
++// Civilian-control boundary of the Army civilian-confidence channel (S27 D2).
++#[cfg(test)]
++#[path = "government_civilian_guard_tests.rs"]
++mod civilian_guard_tests;
+diff --git a/spheres-sim/src/government_civilian_guard_tests.rs b/spheres-sim/src/government_civilian_guard_tests.rs
+new file mode 100644
+index 0000000..246e6b9
+--- /dev/null
++++ b/spheres-sim/src/government_civilian_guard_tests.rs
+@@ -0,0 +1,220 @@
++//! Civilian control at authoritarianism .20 or below blocks the Army's
++//! civilian-confidence channel, also when a sourced 1989 leverage record
++//! exists. Authority: docs/political-arm/2026-09-22-calibration-repairs.md
++//! ("Civilian control at authoritarianism `.20` or below blocks it"; "That
++//! boundary suppresses the civilian-confidence penalty") and the user's
++//! decision of 4 October 2026 to restore that guard in code. The fixtures
++//! read the affected nations from the opening roster; no nation is a special
++//! case and no coefficient, threshold or gate is defined here.
++use super::*;
++use crate::GameRules;
++
++fn lens_rules() -> GameRules {
++    GameRules { seed: 7, ideology_blocs: true, ideology_takeover: true, ai_aggression: 0.0, ..GameRules::default() }
++}
++
++/// The existing sustained-crisis fixture of the confidence tests: an
++/// established 24-month government with a poor record and discontent far
++/// above the .25 line.
++fn stage_crisis(w: &mut WorldState, id: NationId) {
++    {
++        let n = w.nation_mut(id);
++        n.stability = 5.0;
++        n.inflation = 0.30;
++        n.growth_last = -0.10;
++        n.war_exhaustion = 0.0;
++        n.separatism = 0.0;
++    }
++    let leader = state(w, id).and_then(|g| g.leader()).expect("an electoral government has a leader").to_string();
++    state_mut(w, id).unwrap().political_record = Some(PoliticalRecord {
++        government: format!("party:{leader}"), months: 24.0, performance: -0.80,
++    });
++}
++
++/// The documented penalty formula at this leverage, with no boundary applied.
++fn formula(w: &WorldState, id: NationId, leverage: f64) -> f64 {
++    let record = state(w, id).unwrap().political_record.as_ref().unwrap();
++    let crisis = 0.5 * crate::blocs::discontent(w, id) + 0.5 * (-record.performance).clamp(0.0, 1.0);
++    ARMY_CRISIS_CONFIDENCE_WEIGHT * leverage * crisis * (1.0 - civilian_public_mandate(w, id))
++}
++
++/// Opening electoral nations with an Army and a known, positive leverage
++/// record, split by the documented civilian-control boundary.
++fn sourced(w: &WorldState, controlled: bool) -> Vec<(NationId, f64)> {
++    w.governments.states.iter().map(|g| g.nation)
++        .filter(|&id| w.nation_opt(id).is_some_and(|n| n.alive && (n.authoritarianism <= 0.20) == controlled))
++        .filter(|&id| is_electoral(w, id))
++        .filter_map(|id| crate::army_authority::current_leverage(w, id).filter(|l| *l > 0.0).map(|l| (id, l)))
++        .collect()
++}
++
++#[test]
++fn sourced_leverage_does_not_bypass_civilian_control_at_or_below_point_twenty() {
++    let opening = crate::init::world_1990(lens_rules());
++    let nations = sourced(&opening, true);
++    assert!(nations.iter().any(|(id, l)| *id == NationId::Uruguay && *l == 0.6),
++        "fixture: the roster's Uruguay is at .12 with sourced leverage .6: {nations:?}");
++    assert!(nations.iter().any(|(id, _)| opening.nation(*id).authoritarianism == 0.20),
++        "fixture: the inclusive .20 boundary is exercised: {nations:?}");
++    let mut contrary = Vec::new();
++    for (id, leverage) in nations {
++        let mut w = opening.clone();
++        stage_crisis(&mut w, id);
++        assert!(crate::blocs::discontent(&w, id) >= ELECTORAL_COUP_DISCONTENT, "{id:?} crisis fixture");
++        assert_eq!(civilian_army_executive_leverage(&w, id), leverage, "{id:?} reads its sourced leverage");
++        let unguarded = formula(&w, id, leverage);
++        assert!(unguarded > 0.0, "fixture: without the boundary {id:?} would be charged");
++        // The same state with an unknown assessment: the original proxy is
++        // already zero at or below .20. Sourced leverage must read the same here.
++        let mut unknown = w.clone();
++        state_mut(&mut unknown, id).unwrap().army_authority = None;
++        assert_eq!(army_civilian_confidence_penalty(&unknown, id), 0.0, "{id:?} proxy");
++        let penalty = army_civilian_confidence_penalty(&w, id);
++        let target = pillar_targets(&w, id, &[Pillar::Army])[0].1;
++        let material = pillar_targets(&unknown, id, &[Pillar::Army])[0].1;
++        let floor = ai_army_funding_floor(&w, id);
++        let unknown_floor = ai_army_funding_floor(&unknown, id);
++        let (mut walked, mut twin) = (w.clone(), unknown.clone());
++        for _ in 0..48 {
++            electoral_army_tick(&mut walked, id);
++            electoral_army_tick(&mut twin, id);
++        }
++        let walk = |x: &WorldState| (state(x, id).unwrap().loyalty(Pillar::Army), state(x, id).unwrap().coup_pressure);
++        if penalty != 0.0 || target != material || floor != unknown_floor || walk(&walked) != walk(&twin) {
++            contrary.push(format!(
++                "{id:?} auth {:.2} leverage {leverage}: penalty {penalty:.6} (formula {unguarded:.6}); \
++                 Army target {target:.6} vs material {material:.6}; AI floor {floor:?} vs {unknown_floor:?}; \
++                 48-month (loyalty, pressure) {:?} vs {:?}",
++                w.nation(id).authoritarianism, walk(&walked), walk(&twin)));
++        }
++    }
++    assert!(contrary.is_empty(),
++        "civilian control at authoritarianism <= .20 must block the civilian-confidence channel \
++         even with sourced leverage; {} nation(s) are still charged:\n{}", contrary.len(), contrary.join("\n"));
++}
++
++#[test]
++fn civilian_guard_control_sourced_leverage_above_the_boundary_keeps_its_penalty() {
++    let opening = crate::init::world_1990(lens_rules());
++    // Native: nations the roster already places above .20 (e.g. Pakistan).
++    let native = sourced(&opening, false);
++    assert!(native.iter().any(|(id, _)| *id == NationId::Pakistan), "fixture: {native:?}");
++    let mut cases: Vec<(NationId, f64, Option<f64>)> = native.into_iter().map(|(id, l)| (id, l, None)).collect();
++    // Raised: the controlled nations once authority moves past the boundary.
++    for (id, l) in sourced(&opening, true) {
++        cases.push((id, l, Some(0.21)));
++        cases.push((id, l, Some(0.45)));
++    }
++    for (id, leverage, auth) in cases {
++        let mut w = opening.clone();
++        stage_crisis(&mut w, id);
++        if let Some(a) = auth { w.nation_mut(id).authoritarianism = a; }
++        assert!(w.nation(id).authoritarianism > 0.20 && is_electoral(&w, id));
++        let penalty = army_civilian_confidence_penalty(&w, id);
++        let expected = formula(&w, id, leverage);
++        assert!(expected > 0.0 && (penalty - expected).abs() < 1e-12,
++            "{id:?} at {:?}: sourced leverage {leverage} sets the penalty {penalty} (expected {expected})",
++            w.nation(id).authoritarianism);
++    }
++}
++
++#[test]
++fn civilian_guard_control_unknown_assessment_proxy_is_unchanged() {
++    let id = NationId::Uruguay;
++    let mut w = crate::init::world_1990(lens_rules());
++    stage_crisis(&mut w, id);
++    state_mut(&mut w, id).unwrap().army_authority = None;
++    assert_eq!(crate::army_authority::current_leverage(&w, id), None);
++    for (auth, proxy) in [(0.12, 0.0), (0.20, 0.0), (0.21, 0.025), (0.40, 0.5), (0.59, 0.975)] {
++        w.nation_mut(id).authoritarianism = auth;
++        let leverage = civilian_army_executive_leverage(&w, id);
++        assert!((leverage - proxy).abs() < 1e-12, "proxy at {auth}: {leverage}");
++        let penalty = army_civilian_confidence_penalty(&w, id);
++        assert!((penalty - formula(&w, id, leverage)).abs() < 1e-12, "proxy penalty at {auth}: {penalty}");
++        assert_eq!(penalty > 0.0, auth > 0.20);
++    }
++}
++
++#[test]
++fn civilian_guard_control_lens_off_reads_no_confidence_channel() {
++    let id = NationId::Uruguay;
++    let mut off = crate::init::world_1990(GameRules { seed: 7, ..GameRules::default() });
++    assert!(state(&off, id).unwrap().army_authority.is_none(), "lens off seeds no authority record");
++    stage_crisis(&mut off, id);
++    let saved = crate::save(&off);
++    let rng = off.rng.clone();
++    for auth in [0.12, 0.20, 0.45] {
++        off.nation_mut(id).authoritarianism = auth;
++        assert_eq!(civilian_army_executive_leverage(&off, id), 0.0);
++        assert_eq!(army_civilian_confidence_penalty(&off, id), 0.0);
++        assert_eq!(ai_army_funding_floor(&off, id), None);
++        if state(&off, id).unwrap().pillars.iter().any(|(p, _)| *p == Pillar::Army) {
++            let n = off.nation(id);
++            assert_eq!(pillar_targets(&off, id, &[Pillar::Army])[0].1,
++                army_loyalty_target(n.mil_spend_gdp, n.war_exhaustion, None, ARMY_PAY_WEIGHT),
++                "lens off keeps the original share arm verbatim");
++        }
++    }
++    off.nation_mut(id).authoritarianism = crate::load(&saved).unwrap().nation(id).authoritarianism;
++    assert_eq!(crate::save(&off), saved);
++    assert_eq!(off.rng, rng);
++}
++
++#[test]
++fn civilian_guard_control_reading_is_pure_and_keeps_the_leverage_record() {
++    let id = NationId::Uruguay;
++    let mut w = crate::init::world_1990(lens_rules());
++    stage_crisis(&mut w, id);
++    let known = state(&w, id).unwrap().army_authority.clone();
++    let leverage = known.as_ref().expect("sourced record").current_leverage;
++    let rng = w.rng.clone();
++    let saved = crate::save(&w);
++    let reading = army_civilian_confidence_penalty(&w, id);
++    for _ in 0..3 {
++        assert_eq!(army_civilian_confidence_penalty(&w, id), reading);
++    }
++    assert_eq!(crate::save(&w), saved, "the guard is a read, not a state change");
++    assert_eq!(w.rng, rng);
++    assert_eq!(state(&w, id).unwrap().army_authority, known, "civilian control does not rewrite leverage");
++    let loaded = crate::load(&saved).unwrap();
++    assert_eq!(army_civilian_confidence_penalty(&loaded, id), reading);
++    assert_eq!(crate::army_authority::current_leverage(&loaded, id), Some(leverage));
++    // If authority later rises past the boundary, the same sourced leverage
++    // charges the documented penalty again.
++    w.nation_mut(id).authoritarianism = 0.45;
++    let expected = formula(&w, id, leverage);
++    assert!(expected > 0.0 && (army_civilian_confidence_penalty(&w, id) - expected).abs() < 1e-12);
++}
++
++#[test]
++fn civilian_guard_control_programme_veto_consumer_stays_closed_under_civilian_control() {
++    // The programme veto is a separate documented term; its only runtime
++    // consumer is the annulment check, which keeps its own .35 guard. This
++    // control shows that path is closed at or below .20 with sourced leverage,
++    // so the confidence-channel guard needs no change there.
++    let id = NationId::Algeria;
++    let mut w = crate::init::world_1990(lens_rules());
++    {
++        let n = w.nation_mut(id);
++        n.authoritarianism = 0.58; n.stability = 5.0;
++        n.inflation = 0.30; n.growth_last = -0.10; n.war_exhaustion = 0.0;
++        let g = state_mut(&mut w, id).unwrap();
++        g.coalition = vec!["dz_fln".into()];
++        for (party, share) in &mut g.support {
++            *share = if party == "dz_fis" { 0.80 } else if party == "dz_fln" { 0.20 } else { 0.0 };
++        }
++        g.seats = g.support.clone();
++        g.political_record = Some(PoliticalRecord {
++            government: "party:dz_fln".into(), months: 24.0, performance: -0.80,
++        });
++        g.pillars.iter_mut().find(|(p, _)| *p == Pillar::Army).unwrap().1 = 0.60;
++        g.army_authority.as_mut().expect("sourced Algerian record").current_leverage = 1.0;
++    }
++    assert_eq!(annulment_check(&w, id).as_deref(), Some("dz_fis"));
++    for auth in [0.20, 0.12] {
++        let mut controlled = w.clone();
++        controlled.nation_mut(id).authoritarianism = auth;
++        assert!(auth < ANNULMENT_AUTH);
++        assert_eq!(annulment_check(&controlled, id), None);
++    }
++}
