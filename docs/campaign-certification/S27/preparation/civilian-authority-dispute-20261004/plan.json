@@ -1,0 +1,267 @@
+{
+  "task": "CODEX-S27-A1-01, direction D1: the civilian-authority dispute, implemented as specified by docs/political-arm/2026-10-04-civilian-authority-dispute-contract.md and decided in its section 19",
+  "written": "2026-10-04, before any D1 runtime source edit, before any D1 build, and before the implementation branch exists",
+  "prepared_by": "Claude, automated agent. Not human review, not Codex review, not approval.",
+  "decision_source": "The user, as design authority, 4 October 2026, 'Adopt recommended set' (contract section 19). It answers Q1-Q24. Q14 is moot. Q25 and Q26 are not decided. Where section 19 differs from an 'as drafted' option in sections 3-16, section 19 governs.",
+  "kind": "A new mechanism: a lawful civilian order, an institutional compliance rule, a receipt-backed dispute record, three resolutions, and an escalation that exists only while an enforced dispute is unresolved. Not a calibration change, not a coefficient fit, not an acceptance change.",
+  "follows": "docs/campaign-certification/S27/preparation/political-repairs-20260930/urgent-plan.json (fields) and the contract's section 15 (content)",
+
+  "base": {
+    "commit": "f6597cf5c26e745c2ec4c3acf5c3b234f7c527fa",
+    "description": "Local branch claude/civilian-guard-wip. It is the integration tip 39369f0ee6451466d03778d0273a7f72aafcf8c0 plus the user-decided D2 civilian-control guard (51a7ddfa, f6597cf5).",
+    "equivalence": "`git diff 39369f0e f6597cf5 -- spheres-sim spheres-web` and `git diff 39369f0e e857e8ac -- spheres-sim spheres-web` are byte-identical (SHA-256 fb5dce7dfdbc931143531ed3cfd7df99a318e438afa5d35e078e42bd35926a3d). e857e8ac is the CI-tested head on claude/nifty-bohr-0j27qi, carrying 215bd023 and 2bce829a.",
+    "not_integrated": "Neither D2 nor D1 is in codex/campaign-certification. D2's effect (none on any gate value) is never credited to D1."
+  },
+  "implementation_location": {
+    "checkout": "the existing sparse linked worktree scratchpad/wt-d2",
+    "branch": "local claude/d1-dispute-wip, created from f6597cf5 (the HEAD of claude/civilian-guard-wip). Not pushed.",
+    "cargo_target_dir": "scratchpad/target-d2 (private; already 3.2 GB; about 5.4 GB free on the volume)",
+    "jobs": "CARGO_BUILD_JOBS=3 in the environment of every cargo command. This is equivalent to -j 3 and leaves the predeclared command text unchanged.",
+    "toolchain": "rustc 1.97.0 (2d8144b78 2026-07-07), cargo 1.97.0 (c980f4866 2026-06-30), Linux x86_64, 4 CPUs. The container is shared with the S25 diagnostic.",
+    "never_touch": ["/home/user/Spheres source (only this packet and the later evidence packet are written there)", "scratchpad/s25-linux-japan7", "scratchpad/wt-68ba", "scratchpad/target-68ba"],
+    "disk": "No new worktrees, clones or target directories. If space runs short, `cargo clean -p <crate>` inside target-d2 and record it."
+  },
+
+  "hypothesis": "The model has no representation of an Army institution refusing a lawful civilian order (contract 1.1). Implementing the decided mechanism adds that cause of conflict over civilian executive authority, which a player can see and influence.",
+  "prediction": "None. The effect on A1 and on every other gate is unknown until measured. It may be zero or negative. No A1 value or direction is written here, for any scope, price, rule or temperament (contract 1.3). Nothing in this plan was chosen by its effect on seeds 0-11.",
+  "structural_note_not_a_prediction": "This is a property of the decided design, stated so the measurement is read correctly.\n- Under Q1(a) Prudent, ai_order and the order's arm read the same state in the same tick, so every AI order is accepted at issue (contract 11.2-11.3).\n- The census has no player, so no dispute, enforcement or escalation can arise in it.\n- Any census change can therefore come only through compliance: lower leverage and saved powers.\n- It can also come through the world-path effects in the contract's section 16: new draws on the single RNG stream, the order taking a candidate slot in ticks with no lever and no card, and political-capital spending.\nDiagnostic D3 checks this directly: a nonzero count of AI-issued refusals is an implementation bug.",
+
+  "change": {
+    "Q1": "(a) Prudent. ai_order(w, id) returns None before any read when either switch is off, and None for the player's nation. It reads legality on the post-lapse view (contract 4.4). It walks the Army ordinals in stored order and, for each, the scopes from widest to narrowest. It returns the first AssertCivilianAuthority that meets all of these conditions:\n- it is legal (section 5 rules 1-14, plus the saved-power rule of Q6);\n- its OrderPlan.complies is true, i.e. acceptance >= .35;\n- D < .25 (C14), government_seats() >= .50 (C13), and political_capital >= AUTHORITY_ORDER_PC + AI_ORDER_RESERVE_PC (Q9).\nIt returns nothing when no such order exists. The AI never issues an order its own plan says would be refused, so it opens no dispute. ai_response runs at clock::month_end from ai_government, for electoral non-player nations whose record passes pending_lapse. Its only response is Withdraw, a fallback that AI-issued orders cannot reach. It never acts on the player's dispute and draws no RNG.",
+    "Q2_Q3": "Q2 (a) and Q3 (b). The order rides the existing single draw, `w.rng.chance(clock::chance(w, 0.02))` in stratagems::ai_stratagems, as a third candidate. It is consulted only when government::ai_lever returns None and no card is chosen, so the precedence is lever, then card, then order. Unchanged: ai_lever, the card choice, the 0.02 draw and its position, and one decision per actor per tick. There is no new draw site. In every tick where ai_order returns None, the control flow and the draws equal the base exactly.",
+    "Q4": "(b) While Enforced, gap = min(0.35 - dispute_acceptance(current scope), 0.45 * leverage * s), where leverage = civilian_army_executive_leverage(w, id) read at the tick and s is the current scope's stake.\n- Accrual: when gap > 0, authority_pressure = min(1.5, authority_pressure + 0.60 * gap * dt), with dt = clock::month_fraction(w).\n- There is no discontent term and no cooling; the gauge lives in the record and is deleted on every closure. It never reads or writes GovState.coup_pressure.\n- Route 2 is untouched: electoral_army_tick, maybe_electoral_coup, the live D >= .25 and eff < .35 guards, the 12-month settled rule, and the rate and cap.\n- Firing (contract 10.3) needs all of: ideology_takeover; status Enforced; dispute_acceptance < .35; electoral_coup_settled_months >= 12 and !awaiting_first_election; a passed validation (the issuer governs, the state is electoral, authoritarianism > .20, the institution exists, rules 5-6 hold); and authority_pressure >= 1/crisis_intensity.max(0.1).",
+    "Q5": "(b) Nothing closes a dispute in compliance during the tick. Contract 9.4, and step 3 of the 10.1 tick, are not implemented. A dispute closes in compliance only inside an explicit government action:\n- Negotiate re-tests at the narrower scope and closes as NegotiatedCompliance;\n- Enforce re-tests at the current scope and closes as CompliedWhileOpen (reading R2).\nFunding keeps its material benefit, a higher acceptance. While acceptance >= .35, the gap is <= 0, so nothing accrues and the dispute cannot fire, but the record stays open until the government acts. The hysteresis question is moot.",
+    "Q6": "(b) A new saved field holds complied scopes as institutional powers: GovState.civilian_powers: Vec<CivilianPower { institution: InstitutionRef, scope: AuthorityScope, since: Date }>. It is serde default, skipped when empty, and a strict type.\n- Each compliance (Complied, NegotiatedCompliance, CompliedWhileOpen) records the power and calls army_authority::consolidate_transfer(w, id, 0.05 * s), unchanged, once.\n- A new legality rule, after rule 11 and before rule 12, refuses an order for a saved (institution, scope): \"{institution} already accepts {phrase}.\"\n- Negotiation steps down to the next narrower scope that is not saved.\nSee reading R3.",
+    "Q7": "(a) The civilian-control guard also blocks orders, disputes, accrual and firing at current authoritarianism <= .20:\n- legality rule 9;\n- validation row 4, CivilianControl;\n- the firing condition authoritarianism > .20.\nStage 1 promotes D2's CIVILIAN_CONTROL_AUTHORITARIANISM to pub(crate) and adds civilian_control_holds(w, id). army_civilian_confidence_penalty calls it after its leverage <= 0 return, so the penalty stays bit-identical. D1 writes no second 0.20 literal, and D2's six guard tests pass unmodified.",
+    "Q8": "(b) Legality rule 5 holds when (g.elected && g.unrestricted_mandate && !g.awaiting_first_election) || opening_mandates::attested_parties(w, id).is_some(). attested_parties already requires the sourced marker, an unchanged catalogue row, no bans, no awaited first ballot, the leader's party among the attested parties, and the sourced office. Rule 6, an established six-month record of the current party, is unchanged and still required. See reading R11.",
+    "Q9": "(a) and (c).\nPrices (unchanged):\n- AssertCivilianAuthority: 25 PC, REFUSABLE, charged once the arm returns Ok, whether the institution complies or refuses.\n- Withdraw: 12 PC, ALWAYS, to the point of bankruptcy.\n- Negotiate: 0 PC.\n- Enforce: 0 PC up front, plus 0.20 PC a month while Enforced.\nAI reserve: the AI issues only when political_capital >= 25 + AI_ORDER_RESERVE_PC (68), i.e. >= 93. See reading R4.",
+    "Q10": "(a) and (d). Rule 13 refuses an order only when both of these hold:\n- the newest receipt's order.issuer equals the current governing-party key (\"party:<leader>\");\n- clock::month_index(now) - month_index(closed_on) < 12.\nA receipt from another issuer never binds, so the cooldown resets when the issuer is replaced. See reading R5.",
+    "Q11": "(b) A Negotiate that still refuses rescales the pressure to the narrower scope's gap: authority_pressure = min(1.5, authority_pressure * gap_narrow / gap_wide). Both gaps are the Q4 gaps at the action's state, and the result is 0 when gap_wide <= 0. The dispute then returns to Refused with a new decision window, and nothing accrues while Refused.",
+    "Q12": "(b) When the dispute tick finds an Enforced dispute whose political capital cannot pay that tick's upkeep in full (political_capital < 0.20 * dt), the dispute closes as Withdrawn and does not accrue or fire.\n- The withdrawal price is charged under ALWAYS, floored at 0.\n- It prints the withdrawal headline, and the cooldown starts at closure.\nSee reading R6.",
+    "Q13": "(b) and (c). The escalation calls the existing break_electoral, unchanged, with the route-2 template plus a census-compatible suffix: \"COUP IN {NATION}: {institution} removes the elected government that ordered {phrase}.\" No fifth takeover-watch road or gauge is added. See reading R7.",
+    "Q14": "Moot. D2 moved no gate on ubuntu or windows CI (run 37178241397).",
+    "Q15": "(a) Three Army-only scopes, with invented stakes: BudgetOversight 1/3, SeniorAppointments 2/3, CivilianCommand 1.",
+    "Q16": "(a) Reuse the programme veto's weight, ARMY_PROGRAMME_VETO_WEIGHT = .45, through a shared pure helper. army_programme_veto_loyalty keeps the identical operation order, and both Algeria chronology tests pass unmodified.",
+    "Q17": "(a) The decision window is the refusal month plus the whole following calendar month (Refused { decide_by_month: month_index + 1 }). At the first dispute tick with month_index > decide_by_month, the order stands as Enforced (StepKind::EnforcedByDefault).",
+    "Q18": "(a) Route 2's .60 slope with no floor, applied to the Q4 gap, with a cap of 1.5. No public-mandate slowing and no maximum duration.",
+    "Q19": "(a) Closed entirely while ideology_takeover is off. Browser play's government payload and every existing web test's action list stay byte-identical.",
+    "Q20": "(a) One national leverage. A break reseats institutions as regime_break already does.",
+    "Q21": "(a) A withdrawal costs political capital only. Leverage, loyalty and authoritarianism are unchanged.",
+    "Q22": "(a) A dispute loaded into a takeover-off world is frozen.\n- The validation step, the dispute tick and the regime_break hook are all gated on both switches, so a maybe_coup break with takeover off leaves the frozen record untouched.\n- Resolutions are refused by the switch sentence, and the browser does not show the dispute.\n- When the switch is on again, validation runs first.",
+    "Q23": "(a) A new resolution variant, Resolution::MandateLapsed, is validation row 6, after InstitutionGone. It applies when legality rule 5 or 6 no longer holds while the state is still electoral. dispute_acceptance is total on every record that passes validation (I16, control 34). See reading R8.",
+    "Q24": "(b) When the issuing government exits by its own suspension (suspend_constitution) or its own ban (ban_party), the dispute is recorded as Withdrawn and the withdrawal price is charged. See reading R9.",
+    "Q25": "Not decided. If A1 still fails while every other gate passes, whether the mechanic is kept without A1 credit goes back to the user. This agent neither keeps nor reverts on that ground.",
+    "Q26": "Not decided. No anchor from contract section 2.2 (unsourced general knowledge) is cited by any coefficient, scope, price or test."
+  },
+
+  "implementation_readings": {
+    "status": "Claude's readings of the section-19 answers, written down before implementation so that nothing is chosen after a result is seen. They are not new design decisions. A reviewer or the user may overrule any of them before measurement, by a dated plan amendment (see 'amendments'). None was chosen with reference to seeds 0-11.",
+    "R1_Q2_Q3": "Q3(b) needs the card choice before the order can be considered, so the order is added in ai_stratagems' (None, None) arm and not as the contract's drafted ai_lever branch (11.4). As a result:\n- ai_lever and the A1 observer's selected_lever field are unchanged;\n- the_ai_takes_each_lever_only_under_its_thresholds must pass unmodified.",
+    "R2_Q5": "Enforce re-tests acceptance at the current scope:\n- on a Refused record, it closes as CompliedWhileOpen if acceptance >= .35, and otherwise becomes Enforced;\n- on an Enforced record, it is accepted only when acceptance >= .35 (closing as CompliedWhileOpen), and is otherwise refused with \"The order is already being enforced.\"\nThis gives an Enforced dispute at the narrowest scope an explicit path to compliance.",
+    "R3_Q6": "(i) Powers are kept per (institution, scope) and are not nested: a complied wider scope does not save the narrower ones. Each scope's stake is consolidated at most once per institution, which bounds civilian-order consolidation at .05*(1/3+2/3+1) = .10 per institution, a leverage change of -.25.\n(ii) Powers are cleared when regime_break runs army_seizure for the nation, the event that resets leverage to 1.0. Nothing else clears them. In a world without powers this writes nothing.\n(iii) army_authority's module doc names a complied lawful civilian order as a third leverage path. Compliance does not change authoritarianism, as drafted.",
+    "R4_Q9": "AI_ORDER_RESERVE_PC = 68 is the largest political-capital holding that any other AI use needs at the base:\n- SuspendConstitution needs pc >= 55 (ai_lever);\n- BanParty needs pc >= 60 (ai_lever);\n- SecurePillar needs held > 55 (ai_government);\n- cards need held >= 55 and cost <= held - 20, and the deck's most expensive card costs 48 (nuclear_programme), so 48 + 20 = 68.\nAfter paying 25 PC, an issuing AI still holds at least 68, so none of these uses is starved. A unit test computes the card term from DECK and asserts the reserve is at least every term.",
+    "R5_Q10": "A lapse receipt by the same issuer starts the cooldown, because a lapse is a closure. The cooldown is counted in clock::month_index, so the daily and monthly clocks agree.",
+    "R6_Q12": "The trigger is 'cannot pay this tick's upkeep in full' (pc < 0.20*dt) rather than pc == 0. With the existing floor-at-zero upkeep, a pc == 0 trigger closes one calendar month later on the monthly clock than on the daily one. The chosen trigger closes in the same calendar month on both clocks (I3).",
+    "R7_Q13": "The exact suffix text is \"that ordered {phrase}\". Before the change, a test checks that the headline is still counted as coup_el by a verbatim copy of the census rule (bloc_census.rs:377-398): it keeps the `COUP IN <NATION>:` prefix, contains `removes the elected government`, and does not contain `annuls the election`.",
+    "R8_Q23": "The new variant is named MandateLapsed and placed sixth, after InstitutionGone. Cases include interim status set by the scheduling seam and a restricted ballot ending an opening mandate. A ban by the issuer is handled by Q24 first.",
+    "R9_Q24": "suspend_constitution and ban_party gain one hook before their own writes. When the nation's record passes the post-lapse view (so its issuer is the acting government), it is closed as Withdrawn:\n- the withdrawal price (12 PC, ALWAYS, floored at 0) is charged in addition to the command's own price;\n- it prints the withdrawal headline.\nThe hook covers player commands and AI levers alike, and writes nothing when there is no record.",
+    "R10_Q11": "The rescaling ratio is the ratio of the two Q4 gaps, set to 0 when gap_wide <= 0, as in Q11 above.",
+    "R11_Q8": "Rule 5's refusal sentence becomes: \"{N}'s government holds neither an unrestricted completed ballot nor a sourced opening mandate; an interim or restricted mandate cannot order the armed forces.\"",
+    "R12_Q1": "Iteration is ordinals in stored order and, within each ordinal, scopes from widest to narrowest. The first legal, accepted and unsaved pair is issued.",
+    "R13_stop_rule": "A 'regression' is any of these:\n- an original gate that passes at the baseline fails on the candidate;\n- A1's count leaves 4..=14;\n- either Algeria chronology test fails.\nA value that moves inside a passing band is reported with its direction. It is not a rejection trigger."
+  },
+
+  "coefficients": {
+    "rule": "Every coefficient is an invented design assumption, uncalibrated and never fitted to seeds 0-11. BUGS entries ('what would calibrate it', contract 7.6) are filed only after approval.",
+    "register": [
+      {"id": "C1", "name": "ARMY_PROGRAMME_VETO_WEIGHT (reused)", "value": 0.45, "label": "invented design assumption", "basis": "The approved programme-veto structure, loyalty - W*leverage*stake (22 Sep record). No new weight (Q16a)."},
+      {"id": "C2", "name": "scope stakes", "value": "1/3, 2/3, 1", "label": "invented design assumption", "basis": "Three evenly spaced steps from part to all of the Army's executive authority. The full order's stake equals the veto's maximum. A game abstraction with no source (Q15a)."},
+      {"id": "C3", "name": "compliance line ELECTORAL_COUP_ARMY (reused)", "value": 0.35, "label": "invented design assumption", "basis": "The hostile-Army line already shared by route 2 and the annulment."},
+      {"id": "C4", "name": "AUTHORITY_CONSOLIDATION", "value": "0.05 * stake via consolidate_transfer (leverage -0.125 * stake), once per saved (institution, scope)", "label": "invented design assumption", "basis": "The lawful-transfer amount (.05 per full term, government.rs lawful-transfer consolidation). A complied full order equals one full term of lawful transfer. Q6(b) bounds repeats."},
+      {"id": "C5", "name": "AUTHORITY_ORDER_PC", "value": 25, "label": "invented design assumption", "basis": "Priced like CallElection (25), the other constitutional gamble open to an elected government (Q9a)."},
+      {"id": "C6", "name": "AUTHORITY_WITHDRAW_PC", "value": "12, ALWAYS", "label": "invented design assumption", "basis": "ExpelFromGovernment's 12 PC: always available, never free (Q9a)."},
+      {"id": "C7", "name": "AUTHORITY_ENFORCEMENT_UPKEEP", "value": "0.20 PC per month", "label": "invented design assumption", "basis": "upkeep = strain * 0.20 at one strain point, the floor cost of one coalition partner (Q9a). Unpayable upkeep lapses into a withdrawal (Q12b)."},
+      {"id": "C8", "name": "decision window", "value": "refusal month + the whole following calendar month", "label": "invented design assumption", "basis": "One full month for a player on either clock; the AI decides at its month-end review (Q17a)."},
+      {"id": "C9", "name": "escalation slope and cap (reused)", "value": "0.60 per unit of gap per month; cap 1.5; gap capped at 0.45*leverage*s", "label": "invented design assumption", "basis": "Route 2's hostility slope 0.30*2. The Q4(b) cap keeps route 2's material term, and with it the D >= .25 guard, out of the dispute's gauge (Q4b, Q18a)."},
+      {"id": "C10", "name": "AUTHORITY_ORDER_COOLDOWN_MONTHS", "value": "12 from closure; same issuer only", "label": "invented design assumption", "basis": "ELECTORAL_COUP_SETTLED (12) reused as the minimum interval (Q10 a, d)."},
+      {"id": "C11", "name": "firing threshold and settled months (reused)", "value": "1/crisis_intensity.max(0.1); 12", "label": "invented design assumption", "basis": "Route 2's own threshold and honeymoon."},
+      {"id": "C12", "name": "AI_ORDER_RESERVE_PC", "value": "68 (the AI issues at >= 93 PC)", "label": "invented design assumption", "basis": "The largest holding of the AI's other political-capital uses at the base (reading R4), so an order cannot starve them (Q9c). Derived from code thresholds, not from any outcome."},
+      {"id": "C13", "name": "AI majority line (reused)", "value": "government_seats() >= 0.50", "label": "invented design assumption", "basis": "The majority line of suspend_refusal."},
+      {"id": "C14", "name": "AI discontent line (reused)", "value": "D < 0.25", "label": "invented design assumption", "basis": "ELECTORAL_COUP_DISCONTENT: a government does not pick a fight with its army in an economic crisis."},
+      {"id": "C15", "name": "civilian-control guard", "value": "authoritarianism <= 0.20", "label": "design-authority boundary, not a coefficient", "basis": "User decision D2 (4 Oct 2026; 22 Sep record), extended to D1 by Q7(a)."},
+      {"id": "E1", "name": "AUTHORITY_HISTORY_KEPT", "value": "8 receipts per nation", "label": "engineering bound, not a model coefficient", "basis": "Save size. The cooldown reads only the newest receipt."}
+    ]
+  },
+
+  "invariants": "Contract section 13, I1-I16, unchanged. Points the decisions sharpen:\n- I2/I5: under Q3(b), a draw is added only in a tick where ai_lever is None, no card is chosen and ai_order is Some.\n- I11: under Q7(a), the guard covers orders, disputes, accrual and firing.\n- I12: under Q13(b), the escalation headline is census-compatible.\n- No double charge: the dispute writes no loyalty; the annulment closes an open dispute as GovernmentRemoved through the regime_break hook; Algeria cannot receive an order before its staged annulment (rule 5, Q8).",
+
+  "stages": [
+    {"id": "S0", "what": "This plan, committed in /home/user/Spheres on claude/nifty-bohr-0j27qi before any implementation."},
+    {"id": "S1-pre", "where": "wt-d2, new branch claude/d1-dispute-wip from f6597cf5", "what": "Before any runtime edit:\n- record rustc -V and cargo -V;\n- run the existing focused suites on the unmodified runtime (logs/existing-before.log);\n- record pins P1-P3 (see 'pins') with a test-only helper that compiles on the base, and keep the helper's diff."},
+    {"id": "S1-red", "test": "spheres-web: a_lawful_civilian_order_and_its_refusal_are_represented", "fixture": "Contract 14.1, with authored and disclosed state edits:\n- lens and takeover on, Pakistan as the player;\n- electoral, elected, unrestricted_mandate, a 7-month record;\n- sourced leverage .8, Army loyalty .65, D < .25, PC 60.\nThe fixture is an authored shape, not a fit.", "asserts": ["parse_command of the full-scope order is Some", "the order is served with a null refusal and price 25", "its review shows authority_dispute none -> refused", "applying it leaves authority_dispute in the save JSON"], "must": "Compile and FAIL on the unmodified runtime f6597cf5, at assertion 1 (parse_command returns None).", "record": "red-stage1.log, red-stage1.diff, the test binary's SHA-256, the toolchain", "command": "cargo test --locked --release -p spheres-web a_lawful_civilian_order_and_its_refusal_are_represented -- --nocapture"},
+    {"id": "S1a", "what": "A behaviour-preserving refactor, in its own commit:\n- civilian_control_holds and the pub(crate) constant (Q7);\n- prospective_acceptance, shared by army_programme_veto_loyalty with an identical operation order (Q16);\n- institution_spec_name(w, id, InstitutionRef), replacing spheres-web's private institution_name with ordinal 0 and its own fallback, so the payload is byte-identical (contract 4.2);\n- pub(crate) on established_civilian_record, civilian_army_executive_leverage and army_authority::model_date.", "evidence": "D2's six civilian_guard tests unmodified, both Algeria chronology tests, the web government tests, and pins P1-P3, all unchanged."},
+    {"id": "S1", "what": "Stage 1: the order and the record (contract 3.2). It adds:\n- the two Command variants, prices, refusals and arms;\n- the plans and effects (refusal -> plan -> arm -> effects off one plan, iron rule 8);\n- the compliance rule and saved powers;\n- DisputeRecord, AuthorityReceipt and civilian_powers (serde default, skipped when empty);\n- the three resolutions and the decision window;\n- validation and lapses, before the electoral/regime split and again in the electoral branch;\n- the regime_break hook, gated on both switches;\n- the Q24 hooks; enforcement upkeep and the Q12 lapse;\n- the Prudent ai_order in the (None, None) arm of ai_stratagems, and ai_response;\n- the UI of contract 12.\nNothing can remove a government in stage 1: an enforced dispute accrues no pressure.", "green": "S1-red passes, plus every stage-1 control below."},
+    {"id": "S2-red", "test": "spheres-sim (civilian_authority_tests.rs): an_enforced_refusal_accrues_authority_pressure_and_removes_the_government", "fixture": "Held inputs and an enforced CivilianCommand dispute.", "asserts": ["after one monthly tick authority_pressure == 0.60 * min(0.35 - acceptance, 0.45 * leverage * 1.0), to 1e-12", "the suffixed escalation headline appears in the calendar month computed from the formula (first month with pressure >= 1/crisis_intensity.max(0.1) and settled >= 12)", "an Escalated receipt exists and the world's leverage after the break is 1.0"], "must": "Compile and FAIL on the stage-1 runtime, because pressure stays 0.", "record": "red-stage2.log, red-stage2.diff, binary SHA-256", "command": "cargo test --locked --release -p spheres-sim --lib an_enforced_refusal_accrues_authority_pressure_and_removes_the_government -- --nocapture"},
+    {"id": "S2", "what": "Stage 2: escalation. It adds:\n- accrual with the Q4(b) cap;\n- the Q11(b) rescale on negotiation;\n- the firing check, the Escalated receipt (leverage_after read before the break) and the suffixed break_electoral headline (Q13b).", "green": "S2-red passes, plus every control."},
+    {"id": "S-review", "what": "An automated review (Claude, labelled as such; not human or Codex review) of the whole diff f6597cf5..candidate against this plan and the contract. Findings are fixed before measurement, and the focused suites re-run. The measured commit's SHA is recorded before the gate runs."},
+    {"id": "S-measure", "what": "The single gate measurement, then diagnostics, then engineering verification, then (conditionally) the 0-199 cohort, in that order."},
+    {"id": "S-report", "what": "A new evidence packet beside this plan. Existing evidence files are not changed."}
+  ],
+
+  "controls": {
+    "as_written": "Contract 14.2, controls 1-36, with the expected results the contract states, except where a decision changes them below. A control written for a drafted option takes the decided option.",
+    "changed_by_decision": {
+      "5": "Q11(b): a negotiation that still refuses returns to Refused with a new window, and the pressure is rescaled by gap_narrow/gap_wide. Nothing accrues while Refused.",
+      "6": "Q9(a), Q10(a, d), Q21(a): withdrawal charges 12 PC ALWAYS (PC 5 gives 0) and leaves leverage unchanged. The same issuer is blocked for 12 months from closure and then allowed. A replaced issuer is not blocked.",
+      "8": "Q5(b), replacing the drafted control: take an Enforced dispute with pressure 1.49, and raise acceptance to >= .35 by funding.\n- The dispute does not close, does not accrue, and does not fire.\n- An explicit Enforce then closes it as CompliedWhileOpen, applying consolidate_transfer(.05*s) and saving the power.\n- A Negotiate to an accepted narrower scope closes it as NegotiatedCompliance.",
+      "9": "Q8(b): each case is refused with its sentence: a missing Army, a regime, an interim government, a restricted mandate without an attested opening mandate, and a record under 6 months.",
+      "21": "Q13(b): the headline equals the suffixed template, with the recorded institution name. A verbatim copy of the census parse classifies it as coup_el.",
+      "24": "Q1(a), Q9(c): the AI issues only orders whose plan says complies. It never issues one that will be refused. It never issues when D >= .25, without a majority, below 93 PC, inside the cooldown, for a saved scope, or for the player.",
+      "25": "Q1(a): Withdraw is the only response. The AI never acts on the player's dispute, and the response is deterministic.",
+      "27": "Q24(b): with an Enforced dispute and pressure 1.49, the issuer's own suspension, by the AI lever or by a player command, closes the dispute as Withdrawn in the same arm call and charges 12 PC ALWAYS, with no escalation. The issuer's own ban does the same. After a reopening with the same party: no dispute, no accrual, no firing.",
+      "32": "Q10(d): the new government's own order is not blocked by the old issuer's cooldown. The arm first closes the old record as IssuerReplaced.",
+      "34": "Q23(a): rule 5 or 6 lost while still electoral lapses the dispute as MandateLapsed. dispute_acceptance is Some on every validated record.",
+      "35": "Q3(b): an actor with a lever plays the same lever, and an actor with a chosen card plays the same card, with the same draw sequence as on f6597cf5. The order is a candidate only when neither exists."
+    },
+    "added": {
+      "37": "Q6(b) saved powers:\n- a complied (institution, scope) is refused afterwards with its sentence;\n- other scopes and institutions stay orderable;\n- negotiation skips saved scopes;\n- powers survive save/load and are cleared by an Army seizure;\n- a world without powers serializes no field.",
+      "38": "Q12(b): an Enforced dispute whose political capital is below the tick's upkeep closes as Withdrawn (PC goes to 0), with no accrual or firing that tick. The closure falls in the same calendar month on the daily and monthly clocks.",
+      "39": "Q8(b): a government with an attested opening mandate and a six-month record may issue. It is refused without the marker, with a leader whose party is not attested, or under six months.",
+      "40": "Q9(c): the AI never issues below 93 PC. AI_ORDER_RESERVE_PC is at least 55, 60, and the largest DECK cost + 20, computed from DECK.",
+      "41": "Q4(b): with eff_k < .35, the month's accrual equals 0.60 * 0.45 * leverage * s * dt, never the full gap. With eff_k >= .35, it equals 0.60 * (0.35 - acceptance) * dt. When gap <= 0, nothing accrues.",
+      "42": "Q22(a): a dispute in a takeover-off world is frozen.\n- The validation step, the tick and the regime_break hook read nothing.\n- A maybe_coup break leaves the record unchanged.\n- Resolutions are refused by the switch sentence.\n- With the switch on again, validation runs first.",
+      "43": "The pins P1-P3 are reproduced exactly by the candidate."
+    }
+  },
+  "pins": {
+    "recorded_on": "f6597cf5, before any runtime edit (stage S1-pre). The values are written into the controls as constants, with the base commit named.",
+    "P1": "Lens off; world_1990, seed 0, no player, 24 monthly ticks: the SHA-256 of the save bytes and the RNG state (I1).",
+    "P2": "Lens on, takeover off; the same fixture: the save SHA-256 and the RNG state (I2).",
+    "P3": "Both switches on, every army_authority record removed at the start, so no order is legal anywhere: the RNG state after 12 monthly ticks (control 17), and the save SHA-256 and RNG state after 24 (control 31).",
+    "note": "These are byte-identity pins. No political outcome is read from them."
+  },
+  "existing_tests_unchanged": [
+    "cargo test --lib filters government, army_authority, stratagem, blocs and opening_mandates, including the_ai_takes_each_lever_only_under_its_thresholds",
+    "Algeria chronology: the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court; a_paid_army_seats_the_islamists_and_a_hostile_one_annuls_the_algerian_way",
+    "D2's six tests in government_civilian_guard_tests.rs, unmodified",
+    "Inertness: the_bloc_layer_is_inert_at_1990; every_road_reads_closed_while_takeover_is_off; golden_hash_of_a_known_run",
+    "Determinism and saves: determinism_same_seed_same_world; save_load_roundtrip_continuity",
+    "Daily equals monthly: the_daily_clock_preserves_the_political_arm_on_world (lib.rs:2183), unmodified",
+    "The spheres-web government-screen tests",
+    "node tools/ui/run-unit.cjs"
+  ],
+  "edited_tests_policy": "No existing test edit is predeclared or expected. If an existing test fails, it is reported. An assertion is updated only when it directly encodes behaviour the user has decided to change, with the old and new expectation recorded in edited-tests.json, and before measurement. A failure of the_daily_clock_preserves_the_political_arm_on_world is treated as a daily==monthly bug (A12), not as a test to edit.",
+
+  "allowed_before_measurement": {
+    "env": "cd scratchpad/wt-d2; CARGO_TARGET_DIR=scratchpad/target-d2 CARGO_BUILD_JOBS=3",
+    "commands": [
+      "cargo test --locked --release -p spheres-sim --lib civilian_authority",
+      "cargo test --locked --release -p spheres-sim --lib civilian_guard",
+      "cargo test --locked --release -p spheres-sim --lib -- government army_authority stratagem blocs opening_mandates",
+      "cargo test --locked --release -p spheres-sim --lib -- the_daily_clock_preserves_the_political_arm_on_world determinism_same_seed_same_world golden_hash_of_a_known_run save_load_roundtrip_continuity the_bloc_layer_is_inert_at_1990 every_road_reads_closed_while_takeover_is_off",
+      "cargo test --locked --release -p spheres-web a_lawful_civilian_order_and_its_refusal_are_represented -- --nocapture",
+      "cargo test --locked --release -p spheres-web government",
+      "node tools/ui/run-unit.cjs"
+    ]
+  },
+  "forbidden_before_measurement": [
+    "Any run of spheres-sim/tests/bloc_census.rs, including any single gate such as A6, A8, A9, A10 or the attribution test",
+    "The census scan bloc_census",
+    "The a1-diag harness, the d2-diag harness and any copy of them",
+    "Any multi-seed political outcome sweep",
+    "`cargo test -p spheres-sim` without --lib",
+    "The workspace suite. It runs A6, A8, A9, A10 and the attribution test, which are not #[ignore]d, so it would be a partial gate run."
+  ],
+
+  "measurement": {
+    "runs": "Exactly once, on the final reviewed commit, after every pre-measurement check is green and the commit SHA is recorded.",
+    "env": "cd scratchpad/wt-d2; CARGO_TARGET_DIR=scratchpad/target-d2 CARGO_BUILD_JOBS=3",
+    "build_first": "cargo test --locked --release -p spheres-sim --test bloc_census --no-run   (compiles only; logs/gate-build.log; records the binary path and its SHA-256)",
+    "command": "cargo test --locked --release -p spheres-sim --test bloc_census -- --include-ignored --skip bloc_census --nocapture",
+    "capture": "( time <command> ) > logs/gates-nocapture.log 2>&1; echo \"exit=$?\" >> logs/gates-nocapture.log. Record `uptime` before and after, because the container is shared with the S25 diagnostic.",
+    "record": [
+      "the measured commit SHA",
+      "change.diff = git diff f6597cf5 <commit>",
+      "rustc -V and cargo -V",
+      "the gate binary's SHA-256",
+      "the exit code and the wall time",
+      "every gate line",
+      "A1's count median and every per-seed exact top-three fraction",
+      "A2's seeds and Algeria counts; A3-A10; attribution",
+      "logs/a1-seed-table.txt = awk '/^A1: /{f=1;next} f&&/^s[0-9]+ coupEl/{print; if(++n==12) exit}' logs/gates-nocapture.log, and its SHA-256, compared with 87b3ea9ba1cd5bfd9a978edb34d1c7e6a54553e1afc42afede07e015cda73deb",
+      "a gate-by-gate table against the baseline below"
+    ],
+    "pass": "Exit 0 with 11 passed (A1-A10 and the attribution control) and the bloc_census scan filtered out. The cross-platform half of the pass is the CI political-calibration job on ubuntu-latest and windows-latest on the same commit, with byte-identical A1 tables. It stays pending until an authorized push. The local run is not a substitute for it, and that job is the same measurement on other platforms, not a second measurement.",
+    "interruption": "If an infrastructure failure (killed process, full disk, out of memory) stops the run before any test-result line, record it and run the identical command again on the same commit. Keep both logs. A completed run is never repeated."
+  },
+  "baseline_post_d2": {
+    "statement": "The post-D2 baseline equals the 39369f0 values. D2's local run (civilian-guard-20261004/logs/gates-nocapture.log, gate binary 20b22f0e43e0fba9a4a7c9a272dbed7b6db6d238d0d292487cc99f5fed8ef323) printed every value identical to 39369f0 (gate binary 81f13be52cbd2a429314a9072f60685ffe2014c605d17b3e49012473056aac31; CI run 37056033496). CI run 37178241397 on e857e8ac (ubuntu job 111365283293, windows job 111365283301) reproduced the identical A1 seed table.",
+    "A1": {"pass": false, "median_coups": 7.5, "median_top3_share": "4/7 = 0.571429", "per_seed_top3": {"s0": "3/7", "s1": "4/6", "s2": "3/5", "s3": "5/8", "s4": "4/8", "s5": "4/8", "s6": "4/7", "s7": "5/8", "s8": "4/8", "s9": "4/7", "s10": "5/8", "s11": "4/7"}, "per_seed_coups": [7, 6, 5, 8, 8, 8, 7, 8, 8, 7, 8, 7], "seed_table_sha256": "87b3ea9ba1cd5bfd9a978edb34d1c7e6a54553e1afc42afede07e015cda73deb", "bar": "median count in 4..=14 and median top-3 share < 0.50"},
+    "A2": {"pass": true, "value": "8/12 seeds; Algeria Islamist 0/12; Algeria annulled 12/12", "bar": "> 6 and <= 10 of 12; Algeria Islamist < 6; annulled >= 2"},
+    "A3": {"pass": true, "value": "0/20", "bar": "<= 2 of 20"},
+    "A4": {"pass": true, "value": "median 16", "per_seed": [16, 17, 18, 16, 18, 14, 15, 17, 16, 15, 18, 13], "bar": "median in 15..=40"},
+    "A5": {"pass": true, "value": "12/12", "bar": "> 6 of 12"},
+    "A6": {"pass": true, "value": "0 route events in 12/12 seeds at 420 months; pre-existing collapses beside [1 x12]", "bar": "0 in every seed"},
+    "A7": {"pass": true, "value": "median 8.462", "per_seed": [12.0, 10.4, 6.8, 5.75, 5.6923076923076925, 10.916666666666666, 9.25, 7.846153846153846, 6.7272727272727275, 5.583333333333333, 9.076923076923077, 9.5], "bar": "median >= 3.0"},
+    "A8": {"pass": true, "value": "40/40 seeds keep >= 6 of 8 (one seed keeps 7, the rest 8)", "bar": ">= 24 of 40"},
+    "A9": {"pass": true, "value": "168/168 = 1.000", "bar": "pooled share >= 0.80 and at least one coup"},
+    "A10": {"pass": true, "value": "median 0.335", "per_seed": [0.3332881550546958, 0.3350112582151434, 0.3199892919645879, 0.33590973819726616, 0.32400988681645504, 0.3429291630974689, 0.3289217032960273, 0.32341646778887506, 0.34581141592062586, 0.34960696466630614, 0.34631310703730217, 0.35812593529282166], "bar": "median >= 0.25 and every seed has a takeover"},
+    "attribution": {"pass": true, "test": "a_ballot_and_an_uncoloured_collapse_do_not_fabricate_a_movement_takeover"}
+  },
+
+  "diagnostics_after_measurement": {
+    "rule": "Measurement only, on the measured commit, seeds 0-11, after the single gate run. Report as observations, never as tuning input.",
+    "D1_census_scan": "SPHERES_CENSUS_SEEDS=12 SPHERES_CENSUS_MONTHS=252 SPHERES_CENSUS_SEED_START=0 cargo test --locked --release -p spheres-sim --test bloc_census -- --ignored --exact bloc_census --nocapture   (pooled per-nation tables)",
+    "D2_scout_harness": "The scout's read-only a1-diag harness, rebuilt unchanged against the candidate (main.rs byte-identical to a1-claude-scope-20261004/harness/a1-diag/src/main.rs), in target-d2. It gives per-seed elected-coup countries, top-three shares and pre-coup readings. Diff it against civilian-guard-20261004/diagnostics/d2-diag-seeds0-11.log and report which countries newly fire or stop firing, first-event dates, and repeats.",
+    "D3_dispute_harness": "A new read-only headline-and-state harness (a path dependency, built in target-d2) that counts, per seed and country:\n- orders by scope;\n- compliances by resolution (Complied, NegotiatedCompliance, CompliedWhileOpen);\n- refusals, negotiations, withdrawals, enforcements (explicit and by default) and lapses by resolution;\n- escalations, with first dates and repeats after an escalation;\n- AI-issued refusals (must be 0 under Prudent; nonzero is an implementation bug);\n- saved powers at the end;\n- national leverage at the start, minimum and end, and the number of compliance-driven reductions.",
+    "observer_note": "The A1 observer's selected_lever is unchanged, because the order is outside ai_lever (R1). An observer comparison with an earlier log shows world-path differences, not a lever-field difference."
+  },
+  "engineering_after_measurement": {
+    "order": "After the gate run and the diagnostics, on the same commit.",
+    "E1_workspace": "cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget   (logs/workspace.log; about 20-25 min). It repeats the non-ignored census tests A6, A8, A9, A10 and attribution. That is a deterministic repeat on the same commit, not a new measurement, and their output must equal the gate run's.",
+    "E2_resource_timing": "cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1   (alone, with no other heavy CPU work of ours; logs/resource-timing.log). It times only resource work in a lens-off world, so it cannot see this change. Contended-container figures are indicative only. The CI runners and the user's quiet machine are authoritative.",
+    "E3_ui_unit": "node tools/ui/run-unit.cjs",
+    "E4_web_build": "cargo build --locked --release -p spheres-web",
+    "E5_path_cost": "A measurement-only #[ignore] lib test, civilian_authority_entry_point_cost, run alone with -- --exact --nocapture --test-threads=1. On world_1990 with both switches on, it runs no ticks and reads no outcomes. It times 10,000 repetitions of pending_lapse + ai_order over every nation and reports ns per nation-call, beside the gate's wall time against D2's 97.68 s. Report only: no pass bar exists (contract 16)."
+  },
+  "optional_development_cohort": {
+    "condition": "Only if every original gate (A1-A10) and the attribution test pass in the local run and in the CI political-calibration job on both ubuntu-latest and windows-latest (contract 15.6). The run waits for CI evidence.",
+    "command": "SPHERES_CENSUS_SEEDS=200 SPHERES_CENSUS_MONTHS=252 SPHERES_CENSUS_SEED_START=0 cargo test --locked --release -p spheres-sim --test bloc_census -- --ignored --exact bloc_census --nocapture",
+    "runs": "At most once (about 200 s). It is reported as a development-cohort observation, not a gate.",
+    "never": ["the reserved 1000-series cohort", "appending or substituting seeds", "a wider scan used to select anything"]
+  },
+
+  "stop_and_report_rule": {
+    "report": "Every gate value is reported as measured, pass or fail, against the baseline, whether it improves, holds or regresses.",
+    "regression": "Any original-gate regression (R13) or a failing Algeria chronology test is reported, and the candidate is rejected for integration. f6597cf5 stays the base, and every artifact is kept. The response never compensates: no change to any gate, country, coefficient, scope, price, timing, temperament, threshold, seed or cohort.",
+    "a1_fails_others_pass": "Report a failure. A1 stays open. Q25 (keep the mechanic without A1 credit, or revert) goes back to the user.",
+    "all_pass": "Report a pass. It does not close A1, CODEX-S27-A1-01, S27, G5 or CP1. The task stays blocked until a human-reviewed contract and the retained passing evidence both exist, and until CI confirms on both platforms.",
+    "bug_after_measurement": "A demonstrated implementation bug found after measurement may be fixed. 'Demonstrated' means a deviation from this plan or the contract, shown by a focused failing test or by code against the text, and never inferred from a gate value alone. The fix changes no coefficient, threshold, scope, price, timing, temperament or other design choice. The gate is then measured once more on the fixed commit, and both results are kept and reported. The first result is never discarded or silently superseded.",
+    "design_change_after_measurement": "None without a new user decision, which then needs a new predeclared plan."
+  },
+  "amendments": "Before the measurement command runs, this plan may be amended only by a dated, committed amendment that gives its reason. That covers a reviewer or the user overruling an implementation reading, or a defect found in the plan. No amendment may cite a seeds 0-11 political outcome; none will have been observed. After the measurement starts, the plan is not amended.",
+
+  "records": {
+    "packet": "Evidence is added beside this plan, in docs/campaign-certification/S27/preparation/civilian-authority-dispute-20261004/. Existing evidence files elsewhere stay unchanged.",
+    "files": [
+      "README.md",
+      "change.diff",
+      "red-stage1.diff and red-stage1.log",
+      "red-stage2.diff and red-stage2.log",
+      "pins.json",
+      "logs/existing-before.log and logs/existing-after.log",
+      "logs/focused-*.log",
+      "edited-tests.json (only if any)",
+      "logs/gate-build.log, logs/gates-nocapture.log, logs/a1-seed-table.txt",
+      "diagnostics/*",
+      "harness/*",
+      "logs/workspace.log, logs/resource-timing.log, logs/run-unit.log, logs/web-build.log",
+      "the optional development-cohort log",
+      "files.json (SHA-256 manifest)"
+    ],
+    "failures": "Every failure is recorded, including red runs, test failures, interrupted runs and review findings.",
+    "labels": "Claude is an automated agent. No review here is human review, Codex review or approval.",
+    "docs_after_approval_only": "SPEC section 4, docs/government-ui.md and the BUGS calibration entries for C1-C14 are written only after approval (contract 3.4, 7.6). The implementation commits do not touch them.",
+    "data": "D1 installs no historical identity, transition or authority data, and no data file."
+  }
+}
