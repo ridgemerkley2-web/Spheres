@@ -13539,7 +13539,11 @@ mod tests {
         assert_eq!(crate::army_authority::current_leverage(&zero, id), Some(1.0));
         assert_eq!(state(&zero, id).unwrap().army_authority.as_ref().unwrap().source,
             known.as_ref().unwrap().source, "an actual seizure changes campaign leverage, never its historical input");
+        // Above the civilian-control boundary, so only the missing Army can
+        // close the channel.
         let mut no_army = one.clone();
+        no_army.nation_mut(id).authoritarianism = 0.25;
+        assert!(army_civilian_confidence_penalty(&no_army, id) > 0.0);
         state_mut(&mut no_army, id).unwrap().pillars.retain(|(p, _)| *p != Pillar::Army);
         assert_eq!(army_civilian_confidence_penalty(&no_army, id), 0.0);
         assert_eq!(crate::army_authority::current_leverage(&no_army, id), None);
