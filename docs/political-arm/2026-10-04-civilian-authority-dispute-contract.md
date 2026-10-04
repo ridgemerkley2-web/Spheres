@@ -1,6 +1,6 @@
 # Civilian-authority dispute: design contract (D1)
 
-**Status: Proposed by Claude (automated agent) for design-authority review - not approved, not implemented. Revised after two automated adversarial reviews (4 Oct 2026); blocking design questions remain.**
+**Status: Proposed by Claude (automated agent); revised after two automated adversarial reviews; the user, as design authority, decided the blocking questions on 4 Oct 2026 (section 19). Not yet implemented or measured.**
 
 | | |
 | --- | --- |
@@ -1705,6 +1705,37 @@ record maps every finding to its disposition.
 | R29 | Verification pass (Claude, automated agent; not human or Codex review), factual and labelling fixes only. Labelled 1.2 "derived from seeds 0-11". Removed the 10.2 illustration's link to the Assertive temperament. Corrected 8.3's same-tick example: the scheduling seam re-forms the government (row 3) and sets `awaiting_first_election`, which no row reads until Q23. Added `armed_opposition_victory` to the exit table. Corrected the lever-first rationale's lines to `stratagems.rs:553-561`, and the card-displacement wording. Stated that 55/60 are the AI's holding thresholds, not prices (40/18). Noted which controls test a drafted option. Qualified control 30's peace-transition case. The timing test times resource work, not only the `resources` row. Stated that Q23 and Q24 have no proposed default. Clarified two Appendix A rows. Made 10.2's Sao Tome arithmetic exact (20th monthly accrual), as ER correction 1 did for Pakistan and Thailand. | 1.2, 6, 8.3, 10.2, 11.4, 14.2, 16, 17.1, 17.2, Appendix A | ER MEDIUM-5, Q27; DA HIGH-1; citation checks |
 
 ---
+
+## 19. Design-authority decisions (4 October 2026)
+
+The user, as design authority, adopted the following answers in one decision on 4 October 2026
+("Adopt recommended set"), after Claude presented them as the set consistent with the binding
+rules and source texts. They replace the open status of the questions in 17.1 and 17.2; the
+question text above is kept as the record of what was decided.
+
+| Q | Decision |
+|---|---|
+| Q1 | (a) Prudent: the AI issues only an order its own pure plan says the Army would accept. |
+| Q2 | (a) the existing 0.02 draw through `ai_lever`. |
+| Q3 | (b) the order is chosen only in ticks where no stratagem card is chosen. |
+| Q4 | (b) the escalation gap is capped at the authority component, `min(gap, .45 * leverage * s)`, so route 2's live `D >= .25` guard is not bypassed. |
+| Q5 | (b) compliance while a dispute is open happens only through an explicit government action; funding does not settle a dispute automatically. |
+| Q6 | (b) complied scopes are saved as institutional powers and cannot be ordered again. |
+| Q7 | (a) the civilian-control guard (authoritarianism `<= .20`) also blocks orders, disputes, accrual and firing. |
+| Q8 | (b) a sourced opening mandate counts as lawful authority to issue an order. |
+| Q9 | (a) prices as drafted, plus (c) a larger AI reserve, so orders cannot starve `SuspendConstitution`, `BanParty`, cards or `SecurePillar`. |
+| Q10 | (a) 12 months from closure, and (d) the cooldown resets when the issuer is replaced. |
+| Q11 | (b) pressure is rescaled to the narrower scope's gap on negotiation. |
+| Q12 | (b) enforcement at zero political capital lapses into a withdrawal. |
+| Q13 | (b) the route-2 headline template plus a census-compatible suffix naming the refused order; (c) no fifth takeover-watch road. |
+| Q14 | Moot: D2 moved no gate on ubuntu or windows CI (run 37178241397). |
+| Q15-Q22 | The proposed defaults: (a) in each case. |
+| Q23 | (a) the dispute lapses, with a new resolution variant. |
+| Q24 | (b) an issuer's own exit by suspension (or ban) is recorded as `Withdrawn`, with its price. |
+| Q25, Q26 | Not decided (section 17.3). |
+
+The measurement remains unknown until run, follows section 15 once, and must not be tuned to
+seeds 0-11.
 
 ## Appendix A: code anchors at `39369f0`
 
